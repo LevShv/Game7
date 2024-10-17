@@ -6,11 +6,20 @@
 #include <curses.h>
 #include <my_map.h>
 
+class my_boy {
 
-bool game_exit = false;
+public:
+    int x;
+    int y;
 
+    my_boy() {}
 
+    void move_boy() {
+        mvprintw(x, y, "0");
+    }
 
+private:
+};
 
 int main()
 { 
@@ -33,6 +42,7 @@ int main()
     
     my_map map;
     map.show_map();
+   
     getch();
     endwin();
 
