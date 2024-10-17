@@ -2,12 +2,12 @@
 #include <curses.h>
 
 
-    my_map::my_map() {
+    my_map::my_map(int width_of_map, int length_of_map) : width(width_of_map), length(length_of_map){
         map = new char* [length];
         map_gen();
     }
 
-    void my_map::show_map() {
+    void my_map::show_map(){
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < length; j++) {
                 move(i, j);
@@ -31,7 +31,7 @@
             map[i] = new char[width];
 
             for (int j = 0; j < width; j++) {
-                map[i][j] = '#';
+                map[i][j] = ' ';
             }
         }
     }
