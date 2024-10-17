@@ -9,6 +9,7 @@
 class my_boy {
 
 public:
+
     int x;
     int y;
 
