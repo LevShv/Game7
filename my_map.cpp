@@ -1,34 +1,35 @@
 #include "my_map.h"
 #include <curses.h>
+#include <my_map.h>
 #include <random>
 
 
 
     my_map::my_map(int width_of_map, int length_of_map) : width(width_of_map), length(length_of_map){
-        map = new char* [length];
+        forest = new char* [length];
         map_gen();
     }
 
     void my_map::show_map(){
         for (int i = 0; i < length; i++) {
-                mvprintw(i,0,map[i]);
+                mvprintw(i,0,forest[i]);
         }
     }
     my_map::~my_map() {
         
         for (int i = 0; i < length; i++)
-            delete[] map[i];
-        delete[] map;
+            delete[] forest[i];
+        delete[] forest;
     }
 
     void my_map::map_gen() {
 
         for (int i = 0; i < length; i++) {
 
-            map[i] = new char[width];
+            forest[i] = new char[width];
 
             for (int j = 0; j < width; j++) {
-                map[i][j] = ' ';
+                forest[i][j] = ' ';
             }
         }
 
@@ -41,6 +42,6 @@
         for (int i = 0; i < 100; ++i) {
             int rx = disx(gen);
             int ry = disy(gen);
-            map[ry][rx] = 'T';
+            forest[ry][rx] = 'T';
         }
     }

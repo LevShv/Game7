@@ -5,13 +5,13 @@ public:
 
     my_map(int width_of_map, int length_of_map);
     void show_map();
+    char** forest;
     ~my_map();
     
 private:
 
     int width;
-    int length = 30;
-    char** map;
+    int length;
     void map_gen();
 
 };

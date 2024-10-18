@@ -8,15 +8,26 @@
 #include "my_boy.h"
 
 
-//bool border_check()
-//{
-//    return ((boy.x > 0 )&()&()&())
-//}
+class monster{
+public:
+
+    int x;
+    int y;
+    monster() {}
+    void move_monster() {
+
+    }
+private:
+
+};
 int main()
 { 
     int width = 120;
     int length = 30;
     int frame_rate = 100;
+
+    int start_pos_x = 0;
+    int start_pos_y = 0;
 
     system("chcp 1251");
 
@@ -28,10 +39,7 @@ int main()
     my_map map(width, length);
     map.show_map();
 
-    my_boy boy;
-    boy.x = 0;
-    boy.y = 0;
-   
+    my_boy boy(start_pos_x,start_pos_y);
 
     while (true) {
         switch (getch()) {
@@ -41,7 +49,7 @@ int main()
             }
             break;
         case 's':
-            if (boy.y < length) {
+            if (boy.y < length-1) {
                 boy.y++;
             }
             break;
@@ -51,7 +59,7 @@ int main()
             }
             break;
         case 'd':
-            if (boy.x < width) {
+            if (boy.x < width-1) {
                 boy.x++;
             }
             break;
@@ -65,7 +73,7 @@ int main()
         clear();
 
         map.show_map();
-        boy.move_boy();
+        boy.move_boy(map.forest);
         
        /* refresh();*/
         
