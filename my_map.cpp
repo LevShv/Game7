@@ -15,7 +15,7 @@
         }
     }
     my_map::~my_map() {
-
+        
         for (int i = 0; i < length; i++)
             delete[] map[i];
         delete[] map;
@@ -38,7 +38,7 @@
         std::uniform_int_distribution<> disx(1, width - 1); // Равномерное распределение от 0 до 
         std::uniform_int_distribution<> disy(1, length - 1);
 
-        for (int i = 0; i < 150; ++i) {
+        for (int i = 0; i < 100; ++i) {
             int rx = disx(gen);
             int ry = disy(gen);
             map[ry][rx] = 'T';

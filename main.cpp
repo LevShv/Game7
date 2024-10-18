@@ -5,22 +5,9 @@
 #include <string>
 #include <curses.h>
 #include <my_map.h>
+#include "my_boy.h"
 
-class my_boy {
 
-public:
-
-    int x;
-    int y;
-
-    my_boy() {}
-
-    void move_boy() {
-        mvprintw(y, x, "0");
-    }
-
-private:
-};
 //bool border_check()
 //{
 //    return ((boy.x > 0 )&()&()&())
@@ -80,7 +67,7 @@ int main()
         map.show_map();
         boy.move_boy();
         
-
+       /* refresh();*/
         
 
     }
