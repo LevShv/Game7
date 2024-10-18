@@ -131,10 +131,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="monster.cpp" />
     <ClCompile Include="my_boy.cpp" />
     <ClCompile Include="my_map.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="monster.h" />
     <ClInclude Include="my_boy.h" />
     <ClInclude Include="my_map.h" />
   </ItemGroup>
