@@ -77,6 +77,47 @@ void monster::move_monster(int boy_x, int boy_y, char** map) {
 
             }
         }
+        ///////
+
+        if (0 <= active_point.y - 1 && map[active_point.y - 1][active_point.x] == ' ') {
+            point p = active_point;
+            p.y--;
+
+            if (check_in_way(way, p)) {
+                p.move = 10 + active_point.move;
+                p.weight = p.move + 10 * (abs(boy.x - p.x) + abs(boy.y - p.y));
+
+                open_list.insert(p);
+
+
+            }
+        }
+        if (0 <= active_point.y - 1 && map[active_point.y - 1][active_point.x] == ' ') {
+            point p = active_point;
+            p.y--;
+
+            if (check_in_way(way, p)) {
+                p.move = 10 + active_point.move;
+                p.weight = p.move + 10 * (abs(boy.x - p.x) + abs(boy.y - p.y));
+
+                open_list.insert(p);
+
+
+            }
+        }
+        if (0 <= active_point.y - 1 && map[active_point.y - 1][active_point.x] == ' ') {
+            point p = active_point;
+            p.y--;
+
+            if (check_in_way(way, p)) {
+                p.move = 10 + active_point.move;
+                p.weight = p.move + 10 * (abs(boy.x - p.x) + abs(boy.y - p.y));
+
+                open_list.insert(p);
+
+
+            }
+        }
         way.push_back(active_point);
         active_point = *open_list.begin();
         open_list.clear();

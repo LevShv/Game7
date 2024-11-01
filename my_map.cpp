@@ -1,4 +1,3 @@
-#include "my_map.h"
 #include <curses.h>
 #include <my_map.h>
 #include <random>

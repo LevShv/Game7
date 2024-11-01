@@ -134,11 +134,13 @@
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="my_boy.cpp" />
     <ClCompile Include="my_map.cpp" />
+    <ClCompile Include="scary_monster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="monster.h" />
     <ClInclude Include="my_boy.h" />
     <ClInclude Include="my_map.h" />
+    <ClInclude Include="scary_monster.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
