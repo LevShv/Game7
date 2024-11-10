@@ -1,24 +1,8 @@
 #include "scary_monster.h"
 #include <curses.h>
 #include <vector>
+#include <windows.h>
 
-   
-
-    /*struct scary_monster::Point {
-
-        int x, y;
-
-        bool operator==(const scary_monster::Point& other) const {
-            return x == other.x && y == other.y;
-        }
-    };
-
-    struct scary_monster::PointHash {
-
-        size_t operator()(const scary_monster::Point& p) const {
-            return std::hash<int>()(p.x) ^ std::hash<int>()(p.y);
-        }
-    };*/
 
     scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_area) :
 
@@ -35,11 +19,15 @@
     {}    
 
     void scary_monster::give_waythim(int bx, int by, char** map) {
+        move(x, y);
+        printw("W");
 
         iterofwaypoint = 0;
-        way = shortestPath(bx, by, map);
-    }
 
+        way = shortestPath(bx, by, map);
+       
+    }
+    
     std::vector<scary_monster::Point> scary_monster::shortestPath(int bx, int by, char** map) {
 
         scary_monster::Point start = { x, y };
@@ -94,16 +82,14 @@
 
     int scary_monster::move_monster()
     {
-        timeout(100);
+        //Sleep(100);
+        
         if (way.size() != 0 && iterofwaypoint < way.size() - 1) {
-            if (iterofwaypoint != 0) {
-                move(way[iterofwaypoint - 1].x, way[iterofwaypoint - 1].y);
-                printw(" ");
-            }
+
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
             move(x, y);
-            printw("w");
+            printw("W");
             refresh();
 
             iterofwaypoint++;
@@ -111,12 +97,11 @@
         }
 
         move(x, y);
-        printw("w");
+        printw("W");
         refresh();
-        /*       mvprintw*/
+
         if (iterofwaypoint == way.size() - 2)
             return 1;
-
 
         return 2;
     }

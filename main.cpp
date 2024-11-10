@@ -11,7 +11,7 @@ int main()
 
     
     int width = 120;
-    int length = 30;
+    int length = 28;
     int frame_rate = 100;
 
     int start_pos_x = 1;
@@ -31,16 +31,18 @@ int main()
 
     my_boy boy(start_pos_x,start_pos_y);
 
-    scary_monster W (5, 5, width, length);
+    scary_monster W (23, 100, width, length);
 
  
 
     while (true) {
+        timeout(100);
         switch (getch()) {
         case 'w':
             if (0 < boy.y) {
                 boy.y--;
                 W.give_waythim(boy.x, boy.y, map.forest);
+
             }
             break;
         case 's':
@@ -64,8 +66,10 @@ int main()
         case 'q':
             break;
           
-        case ERR:
-            int a = W.move_monster();
+        case ERR :
+            
+            W.move_monster();
+           
             break;
         }
 
