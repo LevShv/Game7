@@ -36,7 +36,7 @@ int main()
  
 
     while (true) {
-        timeout(100);
+      /*  timeout(100);*/
         switch (getch()) {
         case 'w':
             if (0 < boy.y) {

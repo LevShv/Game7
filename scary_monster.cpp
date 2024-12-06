@@ -19,10 +19,8 @@
     {}    
 
     void scary_monster::give_waythim(int bx, int by, char** map) {
-        move(x, y);
-        printw("W");
 
-        iterofwaypoint = 0;
+        iterofwaypoint = 1;
 
         way = shortestPath(bx, by, map);
        
@@ -82,7 +80,7 @@
 
     int scary_monster::move_monster()
     {
-        //Sleep(100);
+       /* Sleep(100);*/
         
         if (way.size() != 0 && iterofwaypoint < way.size() - 1) {
 
@@ -90,15 +88,15 @@
             y = way[iterofwaypoint].y;
             move(x, y);
             printw("W");
-            refresh();
+          /*  refresh();*/
 
             iterofwaypoint++;
             return 0;
         }
 
-        move(x, y);
+    /*    move(x, y);
         printw("W");
-        refresh();
+        refresh();*/
 
         if (iterofwaypoint == way.size() - 2)
             return 1;
