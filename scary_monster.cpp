@@ -82,7 +82,7 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
     {
        /* Sleep(100);*/
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1 && iseeya == true) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1 && iseeya == true && delay == false) {
 
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
@@ -91,11 +91,13 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
           /*  refresh();*/
 
             iterofwaypoint++;
+            delay = true;
             return 0;
         }
         else {
             move(x, y);
             printw("W");
+            delay = false;
         }
 
         //move(x, y);

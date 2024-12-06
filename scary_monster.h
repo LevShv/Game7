@@ -26,6 +26,7 @@ private:
     char** map;
 
     bool iseeya = false;
+    bool delay = false;
 
     struct Point {
 
