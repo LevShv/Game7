@@ -28,6 +28,8 @@ private:
     bool iseeya = false;
     bool delay = false;
 
+    int hp = 5;
+
     struct Point {
 
         int x, y;

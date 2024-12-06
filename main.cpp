@@ -5,6 +5,61 @@
 #include <monster.h>
 #include <scary_monster.h>
 
+class iface{
+public:
+    iface() {
+        init_color(8, 900, 100, 100);
+        init_pair(1, COLOR_RED, COLOR_RED);
+        init_pair(2, COLOR_BLACK, 8);
+        init_pair(3, COLOR_BLACK, 8);
+        draw(10);
+    }
+    void draw(int boy_hp) {
+        
+        Bckg();
+        draw_hp_boy(boy_hp);
+    }
+private:
+
+    int xposofhp = 29;
+    int yposofhp = 50;
+
+    void draw_hp_boy(int hp) {
+
+        attron(COLOR_PAIR(3));
+        mvprintw(29, 46, "Boy");
+        attroff(COLOR_PAIR(3));
+
+        attron(COLOR_PAIR(1));
+
+        for (int i = 0; i < 2*hp; i++) {
+            mvaddch(xposofhp, yposofhp + i, ' ');
+            
+        }
+        /*mvhline(5, 2, ACS_HLINE, 16);*/
+        attroff(COLOR_PAIR(1));
+       /* mvhline(5, 2, ACS_BLOCK, 16);*/
+    }
+    void draw_Count_of_mushrooms(){
+
+    }
+    void Bckg() {
+        attron(COLOR_PAIR(2));
+
+        int start_row = 28;
+        int end_row = 31;
+        int start_col = 0;
+        int end_col = 120;
+
+        for (int row = start_row; row <= end_row; row++) {
+            for (int col = start_col; col <= end_col; col++) {
+                mvaddch(row, col, ' ');
+            }
+        }
+
+        attroff(COLOR_PAIR(2));
+    }
+};
 
 int main()
 { 
@@ -21,10 +76,12 @@ int main()
     initscr();
     curs_set(0);
     noecho();
-   /* nodelay(stdscr, TRUE);*/
+    start_color();
 
- /*   hello_screen();*/
+ 
 
+    iface intface;
+    
     my_map map(width, length);
     map.show_map();
 
@@ -34,6 +91,8 @@ int main()
     scary_monster I (18, 51, width, length, map.forest);
 
  
+    /*intface.draw(boy.hp);*/
+
 
     while (true) {
       /*  timeout(100);*/
@@ -78,6 +137,7 @@ int main()
         boy.move_boy(map.forest);
         W.move_monster();
         I.move_monster();
+        intface.draw(boy.hp);
 
     }
     
