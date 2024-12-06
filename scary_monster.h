@@ -25,6 +25,8 @@ private:
     int iterofwaypoint;
     char** map;
 
+    bool iseeya = false;
+
     struct Point {
 
         int x, y;

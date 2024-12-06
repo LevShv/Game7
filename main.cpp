@@ -9,13 +9,12 @@
 int main()
 { 
 
-    
     int width = 120;
     int length = 28;
     int frame_rate = 100;
 
-    int start_pos_x = 1;
-    int start_pos_y = 1;
+    int start_pos_x = 69;
+    int start_pos_y = 9;
 
   /*  system("chcp 1251");*/
 
@@ -31,8 +30,8 @@ int main()
 
     my_boy boy(start_pos_x,start_pos_y);
 
-    scary_monster W (23, 100, width, length, map.forest);
-    scary_monster I (15, 98, width, length, map.forest);
+    scary_monster W (7, 67, width, length, map.forest);
+    scary_monster I (18, 51, width, length, map.forest);
 
  
 
