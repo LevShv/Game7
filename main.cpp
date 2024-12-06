@@ -65,12 +65,6 @@ int main()
             break;
         case 'q':
             break;
-          
-         case ERR :
-            
-            W.move_monster();
-           
-            break;
             
         }
 
@@ -78,6 +72,7 @@ int main()
 
         map.show_map();
         boy.move_boy(map.forest);
+        W.move_monster();
 
     }
     
