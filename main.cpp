@@ -31,7 +31,8 @@ int main()
 
     my_boy boy(start_pos_x,start_pos_y);
 
-    scary_monster W (23, 100, width, length);
+    scary_monster W (23, 100, width, length, map.forest);
+    scary_monster I (15, 98, width, length, map.forest);
 
  
 
@@ -41,26 +42,30 @@ int main()
         case 'w':
             if (0 < boy.y) {
                 boy.y--;
-                W.give_waythim(boy.x, boy.y, map.forest);
+                W.give_waythim(boy.x, boy.y);
+                I.give_waythim(boy.x, boy.y);
 
             }
             break;
         case 's':
             if (boy.y < length-1) {
                 boy.y++;
-                W.give_waythim(boy.x, boy.y, map.forest);
+                W.give_waythim(boy.x, boy.y);
+                I.give_waythim(boy.x, boy.y);
             }
             break;
         case 'a':
             if (boy.x > 0) {
                 boy.x--;
-                W.give_waythim(boy.x, boy.y, map.forest);
+                W.give_waythim(boy.x, boy.y);
+                I.give_waythim(boy.x, boy.y);
             }
             break;
         case 'd':
             if (boy.x < width-1) {
                 boy.x++;
-                W.give_waythim(boy.x, boy.y, map.forest);
+                W.give_waythim(boy.x, boy.y);
+                I.give_waythim(boy.x, boy.y);
             }
             break;
         case 'q':
@@ -73,6 +78,7 @@ int main()
         map.show_map();
         boy.move_boy(map.forest);
         W.move_monster();
+        I.move_monster();
 
     }
     

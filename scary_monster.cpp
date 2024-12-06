@@ -4,29 +4,26 @@
 #include <windows.h>
 
 
-    scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_area) :
+scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_area, char** give_me_map) :
 
-        x(spx),
-        y(spy),
-        width(width_of_area),
-        length(length_of_area),
-        iterofwaypoint(0)
+    x(spx),
+    y(spy),
+    width(width_of_area),
+    length(length_of_area),
+    iterofwaypoint(0),
+    map(give_me_map)
 
-        /*  {
-              Point p = { x,y };
-              way.push_back(p);
-          }*/
     {}    
 
-    void scary_monster::give_waythim(int bx, int by, char** map) {
+    void scary_monster::give_waythim(int bx, int by) {
 
         iterofwaypoint = 1;
 
-        way = shortestPath(bx, by, map);
+        way = shortestPath(bx, by);
        
     }
     
-    std::vector<scary_monster::Point> scary_monster::shortestPath(int bx, int by, char** map) {
+    std::vector<scary_monster::Point> scary_monster::shortestPath(int bx, int by) {
 
         scary_monster::Point start = { x, y };
         scary_monster::Point end = { by ,bx };
