@@ -22,7 +22,7 @@ int main()
     initscr();
     curs_set(0);
     noecho();
-    nodelay(stdscr, TRUE);
+   /* nodelay(stdscr, TRUE);*/
 
  /*   hello_screen();*/
 
@@ -66,11 +66,12 @@ int main()
         case 'q':
             break;
           
-        case ERR :
+         case ERR :
             
             W.move_monster();
            
             break;
+            
         }
 
         clear();
