@@ -13,7 +13,7 @@ public:
 
     int move_monster();
 
-    scary_monster(int spx, int spy, int width_of_area, int length_of_area, char** give_me_map);
+    scary_monster(int spx, int spy, char** give_me_map);
     
 private:
 

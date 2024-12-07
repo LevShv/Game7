@@ -6,13 +6,6 @@
 #include <scary_monster.h>
 #include "iface.h"
 
-//class mushroom {
-//
-//    int x;
-//    int y;
-//};
-
-
 void colors_pairs() {
 
     init_color(8, 900, 100, 100); // серый нижний bar
@@ -35,6 +28,65 @@ void colors_pairs() {
     
     
 }
+class monsters_family
+{
+public:
+    monsters_family(char** give_me_map) : map(give_me_map) {
+        create_two_boys();
+    }
+    ~monsters_family() {
+        delete Monsters;
+    }
+    void find( int x, int y) {
+        for (scary_monster& M : *Monsters)
+        {
+            M.give_waythim(x, y);
+        }
+    }
+
+    int monsters_move() {
+
+        int hp = 0;
+        for (scary_monster& M : *Monsters)
+        {
+            if (M.move_monster() == 1)
+                hp++;
+
+        }
+        return hp;
+    }
+private:
+    
+    char** map;
+    std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
+
+    void create_two_boys() {
+        scary_monster W(7, 67, map);
+        scary_monster I(18, 51, map);
+
+        Monsters->push_back(W);
+        Monsters->push_back(I);
+    }
+};
+//void monsters_do(int x, int y) {
+//    for (scary_monster& M : *Monsters)
+//    {
+//        M.give_waythim(x, y);
+//    }
+//}
+//
+//int monsters_move() {
+//
+//    int hp = 0;
+//    for (scary_monster& M : *Monsters)
+//    {      
+//        if (M.move_monster() == 1)
+//            hp++;
+//        
+//    }
+//    return hp;
+//}
+
 
 int main()
 { 
@@ -61,17 +113,13 @@ int main()
 
     /*std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
 
+    scary_monster W(7, 67, map.forest);
+    scary_monster I(18, 51, map.forest);
    
     Monsters->push_back(W);
     Monsters->push_back(I);*/
 
-    scary_monster W(7, 67, width, length, map.forest);
-    scary_monster I(18, 51, width, length, map.forest);
-
-
- 
-   
-
+    monsters_family *badboys = new monsters_family(map.forest);
 
     while (true) {
         if (boy.hp == 0) {
@@ -83,30 +131,25 @@ int main()
         case 'w':
             if (0 < boy.y) {
                 boy.y--;
-                W.give_waythim(boy.x, boy.y);
-                I.give_waythim(boy.x, boy.y);
-
+                badboys->find(boy.x, boy.y);
             }
             break;
         case 's':
             if (boy.y < length-1) {
                 boy.y++;
-                W.give_waythim(boy.x, boy.y);
-                I.give_waythim(boy.x, boy.y);
+                badboys->find(boy.x, boy.y);
             }
             break;
         case 'a':
             if (boy.x > 0) {
                 boy.x--;
-                W.give_waythim(boy.x, boy.y);
-                I.give_waythim(boy.x, boy.y);
+                badboys->find(boy.x, boy.y);
             }
             break;
         case 'd':
             if (boy.x < width-1) {
                 boy.x++;
-                W.give_waythim(boy.x, boy.y);
-                I.give_waythim(boy.x, boy.y);
+                badboys->find(boy.x, boy.y);
             }
             break;
         case 'q':
@@ -118,15 +161,13 @@ int main()
 
         map.show_map();
         boy.move_boy(map.forest);
-        if (W.move_monster() == 1)
-            boy.hp--;
-        if (I.move_monster() == 1)
-            boy.hp--;
+
+        boy.hp -= badboys->monsters_move();
         intface.draw(boy.hp,boy.count_of_m);
 
     }
     
     getch();
     endwin();
-
+    delete badboys;
 }
