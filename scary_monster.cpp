@@ -80,7 +80,6 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
 
     int scary_monster::move_monster()
     {
-       /* Sleep(100);*/
         
         if (way.size() != 0 && iterofwaypoint < way.size() - 1 && iseeya == true && delay == false) {
 
@@ -100,11 +99,7 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
             delay = false;
         }
 
-        //move(x, y);
-        //printw("W");
-     /*   refresh();*/
-
-        if (iterofwaypoint == way.size() - 2)
+        if (iterofwaypoint == way.size()-1)
             return 1;
 
         return 2;

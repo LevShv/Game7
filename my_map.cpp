@@ -11,7 +11,14 @@
 
     void my_map::show_map(){
         for (int i = 0; i < length; i++) {
-                mvprintw(i,0,forest[i]);
+            init_color(257, 46, 139, 87); // фон
+            init_color(258, 206, 240, 199); // деревья
+            init_pair(4, 7, 257);
+            
+            attron(COLOR_PAIR(4));
+            mvprintw(i, 0, forest[i]);
+            attroff(COLOR_PAIR(4));
+            
         }
     }
     my_map::~my_map() {

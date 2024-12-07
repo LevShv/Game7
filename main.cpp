@@ -5,6 +5,12 @@
 #include <monster.h>
 #include <scary_monster.h>
 
+//class mushroom {
+//
+//    int x;
+//    int y;
+//};
+
 class iface{
 public:
     iface() {
@@ -12,12 +18,13 @@ public:
         init_pair(1, COLOR_RED, COLOR_RED);
         init_pair(2, COLOR_BLACK, 8);
         init_pair(3, COLOR_BLACK, 8);
-        draw(10);
+        draw(10,0);
     }
-    void draw(int boy_hp) {
+    void draw(int boy_hp, int count_ofm ) {
         
         Bckg();
         draw_hp_boy(boy_hp);
+        draw_Count_of_mushrooms(count_ofm);
     }
 private:
 
@@ -36,12 +43,20 @@ private:
             mvaddch(xposofhp, yposofhp + i, ' ');
             
         }
-        /*mvhline(5, 2, ACS_HLINE, 16);*/
-        attroff(COLOR_PAIR(1));
-       /* mvhline(5, 2, ACS_BLOCK, 16);*/
-    }
-    void draw_Count_of_mushrooms(){
 
+        attroff(COLOR_PAIR(1));
+
+    }
+    void draw_Count_of_mushrooms(int count_ofm){
+
+        attron(COLOR_PAIR(3));
+
+        mvprintw(29, 20, "Gribi");
+        char str[3];
+        sprintf_s(str, "%d", count_ofm);
+        mvprintw(29, 26, str);
+
+        attroff(COLOR_PAIR(3));
     }
     void Bckg() {
         attron(COLOR_PAIR(2));
@@ -135,9 +150,9 @@ int main()
 
         map.show_map();
         boy.move_boy(map.forest);
-        W.move_monster();
-        I.move_monster();
-        intface.draw(boy.hp);
+        if (W.move_monster() == 1 || I.move_monster() == 1)
+            boy.hp--;
+        intface.draw(boy.hp,boy.count_of_m);
 
     }
     
