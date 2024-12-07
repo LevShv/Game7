@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="iface.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="my_boy.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="scary_monster.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="iface.h" />
     <ClInclude Include="monster.h" />
     <ClInclude Include="my_boy.h" />
     <ClInclude Include="my_map.h" />

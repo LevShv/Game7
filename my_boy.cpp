@@ -12,8 +12,6 @@ void my_boy::move_boy(char** map) {
 
     attron(COLOR_PAIR(7));
     
-    
-
     if (map[y][x] == ' ') {
         move(y, x);
         printw("0");
