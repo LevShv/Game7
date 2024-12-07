@@ -21,9 +21,7 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
         if (pow(by - x, 2) + pow(bx - y, 2) < pow(10,2)) {
             iseeya = true;
             way = shortestPath(bx, by);
-        }
-        
-       
+        }      
     }
     
     std::vector<scary_monster::Point> scary_monster::shortestPath(int bx, int by) {
@@ -85,17 +83,27 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
 
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
+            
+            init_color(257, 46, 139, 87); // фон
+            init_color(259, 255, 0, 0); //
+            init_pair(5, COLOR_RED, 257);
+
+            attron(COLOR_PAIR(5));
             move(x, y);
             printw("W");
-          /*  refresh();*/
+            attroff(COLOR_PAIR(5));
 
             iterofwaypoint++;
             delay = true;
             return 0;
         }
         else {
+
+            attron(COLOR_PAIR(5));
             move(x, y);
             printw("W");
+            attroff(COLOR_PAIR(5));
+
             delay = false;
         }
 

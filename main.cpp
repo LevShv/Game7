@@ -18,6 +18,7 @@ public:
         init_pair(1, COLOR_RED, COLOR_RED);
         init_pair(2, COLOR_BLACK, 8);
         init_pair(3, COLOR_BLACK, 8);
+        init_pair(6, COLOR_BLACK, COLOR_BLACK);
         draw(10,0);
     }
     void draw(int boy_hp, int count_ofm ) {
@@ -38,13 +39,20 @@ private:
         attroff(COLOR_PAIR(3));
 
         attron(COLOR_PAIR(1));
-
-        for (int i = 0; i < 2*hp; i++) {
+        int i = 0;
+        for (i; i < 2*hp; i++) {
             mvaddch(xposofhp, yposofhp + i, ' ');
             
         }
-
         attroff(COLOR_PAIR(1));
+
+        attron(COLOR_PAIR(6));
+        for (i; i < 20; i++) {
+            mvaddch(xposofhp, yposofhp + i, 'p');
+
+        }
+
+        attroff(COLOR_PAIR(6));
 
     }
     void draw_Count_of_mushrooms(int count_ofm){
@@ -86,19 +94,17 @@ int main()
     int start_pos_x = 69;
     int start_pos_y = 9;
 
-  /*  system("chcp 1251");*/
-
     initscr();
     curs_set(0);
     noecho();
     start_color();
 
- 
+    my_map map(width, length);
+    map.show_map();
 
     iface intface;
     
-    my_map map(width, length);
-    map.show_map();
+    
 
     my_boy boy(start_pos_x,start_pos_y);
 
@@ -106,11 +112,11 @@ int main()
     scary_monster I (18, 51, width, length, map.forest);
 
  
-    /*intface.draw(boy.hp);*/
+   
 
 
     while (true) {
-      /*  timeout(100);*/
+     
         switch (getch()) {
         case 'w':
             if (0 < boy.y) {
@@ -150,7 +156,9 @@ int main()
 
         map.show_map();
         boy.move_boy(map.forest);
-        if (W.move_monster() == 1 || I.move_monster() == 1)
+        if (W.move_monster() == 1)
+            boy.hp--;
+        if (I.move_monster() == 1)
             boy.hp--;
         intface.draw(boy.hp,boy.count_of_m);
 
