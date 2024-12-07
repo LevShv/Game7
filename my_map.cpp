@@ -17,6 +17,7 @@
             
             attron(COLOR_PAIR(4));
             mvprintw(i, 0, forest[i]);
+
             attroff(COLOR_PAIR(4));
             
         }
@@ -45,9 +46,23 @@
         std::uniform_int_distribution<> disx(1, width - 1); // –авномерное распределение от 0 до 
         std::uniform_int_distribution<> disy(1, length - 1);
 
-        for (int i = 0; i < 100; ++i) {
+        for (int i = 0; i < 200; ++i) {
             int rx = disx(gen);
             int ry = disy(gen);
             forest[ry][rx] = 'T';
         }
+
+        init_color(257, 46, 139, 87); // фон
+        init_pair(10, COLOR_RED, 257);
+
+        attron(COLOR_PAIR(10));
+
+        
+        for (int i = 0; i < 20; ++i) {
+            int rx = disx(gen);
+            int ry = disy(gen);
+            if(forest[ry][rx] == ' ')
+                forest[ry][rx] = '.';
+        }
+        attroff(COLOR_PAIR(10));
     }
