@@ -84,9 +84,6 @@ scary_monster::scary_monster(int spx, int spy, int width_of_area, int length_of_
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
             
-            init_color(257, 46, 139, 87); // фон
-            init_color(259, 255, 0, 0); //
-            init_pair(5, COLOR_RED, 257);
 
             attron(COLOR_PAIR(5));
             move(x, y);

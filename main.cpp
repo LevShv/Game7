@@ -14,11 +14,7 @@
 class iface{
 public:
     iface() {
-        init_color(8, 900, 100, 100);
-        init_pair(1, COLOR_RED, COLOR_RED);
-        init_pair(2, COLOR_BLACK, 8);
-        init_pair(3, COLOR_BLACK, 8);
-        init_pair(6, COLOR_BLACK, COLOR_BLACK);
+        
         draw(10,0);
     }
     void draw(int boy_hp, int count_ofm ) {
@@ -101,7 +97,28 @@ private:
         attroff(COLOR_PAIR(2));
     }
 };
+void colors_pairs() {
 
+    init_color(8, 900, 100, 100); // серый нижний bar
+    init_color(257, 46, 139, 87); //  темно-зеленый цвет фона
+
+
+
+    init_pair(1, COLOR_RED, COLOR_RED); // полоска здоровья
+    init_pair(2, COLOR_BLACK, 8); // цвет "Boy"
+    init_pair(3, COLOR_BLACK, 8); // цвет "Грибы"
+
+    init_pair(4, 7, 257); // темно-зеленый цвет фона
+    init_pair(5, COLOR_RED, 257); // пара для фона
+
+    init_pair(6, COLOR_BLACK, COLOR_BLACK); // черный для опустевшего здоровья
+    init_pair(7, COLOR_BLUE, 257); // "0"
+    init_pair(8, COLOR_YELLOW, 257);// грибы
+
+    init_pair(10, COLOR_RED, 257);
+    
+    
+}
 int main()
 { 
 
@@ -109,13 +126,14 @@ int main()
     int length = 28;
     int frame_rate = 100;
 
-    int start_pos_x = 69;
-    int start_pos_y = 9;
+    int start_pos_x = 2;
+    int start_pos_y = 2;
 
     initscr();
     curs_set(0);
     noecho();
     start_color();
+    colors_pairs();
 
     my_map map(width, length);
     map.show_map();

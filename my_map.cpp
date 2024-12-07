@@ -11,25 +11,19 @@
 
     void my_map::show_map(){
 
-        init_color(257, 46, 139, 87); // фон
-        init_pair(10, COLOR_YELLOW, 257);// грибы
-        //init_color(258, 206, 240, 199); // деревья
-
         for (int i = 0; i < length; i++) {
             char* str = forest[i];
 
             for (int j = 0; j < width; j++) {
                 if (*str == '.') {
 
-                    attron(COLOR_PAIR(10));
+                    attron(COLOR_PAIR(8));
                     printw("%c", *str);
-                    attroff(COLOR_PAIR(10));
-
-                    
+                    attroff(COLOR_PAIR(8));
 
                 }
                 else {
-                    init_pair(4, 7, 257);
+               
 
                     attron(COLOR_PAIR(4));
                     printw("%c", *str);
@@ -39,14 +33,7 @@
                 str++;
                 
             }
-
-            init_pair(4, 7, 257);
-            
-            attron(COLOR_PAIR(4));
-           /* mvprintw(i, 0, forest[i]);*/
-
-            attroff(COLOR_PAIR(4));
-            
+         
         }
     }
     my_map::~my_map() {
@@ -78,12 +65,6 @@
             int ry = disy(gen);
             forest[ry][rx] = 'T';
         }
-
-        init_color(257, 46, 139, 87); // фон
-        init_pair(10, COLOR_RED, 257);
-
-        attron(COLOR_PAIR(10));
-
         
         for (int i = 0; i < 20; ++i) {
             int rx = disx(gen);
