@@ -22,6 +22,13 @@ void my_boy::move_boy(char** map) {
         move(y, x);
         printw("0");
     }
+
+    else if (map[y][x] == '.') {
+        move(y, x);
+        count_of_m++;
+        printw("0");
+        map[y][x] = ' ';
+    }
     else {
 
         x = xl;
@@ -34,5 +41,6 @@ void my_boy::move_boy(char** map) {
     xl = x;
     yl = y;
     attroff(COLOR_PAIR(7));
+    
 }
 

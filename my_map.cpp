@@ -10,13 +10,40 @@
     }
 
     void my_map::show_map(){
+
+        init_color(257, 46, 139, 87); // фон
+        init_pair(10, COLOR_YELLOW, 257);// грибы
+        //init_color(258, 206, 240, 199); // деревья
+
         for (int i = 0; i < length; i++) {
-            init_color(257, 46, 139, 87); // фон
-            init_color(258, 206, 240, 199); // деревья
+            char* str = forest[i];
+
+            for (int j = 0; j < width; j++) {
+                if (*str == '.') {
+
+                    attron(COLOR_PAIR(10));
+                    printw("%c", *str);
+                    attroff(COLOR_PAIR(10));
+
+                    
+
+                }
+                else {
+                    init_pair(4, 7, 257);
+
+                    attron(COLOR_PAIR(4));
+                    printw("%c", *str);
+
+                    attroff(COLOR_PAIR(4));
+                }
+                str++;
+                
+            }
+
             init_pair(4, 7, 257);
             
             attron(COLOR_PAIR(4));
-            mvprintw(i, 0, forest[i]);
+           /* mvprintw(i, 0, forest[i]);*/
 
             attroff(COLOR_PAIR(4));
             
@@ -64,5 +91,5 @@
             if(forest[ry][rx] == ' ')
                 forest[ry][rx] = '.';
         }
-        attroff(COLOR_PAIR(10));
+        
     }

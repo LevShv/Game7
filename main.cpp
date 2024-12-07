@@ -27,6 +27,24 @@ public:
         draw_hp_boy(boy_hp);
         draw_Count_of_mushrooms(count_ofm);
     }
+    void game_over() {
+
+        int xpos = 29;
+        int ypos = 50;
+
+        int start_row = 10;
+        int end_row = 15;
+        int start_col = 40;
+        int end_col = 80;
+
+        for (int row = start_row; row <= end_row; row++) {
+            for (int col = start_col; col <= end_col; col++) {
+                mvaddch(row, col, ' ');
+            }
+        }
+        mvprintw(13, 55, "Game Over");
+
+    }
 private:
 
     int xposofhp = 29;
@@ -104,19 +122,28 @@ int main()
 
     iface intface;
     
-    
-
     my_boy boy(start_pos_x,start_pos_y);
 
-    scary_monster W (7, 67, width, length, map.forest);
-    scary_monster I (18, 51, width, length, map.forest);
+    /*std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
+
+   
+    Monsters->push_back(W);
+    Monsters->push_back(I);*/
+
+    scary_monster W(7, 67, width, length, map.forest);
+    scary_monster I(18, 51, width, length, map.forest);
+
 
  
    
 
 
     while (true) {
-     
+        if (boy.hp == 0) {
+            intface.game_over();
+            getch();
+            return 0;
+        }
         switch (getch()) {
         case 'w':
             if (0 < boy.y) {
