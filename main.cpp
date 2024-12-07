@@ -4,6 +4,7 @@
 #include <my_boy.h>
 #include <monster.h>
 #include <scary_monster.h>
+#include <monsters_family.h>
 #include "iface.h"
 
 void colors_pairs() {
@@ -28,75 +29,17 @@ void colors_pairs() {
     
     
 }
-class monsters_family
-{
-public:
-    monsters_family(char** give_me_map) : map(give_me_map) {
-        create_two_boys();
-    }
-    ~monsters_family() {
-        delete Monsters;
-    }
-    void find( int x, int y) {
-        for (scary_monster& M : *Monsters)
-        {
-            M.give_waythim(x, y);
-        }
-    }
-
-    int monsters_move() {
-
-        int hp = 0;
-        for (scary_monster& M : *Monsters)
-        {
-            if (M.move_monster() == 1)
-                hp++;
-
-        }
-        return hp;
-    }
-private:
-    
-    char** map;
-    std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
-
-    void create_two_boys() {
-        scary_monster W(7, 67, map);
-        scary_monster I(18, 51, map);
-
-        Monsters->push_back(W);
-        Monsters->push_back(I);
-    }
-};
-//void monsters_do(int x, int y) {
-//    for (scary_monster& M : *Monsters)
-//    {
-//        M.give_waythim(x, y);
-//    }
-//}
-//
-//int monsters_move() {
-//
-//    int hp = 0;
-//    for (scary_monster& M : *Monsters)
-//    {      
-//        if (M.move_monster() == 1)
-//            hp++;
-//        
-//    }
-//    return hp;
-//}
-
 
 int main()
 { 
 
     int width = 120;
     int length = 28;
-    int frame_rate = 100;
 
     int start_pos_x = 2;
     int start_pos_y = 2;
+
+    int game_iter = 0;
 
     initscr();
     curs_set(0);
@@ -110,14 +53,6 @@ int main()
     iface intface;
     
     my_boy boy(start_pos_x,start_pos_y);
-
-    /*std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
-
-    scary_monster W(7, 67, map.forest);
-    scary_monster I(18, 51, map.forest);
-   
-    Monsters->push_back(W);
-    Monsters->push_back(I);*/
 
     monsters_family *badboys = new monsters_family(map.forest);
 
@@ -156,14 +91,17 @@ int main()
             break;
             
         }
+        if (game_iter % 100 == 0)
+            badboys->give_some_boys_rand();
 
         clear();
 
         map.show_map();
         boy.move_boy(map.forest);
-
+        
         boy.hp -= badboys->monsters_move();
         intface.draw(boy.hp,boy.count_of_m);
+        game_iter++;
 
     }
     

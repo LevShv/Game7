@@ -24,13 +24,13 @@
     <ClCompile Include="my_boy.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="monster.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="scary_monster.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="iface.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="monsters_family.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,13 +41,13 @@
     <ClInclude Include="my_boy.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="monster.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="scary_monster.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="iface.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="monsters_family.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

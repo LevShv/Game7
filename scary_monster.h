@@ -9,6 +9,9 @@ class scary_monster {
 
 public:
 
+    int x;
+    int y;
+
     void give_waythim(int bx, int by);
 
     int move_monster();
@@ -17,8 +20,11 @@ public:
     
 private:
 
-    int x;
-    int y;
+    
+
+    int lx;
+    int ly;
+    bool started = false;
 
     int width;
     int length;
