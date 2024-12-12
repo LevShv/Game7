@@ -31,7 +31,7 @@ void colors_pairs() {
 }
 
 int main()
-{ 
+{
 
     int width = 120;
     int length = 28;
@@ -51,14 +51,19 @@ int main()
     map.show_map();
 
     iface intface;
-    
-    my_boy boy(start_pos_x,start_pos_y);
 
-    monsters_family *badboys = new monsters_family(map.forest);
+    my_boy boy(start_pos_x, start_pos_y);
+
+    monsters_family* badboys = new monsters_family(map.forest);
 
     while (true) {
         if (boy.hp == 0) {
             intface.game_over();
+            getch();
+            return 0;
+        }
+        if (boy.count_of_m == 20) {
+            intface.game_win();
             getch();
             return 0;
         }
@@ -70,7 +75,7 @@ int main()
             }
             break;
         case 's':
-            if (boy.y < length-1) {
+            if (boy.y < length - 1) {
                 boy.y++;
                 badboys->find(boy.x, boy.y);
             }
@@ -82,14 +87,14 @@ int main()
             }
             break;
         case 'd':
-            if (boy.x < width-1) {
+            if (boy.x < width - 1) {
                 boy.x++;
                 badboys->find(boy.x, boy.y);
             }
             break;
         case 'q':
             break;
-            
+
         }
         if (game_iter % 100 == 0)
             badboys->give_some_boys_rand();
@@ -98,14 +103,15 @@ int main()
 
         map.show_map();
         boy.move_boy(map.forest);
-        
-        boy.hp -= badboys->monsters_move();
-        intface.draw(boy.hp,boy.count_of_m);
-        game_iter++;
 
+        boy.hp -= badboys->monsters_move();
+        intface.draw(boy.hp, boy.count_of_m);
+        game_iter++;
+        
     }
-    
+
     getch();
     endwin();
     delete badboys;
+
 }

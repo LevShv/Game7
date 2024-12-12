@@ -6,6 +6,7 @@ public:
     iface();
     void draw(int boy_hp, int count_ofm);
     void game_over();
+    void game_win();
 
 private:
 
@@ -15,5 +16,6 @@ private:
     void draw_hp_boy(int hp);
     void draw_Count_of_mushrooms(int count_ofm);
     void Bckg();
+    
     
 };

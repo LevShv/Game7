@@ -29,7 +29,24 @@ iface::iface() {
         mvprintw(13, 55, "Game Over");
 
     }
+    void iface::game_win() {
 
+        int xpos = 29;
+        int ypos = 50;
+
+        int start_row = 10;
+        int end_row = 15;
+        int start_col = 40;
+        int end_col = 80;
+
+        for (int row = start_row; row <= end_row; row++) {
+            for (int col = start_col; col <= end_col; col++) {
+                mvaddch(row, col, ' ');
+            }
+        }
+        mvprintw(13, 55, "Win");
+
+    }
     void iface::draw_hp_boy(int hp) {
 
         attron(COLOR_PAIR(3));

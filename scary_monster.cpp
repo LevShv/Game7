@@ -80,7 +80,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
     int scary_monster::move_monster()
     {
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1 && iseeya == true && delay == false) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1&&  iseeya == true && delay == false) {
             
             lx = x;
             ly = y;
@@ -90,12 +90,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
 
             attron(COLOR_PAIR(5));
             move(x, y);
-           // map[x][y] = 'W';
-
-           ///* if(started)*/
-           //     map[lx][ly] = ' ';
-
-           // started = true;
+           
             printw("W");
             attroff(COLOR_PAIR(5));
 
