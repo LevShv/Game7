@@ -6,6 +6,19 @@
 #include <scary_monster.h>
 #include <monsters_family.h>
 #include "iface.h"
+#include <locale.h>
+
+int level = 0;
+
+
+int width = 120;
+int length = 28;
+
+int start_pos_x = 59;
+int start_pos_y = 21;
+
+int game_iter = 0;
+my_boy boy(start_pos_x, start_pos_y);
 
 void colors_pairs() {
 
@@ -37,31 +50,126 @@ void colors_pairs() {
     init_pair(15, 260, 260); // дорожка
     
     init_pair(16, COLOR_BLUE, 259); // дорожка с персонажем
+
+    init_pair(17, COLOR_WHITE, COLOR_WHITE); // кровать
+    init_pair(18, COLOR_BLUE, COLOR_WHITE); // Персонаж на кровати
+
+    init_pair(19, 8, 259); // Серый старец дома
+
+    init_pair(20, 3, COLOR_BLACK); // Серый старец дома
+    init_pair(21, COLOR_WHITE, COLOR_BLACK); // Серый старец дома
 }
 
-int main()
-{
+void make_move() {
+    switch (getch()) {
+    case 'w':
+        if (0 < boy.y) {
+            boy.y--;
 
-    int width = 120;
-    int length = 28;
+        }
+        break;
+    case 's':
+        if (boy.y < length - 1) {
+            boy.y++;
 
-    int start_pos_x = 2;
-    int start_pos_y = 2;
+        }
+        break;
+    case 'a':
+        if (boy.x > 0) {
+            boy.x--;
 
-    int game_iter = 0;
+        }
+        break;
+    case 'd':
+        if (boy.x < width - 1) {
+            boy.x++;
+
+        }
+        break;
+    case 'q':
+        break;
+
+    }
+}
+
+void level_start() {
+    
+
+    my_map map(width, length);
+    map.show_map();
+    boy.move_boy(map.forest);
+    iface intface;
+
+    bool gotooldman = true;
+    int nscore = 0;
+    while (true) {
+        
+        if (gotooldman == true){
+
+            intface.subs("Мне надо спасти лес от злой напасти леса.","Надо встретиться с моим учителем - Старцем <S>");
+            nscore = 1;
+            if(game_iter % 5 == 0)
+                gotooldman == false;
+
+        }
+        
+        switch (nscore)
+        {
+            case 0:
+                
+            break;
+           
+            case 1:
+                intface.score("Встретиться со старцем");
+            break;
+        default:
+            break;
+        }
+
+
+            //// Текст иди к старому
+
+        if (boy.hp == 0) {
+            intface.game_over();
+            getch();
+            exit(1);
+        }
+        if (boy.count_of_m == 20) {
+            intface.game_win();
+            getch();
+            exit(1);
+        }
+        make_move();
+        //if (game_iter % 100 == 0)
+            
+        
+        clear();
+
+        map.show_map();
+        boy.move_boy(map.forest);
+
+        intface.draw(boy.hp, boy.count_of_m);
+        game_iter++;
+
+    }
+}
+
+ int main()
+ {
+    std::system("chcp 1251");
+
 
     initscr();
     curs_set(0);
     noecho();
     start_color();
     colors_pairs();
-
-    my_map map(width, length);
+  
+    level_start();
+    /*my_map map(width, length);
     map.show_map();
 
     iface intface;
-
-    my_boy boy(start_pos_x, start_pos_y);
 
     monsters_family* badboys = new monsters_family(map.forest);
 
@@ -119,8 +227,8 @@ int main()
         
     }
 
-    getch();
+    getch();*/
     endwin();
-    delete badboys;
+   /* delete badboys;*/
 
 }

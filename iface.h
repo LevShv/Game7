@@ -7,6 +7,8 @@ public:
     void draw(int boy_hp, int count_ofm);
     void game_over();
     void game_win();
+    void subs(const char* a, const char* b);
+    void score(const char* a);
 
 private:
 

@@ -21,7 +21,7 @@
         {
         case 1: 
 
-            get_data_ff(river, "river.txt");
+            get_data_ff(river, "river2.txt");
             add_to_map(river, 10, 0);
 
             add_trees(10,12,100); // y x
@@ -76,33 +76,36 @@
                 }
                 else if (*str == '_') {
                     attron(COLOR_PAIR(8));
-                    addch(ACS_HLINE);
+                    addch('_'); //151
                     attroff(COLOR_PAIR(8));
                 }
                 else if (*str == '|') {
                     attron(COLOR_PAIR(8));
-                    addch(ACS_VLINE);
+                    addch(124);
                     attroff(COLOR_PAIR(8));
                 }
-                else if (*str == 'ц') {
-                    attron(COLOR_PAIR(8));
-                    addch(ACS_ULCORNER);
-                    attroff(COLOR_PAIR(8));
+               
+                
+                else if (*str == 'g') {     // Кровать подушка
+
+                    attron(COLOR_PAIR(17));
+                    addch(' ');
+                    attroff(COLOR_PAIR(17));
+
                 }
-                else if (*str == 'у') {
-                    attron(COLOR_PAIR(8));
-                    addch(ACS_URCORNER);
-                    attroff(COLOR_PAIR(8));
-                }
-                else if (*str == 'ы') {
-                    attron(COLOR_PAIR(8));
-                    addch(ACS_LLCORNER);
-                    attroff(COLOR_PAIR(8));
-                }
-                else if (*str == 'в') {
-                    attron(COLOR_PAIR(8));
-                    addch(ACS_LRCORNER);
-                    attroff(COLOR_PAIR(8));
+                //else if (*str == '') {        // кровать одеяло
+
+                //    attron(COLOR_PAIR(18));
+                //    addch(' ');
+                //    attroff(COLOR_PAIR(18));
+
+                //}
+                else if (*str == 'S') {        // кровать одеяло
+
+                    attron(COLOR_PAIR(19));
+                    addch('S');
+                    attroff(COLOR_PAIR(19)); // Старец
+
                 }
                 else {
                

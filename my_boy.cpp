@@ -12,18 +12,24 @@ void my_boy::move_boy(char** map) {
 
 
     
-    if (map[y][x] == ' ' || map[y][x] == '1') {
+    if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'ÿ') {
         if (map[y][x] == ' ') {
             attron(COLOR_PAIR(7));
             move(y, x);
             printw("0");
             attroff(COLOR_PAIR(7));
         }
-        else {
+        else if (map[y][x] == '1'){
             attron(COLOR_PAIR(16));
             move(y, x);
             printw("0");
             attroff(COLOR_PAIR(16));
+        }
+        else {
+            attron(COLOR_PAIR(18));
+            move(y, x);
+            printw("0");
+            attroff(COLOR_PAIR(18));
         }
     }
 

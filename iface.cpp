@@ -47,6 +47,31 @@ iface::iface() {
         mvprintw(13, 55, "Win");
 
     }
+    void iface::subs(const char* a, const char* b)
+    {
+        attron(COLOR_PAIR(21));
+
+        int start_row = 3;
+        int end_row = 6;
+        int start_col = 20;
+        int end_col = 100;
+
+        for (int row = start_row; row <= end_row; row++) {
+            for (int col = start_col; col <= end_col; col++) {
+                mvaddch(row, col, ' ');
+            }
+        }
+        mvprintw(4, 23, a);
+        mvprintw(5, 23, b);
+    }
+    void iface::score(const char* a)
+    {
+        attron(COLOR_PAIR(3));
+        mvprintw(29, 85, "Цель: ");
+        mvprintw(29, 91, a);
+
+        attroff(COLOR_PAIR(3));
+    }
     void iface::draw_hp_boy(int hp) {
 
         attron(COLOR_PAIR(3));
