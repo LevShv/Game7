@@ -21,14 +21,13 @@
         {
         case 1: 
 
-
             get_data_ff(river, "river.txt");
             add_to_map(river, 10, 0);
 
             add_trees(10,12,100); // y x
             add_trees(27,87,50);
 
-            add_to_map(home, 15, 10); 
+            add_to_map(home, 6, 18); // y x
             break;
         case 2: 
 
@@ -73,6 +72,36 @@
                 else if (*str == '.') {
                     attron(COLOR_PAIR(8));
                     printw("%c", *str);
+                    attroff(COLOR_PAIR(8));
+                }
+                else if (*str == '_') {
+                    attron(COLOR_PAIR(8));
+                    addch(ACS_HLINE);
+                    attroff(COLOR_PAIR(8));
+                }
+                else if (*str == '|') {
+                    attron(COLOR_PAIR(8));
+                    addch(ACS_VLINE);
+                    attroff(COLOR_PAIR(8));
+                }
+                else if (*str == 'ö') {
+                    attron(COLOR_PAIR(8));
+                    addch(ACS_ULCORNER);
+                    attroff(COLOR_PAIR(8));
+                }
+                else if (*str == 'ó') {
+                    attron(COLOR_PAIR(8));
+                    addch(ACS_URCORNER);
+                    attroff(COLOR_PAIR(8));
+                }
+                else if (*str == 'û') {
+                    attron(COLOR_PAIR(8));
+                    addch(ACS_LLCORNER);
+                    attroff(COLOR_PAIR(8));
+                }
+                else if (*str == 'â') {
+                    attron(COLOR_PAIR(8));
+                    addch(ACS_LRCORNER);
                     attroff(COLOR_PAIR(8));
                 }
                 else {
