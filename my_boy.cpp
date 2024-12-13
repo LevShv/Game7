@@ -10,31 +10,55 @@ my_boy::my_boy(int spx, int spy) : x(spx), y(spy)
 
 void my_boy::move_boy(char** map) {
 
-    attron(COLOR_PAIR(7));
+
     
-    if (map[y][x] == ' ') {
-        move(y, x);
-        printw("0");
+    if (map[y][x] == ' ' || map[y][x] == '1') {
+        if (map[y][x] == ' ') {
+            attron(COLOR_PAIR(7));
+            move(y, x);
+            printw("0");
+            attroff(COLOR_PAIR(7));
+        }
+        else {
+            attron(COLOR_PAIR(16));
+            move(y, x);
+            printw("0");
+            attroff(COLOR_PAIR(16));
+        }
     }
 
     else if (map[y][x] == '.') {
+
+        attron(COLOR_PAIR(7));
         move(y, x);
         count_of_m++;
         printw("0");
         map[y][x] = ' ';
+        attroff(COLOR_PAIR(7));
     }
     else {
 
         x = xl;
         y = yl;
-        move(y, x);
-        printw("0");
+        
+        if (map[y][x] == ' ') {
+            attron(COLOR_PAIR(7));
+            move(y, x);
+            printw("0");
+            attroff(COLOR_PAIR(7));
+        }
+        else {
+            attron(COLOR_PAIR(16));
+            move(y, x);
+            printw("0");
+            attroff(COLOR_PAIR(16));
+        }
 
     }
 
     xl = x;
     yl = y;
-    attroff(COLOR_PAIR(7));
+   
     
 }
 

@@ -47,22 +47,29 @@
         
         for (int i = 0; i < length; i++) {
             char* str = forest[i];
-          /*  bool border = true;*/
+
             for (int j = 0; j < width; j++) {
-                if (*str == '~' /*&& border == false*/) {
+                if (*str == '~') {
 
                     attron(COLOR_PAIR(12));
                     printw("%c", *str);
                     attroff(COLOR_PAIR(12));
                     
                 }
-               /* else if (*str == '~' && border == true) {
+                else if (*str == '1') {
 
-                    attron(COLOR_PAIR(12));
+                    attron(COLOR_PAIR(14));
                     printw("%c", *str);
-                    attroff(COLOR_PAIR(12));
-                    border = false;
-                }*/
+                    attroff(COLOR_PAIR(14));
+
+                }
+                else if (*str == '2') {
+
+                    attron(COLOR_PAIR(14));
+                    printw("%c", *str);
+                    attroff(COLOR_PAIR(14));
+
+                }
                 else if (*str == '.') {
                     attron(COLOR_PAIR(8));
                     printw("%c", *str);

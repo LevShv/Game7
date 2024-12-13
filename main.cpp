@@ -12,6 +12,8 @@ void colors_pairs() {
     init_color(8, 900, 100, 100); // серый нижний bar
     init_color(257, 46, 139, 87); //  темно-зеленый цвет фона
     init_color(258, 0, 0, 128); // темно-синий
+    init_color(259, 189, 183, 107); // бежевый
+    init_color(260, 240, 230, 140); // светло-бежевый
 
 
     init_pair(1, COLOR_RED, COLOR_RED); // полоска здоровья
@@ -30,8 +32,11 @@ void colors_pairs() {
     init_pair(11, COLOR_BLUE, COLOR_BLUE); // вода
     init_pair(12, COLOR_BLUE, 258); // край воды 
     
-    init_pair(13, 258, 258);
+    init_pair(13, 258, 258); // Вода...
+    init_pair(14, 259, 259); // Мост
+    init_pair(15, 260, 260); // дорожка
     
+    init_pair(16, COLOR_BLUE, 259); // дорожка с персонажем
 }
 
 int main()
