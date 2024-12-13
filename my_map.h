@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <string>
+
 class my_map
 {
 public:
@@ -8,11 +10,7 @@ public:
     void create_map(int level);
     void show_map();
     char** forest;
-    char matrix[3][5] = {
-        {'|', '_', '_', '_', '|'},
-        {'|', 'o', 'r', 'l', '|'},
-        {'|', '-', '-', '-', '|'} // '\0' — символ конца строки
-    };
+   
     ~my_map();
     
 private:
@@ -26,14 +24,20 @@ private:
 
     void make_claen_map();
     void add_to_map(std::vector<std::vector<char>> addon, int posx, int posy);
-    void add_trees();
-    void add_mushrooms();
+
+    void add_trees(int count);
+    void add_trees(int posx, int posy, int count);
+    void add_trees(int posx1, int posy1, int posx2, int posy2, int count);
     
+    void add_mushrooms();
+    void get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name);
+
     std::vector<std::vector<char>> home = {
     {'|', '_', '_', '_', '|'},
     {'|', 'o', 'r', 'l', '|'},
     {'|', '-', '-', '-', '|'}
     };
 
+    std::vector<std::vector<char>> river; 
 };
 

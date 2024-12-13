@@ -1,6 +1,9 @@
 #include <curses.h>
 #include <my_map.h>
+#include <iostream>
+#include <fstream>
 #include <random>
+
 
 
 
@@ -18,12 +21,18 @@
         {
         case 1: 
 
-            add_trees();
-            add_to_map(home, 10, 5);
+
+            get_data_ff(river, "river.txt");
+            add_to_map(river, 10, 0);
+
+            add_trees(10,12,100); // y x
+            add_trees(27,87,50);
+
+            add_to_map(home, 15, 10); 
             break;
         case 2: 
 
-            add_trees();
+            add_trees(500);
             add_mushrooms();
             break;
         
@@ -35,17 +44,29 @@
     }
 
     void my_map::show_map(){
-
+        
         for (int i = 0; i < length; i++) {
             char* str = forest[i];
-
+          /*  bool border = true;*/
             for (int j = 0; j < width; j++) {
-                if (*str == '.') {
+                if (*str == '~' /*&& border == false*/) {
 
+                    attron(COLOR_PAIR(12));
+                    printw("%c", *str);
+                    attroff(COLOR_PAIR(12));
+                    
+                }
+               /* else if (*str == '~' && border == true) {
+
+                    attron(COLOR_PAIR(12));
+                    printw("%c", *str);
+                    attroff(COLOR_PAIR(12));
+                    border = false;
+                }*/
+                else if (*str == '.') {
                     attron(COLOR_PAIR(8));
                     printw("%c", *str);
                     attroff(COLOR_PAIR(8));
-
                 }
                 else {
                
@@ -66,6 +87,7 @@
         for (int i = 0; i < length; i++)
             delete[] forest[i];
         delete[] forest;
+   
     }
 
     
@@ -82,14 +104,14 @@
         }
     }
 
-    void my_map::add_to_map(std::vector<std::vector<char>> addon, int posx, int posy)
+    void my_map::add_to_map(std::vector<std::vector<char>> addon,  int posx, int posy )
     {
         for (int i = 0; i < addon.size(); i++) {
 
           /*  forest[i] = new char[width];*/
 
-            for (int j = 0; j < addon[0].size(); j++) {
-                forest[i + posx][j + posy] = addon[i][j];
+            for (int j = 0; j < addon[i].size(); j++) {
+                forest[i + posy][j + posx] = addon[i][j];
             }
         }
     }
@@ -106,14 +128,60 @@
         }
     }
 
-    void my_map::add_trees() {
+    void my_map::get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name)
+    {
+        std::ifstream inputFile(name);
+        std::string line;
 
-        for (int i = 0; i < 500; ++i) {
+        while (std::getline(inputFile, line)) { 
+            std::vector<char> row;
+
+            for (char ch : line) {
+                row.push_back(ch);
+            }
+            mapobj.push_back(row);
+        }
+        inputFile.close();
+    }
+
+    void my_map::add_trees(int count) {
+
+        for (int i = 0; i < count; ++i) {
             int rx = random_x();
             int ry = random_y();
-            forest[ry][rx] = 'T';
+            if (forest[ry][rx] == ' ')
+                forest[ry][rx] = 'T';
+            else
+                i--;
         }
   
+    }
+
+
+    void my_map::add_trees(int posx1, int posy1, int posx2, int posy2, int count)
+    {
+        for (int i = 0; i < count; ++i) {
+            int rx = random_x();
+            int ry = random_y();
+
+            if (forest[ry][rx] == ' ' && ry < posx1 && rx > posy1 && ry < posx2 && rx > posy2)
+                forest[ry][rx] = 'T';
+            else
+                i--;
+        }
+    }
+
+    void my_map::add_trees(int posx, int posy, int count)
+    {
+        for (int i = 0; i < count; ++i) {
+            int rx = random_x();
+            int ry = random_y();
+            
+            if (forest[ry][rx] == ' ' && ry < posx && rx > posy)
+                forest[ry][rx] = 'T';
+            else
+                i--;
+        }
     }
 
     int my_map::random_x()

@@ -11,7 +11,7 @@ void colors_pairs() {
 
     init_color(8, 900, 100, 100); // серый нижний bar
     init_color(257, 46, 139, 87); //  темно-зеленый цвет фона
-
+    init_color(258, 0, 0, 128); // темно-синий
 
 
     init_pair(1, COLOR_RED, COLOR_RED); // полоска здоровья
@@ -26,7 +26,11 @@ void colors_pairs() {
     init_pair(8, COLOR_YELLOW, 257);// грибы
 
     init_pair(10, COLOR_RED, 257);
+
+    init_pair(11, COLOR_BLUE, COLOR_BLUE); // вода
+    init_pair(12, COLOR_BLUE, 258); // край воды 
     
+    init_pair(13, 258, 258);
     
 }
 
