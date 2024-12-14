@@ -59,6 +59,7 @@ void monsters_family::give_some_boys_rand() {
 
     
     void monsters_family::create_two_boys() {
+
         scary_monster W(7, 67, map);
         scary_monster I(18, 51, map);
 

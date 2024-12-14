@@ -32,7 +32,7 @@
             break;
         case 2: 
 
-            add_trees(500);
+            add_trees(300);
             add_mushrooms();
             break;
         

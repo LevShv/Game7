@@ -24,7 +24,7 @@ my_boy boy(start_pos_x, start_pos_y);
 
 void colors_pairs() {
 
-    init_color(8, 900, 100, 100); // серый нижний bar
+    init_color(300, 165,165,165); // серый нижний bar
     init_color(257, 46, 139, 87); //  темно-зеленый цвет фона
     init_color(258, 0, 0, 128); // темно-синий
     init_color(259, 189, 183, 107); // бежевый
@@ -58,7 +58,7 @@ void colors_pairs() {
 
     init_pair(19, 8, 259); // Серый старец дома
 
-    init_pair(20, 3, COLOR_BLACK); // Серый старец дома
+    init_pair(20, 300, COLOR_BLACK); // Серый старец дома
     init_pair(21, COLOR_WHITE, COLOR_BLACK); // Subs
     init_pair(22, COLOR_RED, 257); // Красный гриб
 
@@ -147,6 +147,7 @@ void level_start()
     bool spawn_mushroom = false;
     bool ifindall = true;
     bool iwasoldman2 = false;
+    bool iwasoldman2delay = false;
     bool gotoforest = false;
 
     int nscore = 0;
@@ -202,22 +203,29 @@ void level_start()
         }
         if (boy.count_of_rm == 10 && iwasoldman2 == true && boy.x == 8 && boy.y == 19) {
             intface.subs("<Старец> - Хорошо, теперь тебя ждет более суровое испытание.",
-                "Тебе нужно в мрачный лес по заросшей тропе вниз по реке ");
+                "Тебе нужно в мрачный лес по заросшей тропе вниз по реке (enter) - далее" );
             getch();
             intface.subs("<Старец> - В том лесу обитают монстры, твари черного мага.",
                 "Будь осторожен чем дольше ты в лесу тем больше их появляется поблизости");
             getch();
             intface.subs("<Старец> - нам нужно 20 желтогривов. Как только соберешь уходи из леса",
                 "");
-            getch();
+            iwasoldman2 = false;
+            iwasoldman2delay = true;
+            
+
+        }
+        if (iwasoldman2delay == true) {
+            intface.subs("<Старец> - нам нужно 20 желтогривов. Как только соберешь уходи из леса",
+                "");
+
             nscore = 4;
             sci++;
             gotoforest = true;
             if (sci >= subtimming * nscore)
-                iwasoldman2 = false;
-
+                iwasoldman2delay = false;
         }
-        if (boy.x == 119 && boy.y > 10 && boy.y < 20 /*&& gotoforest == true*/) //  17, 119
+        if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) //  17, 119
             break;
         
         switch (nscore)
