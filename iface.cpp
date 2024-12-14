@@ -11,6 +11,7 @@ iface::iface() {
         draw_hp_boy(boy_hp);
         draw_Count_of_mushrooms(count_ofm);
     }
+
     void iface::game_over() {
 
         int xpos = 29;
@@ -26,9 +27,10 @@ iface::iface() {
                 mvaddch(row, col, ' ');
             }
         }
-        mvprintw(13, 55, "Game Over");
+        mvprintw(13, 55, "—мЁрть");
 
     }
+
     void iface::game_win() {
 
         int xpos = 29;
@@ -47,6 +49,7 @@ iface::iface() {
         mvprintw(13, 55, "Win");
 
     }
+
     void iface::subs(const char* a, const char* b)
     {
         attron(COLOR_PAIR(21));
@@ -64,6 +67,7 @@ iface::iface() {
         mvprintw(4, 23, a);
         mvprintw(5, 23, b);
     }
+
     void iface::score(const char* a)
     {
         attron(COLOR_PAIR(3));
@@ -72,6 +76,7 @@ iface::iface() {
 
         attroff(COLOR_PAIR(3));
     }
+
     void iface::draw_hp_boy(int hp) {
 
         attron(COLOR_PAIR(3));
@@ -95,6 +100,7 @@ iface::iface() {
         attroff(COLOR_PAIR(6));
 
     }
+
     void iface::draw_Count_of_mushrooms(int count_ofm) {
 
         attron(COLOR_PAIR(3));
@@ -106,6 +112,7 @@ iface::iface() {
 
         attroff(COLOR_PAIR(3));
     }
+
     void iface::Bckg() {
         attron(COLOR_PAIR(2));
 

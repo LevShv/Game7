@@ -6,9 +6,10 @@ class my_map
 {
 public:
 
-    my_map(int width_of_map, int length_of_map);
+    my_map(int width_of_map, int length_of_map, int lv);
     void create_map(int level);
     void show_map();
+    void add_redmushrooms(int count, int posx, int posy);
     char** forest;
    
     ~my_map();
@@ -16,7 +17,7 @@ public:
 private:
     char vline = (char)151; // 151 горизонт
    
-
+    int level;
     int width;
     int length;
 
@@ -31,6 +32,7 @@ private:
     void add_trees(int posx1, int posy1, int posx2, int posy2, int count);
     
     void add_mushrooms();
+    
     void get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name);
 
     std::vector<std::vector<char>> home = {

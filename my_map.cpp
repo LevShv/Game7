@@ -7,10 +7,10 @@
 
 
 
-    my_map::my_map(int width_of_map, int length_of_map) : width(width_of_map), length(length_of_map){
+    my_map::my_map(int width_of_map, int length_of_map, int lv) : width(width_of_map), length(length_of_map),level(lv){
 
         forest = new char* [length];
-        create_map(1);
+        create_map(level);
     }
 
     void my_map::create_map(int level)
@@ -28,6 +28,7 @@
             add_trees(27,87,50);
 
             add_to_map(home, 6, 18); // y x
+
             break;
         case 2: 
 
@@ -84,8 +85,6 @@
                     addch(124);
                     attroff(COLOR_PAIR(8));
                 }
-               
-                
                 else if (*str == 'g') {     // Кровать подушка
 
                     attron(COLOR_PAIR(17));
@@ -93,18 +92,18 @@
                     attroff(COLOR_PAIR(17));
 
                 }
-                //else if (*str == '') {        // кровать одеяло
-
-                //    attron(COLOR_PAIR(18));
-                //    addch(' ');
-                //    attroff(COLOR_PAIR(18));
-
-                //}
-                else if (*str == 'S') {        // кровать одеяло
+                else if (*str == 'S') {        
 
                     attron(COLOR_PAIR(19));
                     addch('S');
                     attroff(COLOR_PAIR(19)); // Старец
+
+                }
+                else if (*str == (char)133) {
+
+                    attron(COLOR_PAIR(22));
+                    addch(133);
+                    attroff(COLOR_PAIR(22)); // красный гриб
 
                 }
                 else {
@@ -167,6 +166,19 @@
         }
     }
 
+    void my_map::add_redmushrooms(int count,int posx, int posy)
+    {
+        for (int i = 0; i < count; ++i) {
+            int rx = random_x();
+            int ry = random_y();
+         
+            if (forest[ry][rx] == ' ' && ry < posx && rx > posy)
+                forest[ry][rx] = 133;
+            else
+                i--;
+        }
+    }
+
     void my_map::get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name)
     {
         std::ifstream inputFile(name);
@@ -183,7 +195,7 @@
         inputFile.close();
     }
 
-    void my_map::add_trees(int count) {
+    void my_map::add_trees( int count) {
 
         for (int i = 0; i < count; ++i) {
             int rx = random_x();
@@ -195,7 +207,6 @@
         }
   
     }
-
 
     void my_map::add_trees(int posx1, int posy1, int posx2, int posy2, int count)
     {

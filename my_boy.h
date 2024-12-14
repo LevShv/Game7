@@ -8,6 +8,7 @@ public:
 
     int hp = 10;
     int count_of_m = 0;
+    int count_of_rm = 0;
     my_boy(int spx, int spy);
 
     void move_boy(char** map);

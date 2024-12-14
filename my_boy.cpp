@@ -33,14 +33,20 @@ void my_boy::move_boy(char** map) {
         }
     }
 
-    else if (map[y][x] == '.') {
+    else if (map[y][x] == '.' || map[y][x] == (char)133) {
 
+        if (map[y][x] == '.')
+            count_of_m++;
+        else
+            count_of_rm++;
         attron(COLOR_PAIR(7));
         move(y, x);
-        count_of_m++;
         printw("0");
         map[y][x] = ' ';
         attroff(COLOR_PAIR(7));
+
+       
+
     }
     else {
 
