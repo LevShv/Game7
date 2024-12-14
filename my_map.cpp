@@ -120,6 +120,7 @@
          
         }
     }
+
     my_map::~my_map() {
         
         for (int i = 0; i < length; i++)
@@ -127,8 +128,6 @@
         delete[] forest;
    
     }
-
-    
 
     void my_map::make_claen_map()
     {

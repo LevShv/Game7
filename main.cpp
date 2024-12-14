@@ -408,22 +408,61 @@ void level_back_ff() {
     start_color();
     colors_pairs();
 
-    while (true) {
-        iface init(1);
-       
-        level_start();
-        level_forest();
-        if (boy.hp == 0) {
+    iface init(1);
+    
+    if (init.start_game()) {
+        while (true) { // Основной ход
+
+            level_start();
+            level_forest();
+
+            if (boy.hp == 0) {
+                boy.boy_reset(start_pos_x, start_pos_y);
+                continue;
+            }
+
+            level_back_ff();
             boy.boy_reset(start_pos_x, start_pos_y);
-            continue;
+
         }
-            
-        level_back_ff();
+    }
+    else {
+        clear();
+        while (true) { // Поуровневый режим
+
+            mvprintw(7, 15, "Choose level");
+            int lv = getch();
+            clear();
+
+            switch (lv)
+            {
+            case 48:
+                level_start();
+
+            case 49:
+                if (lv == 49) {
+                    boy.count_of_rm = 10;
+                }
+                level_forest();
+
+            case 50:
+                if (lv == 50) {
+                    boy.count_of_m = 20;
+                    boy.count_of_rm = 10;
+                    boy.hp = 8;
+                }
+                level_back_ff();
+            }
+            clear();
+            boy.boy_reset(start_pos_x, start_pos_y);
+        }
         
     }
-    
+       
+
 
     endwin();
+    
    
 
 }

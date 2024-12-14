@@ -10,6 +10,7 @@ public:
     void game_win();
     void subs(const char* a, const char* b);
     void score(const char* a);
+    int start_game();
 
 
 private:
