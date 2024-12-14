@@ -14,8 +14,8 @@ int level = 0;
 int width = 120;
 int length = 28;
 
-int start_pos_x = 115; // 59
-int start_pos_y = 20; // 21
+int start_pos_x = 59; // 59
+int start_pos_y = 21; // 21
 
 int subtimming = 10;
 
@@ -129,6 +129,7 @@ void make_move(monsters_family*& badboys) {
 }
 
 void level_start()
+
 {
     
 
@@ -255,6 +256,7 @@ void level_start()
 
     }
 }
+
 void level_forest() {
 
     clear();
@@ -277,7 +279,7 @@ void level_forest() {
         if (boy.hp == 0) {
             intface.game_over();
             getch();
-            exit(1);
+            break;
         }
         if (boy.count_of_m == 20 && igotall == true) {
             intface.subs("Все грибы собраны, возращаемся к старцу",
@@ -325,6 +327,68 @@ void level_forest() {
     getch();
     delete badboys;
  }
+
+void level_back_ff() {
+
+    boy.x = 119;
+
+    my_map map(width, length, 1);
+    map.show_map();
+    boy.move_boy(map.forest);
+    iface intface;
+
+
+
+    bool gotooldman = true;
+
+    bool iwasoldman1 = true;
+    bool ireadom1 = false;
+    bool spawn_mushroom = false;
+    bool ifindall = true;
+    bool iwasoldman2 = false;
+    bool gotoforest = false;
+
+    int nscore = 0;
+    int sci = 0;
+
+    while (true) {
+        //mvprintw(17, 119, "2"); // 
+        if (gotooldman = true) {
+            nscore = 1;
+        }
+        if (boy.x == 8 && boy.y == 19 && iwasoldman1 == true) {
+
+            intface.subs(" <Старец> - Ты мололец ученик мой, тв преодолел тяжелое испытание ",
+                "но нас ждет многое впереди...");
+            getch();
+            break;
+        }
+        switch (nscore)
+        {
+        case 0:
+
+            break;
+
+        case 1:
+            intface.score("Возращайтесь на базу");
+            break;
+
+        default:
+            break;
+        }
+
+        make_move();
+        clear();
+
+        map.show_map();
+        boy.move_boy(map.forest);
+
+        intface.draw(boy.hp, boy.count_of_m);
+        game_iter++;
+
+    }
+}
+
  int main()
  {
     std::system("chcp 1251");
@@ -335,9 +399,21 @@ void level_forest() {
     noecho();
     start_color();
     colors_pairs();
-  
-    level_start();
-    level_forest();
+
+    while (true) {
+        iface init(1);
+       
+        level_start();
+        level_forest();
+        if (boy.hp == 0) {
+            boy.boy_reset(start_pos_x, start_pos_y);
+            continue;
+        }
+            
+        level_back_ff();
+        
+    }
+    
 
     endwin();
    

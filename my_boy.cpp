@@ -74,3 +74,12 @@ void my_boy::move_boy(char** map) {
     
 }
 
+void my_boy::boy_reset(int start_pos_x, int start_boy_y)
+{
+    hp = 10;
+    x = start_pos_x;
+    y = start_boy_y;
+    count_of_m = 0;
+    count_of_rm = 0;
+}
+

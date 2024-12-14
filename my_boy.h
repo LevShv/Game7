@@ -12,6 +12,7 @@ public:
     my_boy(int spx, int spy);
 
     void move_boy(char** map);
+    void boy_reset(int start_pos_x, int start_boy_y);
 
 private:
 
