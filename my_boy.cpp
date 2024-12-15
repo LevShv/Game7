@@ -1,6 +1,7 @@
 #include "my_boy.h"
 #include "curses.h"
 #include <my_map.h>
+#include "ivent_thing.h"
 
 my_boy::my_boy(int spx, int spy) : x(spx), y(spy) 
 {
@@ -35,10 +36,17 @@ void my_boy::move_boy(char** map) {
 
     else if (map[y][x] == '.' || map[y][x] == (char)133) {
 
-        if (map[y][x] == '.')
+        if (map[y][x] == '.') {
             count_of_m++;
+            add_to_invent("Желтогрив", 1);
+        }
+            
         else
+        {
             count_of_rm++;
+            add_to_invent("Краснолгазик", 1);
+        }
+
         attron(COLOR_PAIR(7));
         move(y, x);
         printw("0");
@@ -82,4 +90,27 @@ void my_boy::boy_reset(int start_pos_x, int start_boy_y)
     count_of_m = 0;
     count_of_rm = 0;
 }
+
+void my_boy::add_to_invent(std::string name, int count)
+{
+    bool founded = false;
+    for (ivent_thing var : invent)
+    {
+        if (var.name == name) {
+            var.count++;
+            founded = true;
+            break;
+        }
+        if (founded == false) {
+  /*          ivent_thing var{ name, count };*/
+            invent.push_back({ name, count });
+        }
+    }
+}
+
+
+
+
+
+
 

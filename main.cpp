@@ -65,35 +65,47 @@ void colors_pairs() {
 }
 
 void make_move() {
-    switch (getch()) {
-    case 'w':
-        if (0 < boy.y) {
-            boy.y--;
+
+    bool exit = true;
+
+    while (true) {
+        switch (getch()) {
+
+        case 'w':
+            if (0 < boy.y) {
+                boy.y--;
+                exit = true;
+            }
+            break;
+        case 's':
+            if (boy.y < length - 1) {
+                boy.y++;
+                exit = true;
+            }
+            break;
+        case 'a':
+            if (boy.x > 0) {
+                boy.x--;
+                exit = true;
+            }
+            break;
+        case 'd':
+            if (boy.x < width - 1) {
+                boy.x++;
+                exit = true;
+            }
+            break;
+        case 'e':
+            iface inn;
+            inn.show_invent();
+            exit = false;
+            break;
 
         }
-        break;
-    case 's':
-        if (boy.y < length - 1) {
-            boy.y++;
-
-        }
-        break;
-    case 'a':
-        if (boy.x > 0) {
-            boy.x--;
-
-        }
-        break;
-    case 'd':
-        if (boy.x < width - 1) {
-            boy.x++;
-
-        }
-        break;
-    case 'q':
-        break;
-
+        if (exit == true)
+            break;
     }
+    
 }
 
 void make_move(monsters_family*& badboys) {
@@ -120,10 +132,13 @@ void make_move(monsters_family*& badboys) {
         if (boy.x < width - 1) {
             boy.x++;
             badboys->find(boy.x, boy.y);
+        break;
         }
+    case 'e':
+        iface inn;
+        inn.show_invent();
         break;
-    case 'q':
-        break;
+
 
     }
 }

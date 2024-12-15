@@ -131,6 +131,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="iface.cpp" />
+    <ClCompile Include="ivent_thing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monsters_family.cpp" />
     <ClCompile Include="my_boy.cpp" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iface.h" />
+    <ClInclude Include="ivent_thing.h" />
     <ClInclude Include="monsters_family.h" />
     <ClInclude Include="my_boy.h" />
     <ClInclude Include="my_map.h" />

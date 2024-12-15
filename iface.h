@@ -10,6 +10,7 @@ public:
     void game_win();
     void subs(const char* a, const char* b);
     void score(const char* a);
+    void show_invent();
     int start_game();
 
 
@@ -20,7 +21,8 @@ private:
 
     void draw_hp_boy(int hp);
     void draw_Count_of_mushrooms(int count_ofm);
-    void Bckg();
+    void Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair);
+
     
     
 };

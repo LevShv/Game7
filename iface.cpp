@@ -11,63 +11,31 @@ iface::iface(bool start) {
 }
     void iface::draw(int boy_hp, int count_ofm) {
 
-        Bckg();
+        Bckg(28,31,0,120,COLOR_PAIR(2));
         draw_hp_boy(boy_hp);
        /* draw_Count_of_mushrooms(count_ofm);*/
     }
 
     void iface::game_over() {
+        
+        Bckg(10,15,40,80,COLOR_PAIR(21));
 
-        int xpos = 29;
-        int ypos = 50;
-
-        int start_row = 10;
-        int end_row = 15;
-        int start_col = 40;
-        int end_col = 80;
-
-        for (int row = start_row; row <= end_row; row++) {
-            for (int col = start_col; col <= end_col; col++) {
-                mvaddch(row, col, ' ');
-            }
-        }
         mvprintw(13, 55, "—мЁрть");
 
     }
 
     void iface::game_win() {
 
-        int xpos = 29;
-        int ypos = 50;
-
-        int start_row = 10;
-        int end_row = 15;
-        int start_col = 40;
-        int end_col = 80;
-
-        for (int row = start_row; row <= end_row; row++) {
-            for (int col = start_col; col <= end_col; col++) {
-                mvaddch(row, col, ' ');
-            }
-        }
+        Bckg(10,15,40,80,COLOR_PAIR(21));
+       
         mvprintw(13, 55, "Win");
 
     }
 
     void iface::subs(const char* a, const char* b)
     {
-        attron(COLOR_PAIR(21));
+        Bckg(3,6,20,100,COLOR_PAIR(21));
 
-        int start_row = 3;
-        int end_row = 6;
-        int start_col = 20;
-        int end_col = 100;
-
-        for (int row = start_row; row <= end_row; row++) {
-            for (int col = start_col; col <= end_col; col++) {
-                mvaddch(row, col, ' ');
-            }
-        }
         mvprintw(4, 23, a);
         mvprintw(5, 23, b);
     }
@@ -75,10 +43,17 @@ iface::iface(bool start) {
     void iface::score(const char* a)
     {
         attron(COLOR_PAIR(3));
+
         mvprintw(29, 85, "÷ель: ");
         mvprintw(29, 91, a);
 
         attroff(COLOR_PAIR(3));
+    }
+
+    void iface::show_invent()
+    {
+        Bckg(10, 15, 40, 80, COLOR_PAIR(21));
+        getch();
     }
 
     int iface::start_game()
@@ -145,19 +120,14 @@ iface::iface(bool start) {
         attroff(COLOR_PAIR(3));
     }
 
-    void iface::Bckg() {
-        attron(COLOR_PAIR(2));
-
-        int start_row = 28;
-        int end_row = 31;
-        int start_col = 0;
-        int end_col = 120;
+    void iface::Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair) {
+        attron(color_pair);
 
         for (int row = start_row; row <= end_row; row++) {
             for (int col = start_col; col <= end_col; col++) {
-                mvaddch(row, col, ' ');
+                mvprintw(row, col, " ");
             }
         }
 
-        attroff(COLOR_PAIR(2));
+        attroff(color_pair);
     }
