@@ -4,7 +4,7 @@ class iface {
 public:
 
     iface();
-    iface(bool start);
+   
     void draw(int boy_hp, int count_ofm);
     void game_over();
     void game_win();

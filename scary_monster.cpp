@@ -77,10 +77,10 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
         return {};
     }
 
-    int scary_monster::move_monster()
+    int scary_monster::move_monster(bool stop)
     {
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1&&  iseeya == true && delay == false) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1&&  iseeya == true && delay == false && stop == false) {
             
             lx = x;
             ly = y;

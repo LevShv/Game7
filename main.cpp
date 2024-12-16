@@ -64,84 +64,86 @@ void colors_pairs() {
 
 }
 
-void make_move() {
-
-    bool exit = true;
-
-    while (true) {
-        switch (getch()) {
-
+int make_move() {
+     switch (getch()) {
         case 'w':
             if (0 < boy.y) {
                 boy.y--;
-                exit = true;
+                return 1;
+            
             }
             break;
         case 's':
             if (boy.y < length - 1) {
                 boy.y++;
-                exit = true;
+                return 1;
             }
             break;
         case 'a':
             if (boy.x > 0) {
                 boy.x--;
-                exit = true;
+                return 1;
+            
             }
             break;
         case 'd':
             if (boy.x < width - 1) {
                 boy.x++;
-                exit = true;
+                return 1;
+            
+          
             }
             break;
         case 'e':
             iface inn;
             inn.show_invent();
-            exit = false;
+            return 0;
             break;
 
-        }
-        if (exit == true)
-            break;
-    }
+     }
+     return 0;
     
 }
 
-void make_move(monsters_family*& badboys) {
+/*int make_move(monsters_family*& badboys) {
     switch (getch()) {
     case 'w':
         if (0 < boy.y) {
             boy.y--;
-            badboys->find(boy.x, boy.y);
+
+            return 1;
         }
         break;
     case 's':
         if (boy.y < length - 1) {
             boy.y++;
-            badboys->find(boy.x, boy.y);
+
+            return 1;
         }
         break;
     case 'a':
         if (boy.x > 0) {
             boy.x--;
             badboys->find(boy.x, boy.y);
+            return 1;
         }
         break;
     case 'd':
         if (boy.x < width - 1) {
             boy.x++;
             badboys->find(boy.x, boy.y);
+            return 1;
         break;
         }
     case 'e':
         iface inn;
         inn.show_invent();
+        return 0;
         break;
-
+*//*
 
     }
-}
+}*/
 
 void level_start()
 
@@ -152,6 +154,7 @@ void level_start()
     map.show_map();
     boy.move_boy(map.forest);
     iface intface;
+    intface.draw(10, 0);
 
     
 
@@ -179,6 +182,7 @@ void level_start()
             if (sci >= subtimming)
                 gotooldman = false;
         }
+
         if (boy.x == 8 && boy.y == 19 && iwasoldman1 == true) {
             
             intface.subs(" <Старец> - Приветсвую тебя мой ученик, нам предстоит тяжелый путь, ", 
@@ -243,39 +247,47 @@ void level_start()
         if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) //  17, 119
             break;
         
-        switch (nscore)
-        {
-            case 0:
-                
-            break;
-           
-            case 1:
-                intface.score("Встретиться со старцем");
-            break;
+      
 
-            case 2:
-                intface.score("Собрать 10 красноглазых опят");
-            break;
+        if (make_move() == 1) { ////////.............
+            game_iter++;
 
-            case 3:
-                intface.score("Вернуться к старцу");
-            break;
-
-            case 4:
-                intface.score("Отправляйтесь в мрачный лес");
-            break;
-        default:
-            break;
         }
-
-        make_move();        
+        else {
+;           sci--;
+        }
+        
         clear();
 
         map.show_map();
         boy.move_boy(map.forest);
 
         intface.draw(boy.hp, boy.count_of_m);
-        game_iter++;
+
+        switch (nscore)
+        {
+        case 0:
+
+            break;
+
+        case 1:
+            intface.score("Встретиться со старцем");
+            break;
+
+        case 2:
+            intface.score("Собрать 10 красноглазых опят");
+            break;
+
+        case 3:
+            intface.score("Вернуться к старцу");
+            break;
+
+        case 4:
+            intface.score("Отправляйтесь в мрачный лес");
+            break;
+
+        }
+
 
     }
 }
@@ -294,6 +306,7 @@ void level_forest() {
     map.show_map();
 
     iface intface;
+    intface.draw(10, 0);
 
     monsters_family* badboys = new monsters_family(map.forest);
 
@@ -333,17 +346,29 @@ void level_forest() {
         default:
             break;
         }
-        make_move(badboys);
+
+        bool move = make_move();
+        if (move) { ////////.............
+            game_iter++;
+            badboys->find(boy.x, boy.y);
+        }
+        else {
+            sci--;
+
+        }
         clear();
 
         map.show_map();
         boy.move_boy(map.forest);
 
-        boy.hp -= badboys->monsters_move();
-        intface.draw(boy.hp, boy.count_of_m);
-        game_iter++;
+        if(move)
+            boy.hp -= badboys->monsters_move(0);
+        else
+            badboys->monsters_move(1);
 
-        
+         
+
+        intface.draw(boy.hp, boy.count_of_m);
 
     }
 
@@ -359,6 +384,7 @@ void level_back_ff() {
     map.show_map();
     boy.move_boy(map.forest);
     iface intface;
+    intface.draw(10, 0);
 
 
 
@@ -400,7 +426,14 @@ void level_back_ff() {
             break;
         }
 
-        make_move();
+
+        if (make_move() == 1) { ////////.............
+            game_iter++;
+        }
+        else {
+             sci--;
+        }
+
         clear();
 
         map.show_map();
@@ -422,8 +455,8 @@ void level_back_ff() {
     noecho();
     start_color();
     colors_pairs();
-
-    iface init(1);
+  
+    iface init;
     
     if (init.start_game()) {
         while (true) { // Основной ход

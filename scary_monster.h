@@ -14,12 +14,11 @@ public:
 
     void give_waythim(int bx, int by);
 
-    int move_monster();
+    int move_monster(bool stop);
 
     scary_monster(int spx, int spy, char** give_me_map);
     
 private:
-
     
 
     int lx;
@@ -55,9 +54,6 @@ private:
     std::vector<Point> way;
 
     std::vector<Point> shortestPath(int bx, int by);
-    
-
-    
 
 };
 

@@ -3,12 +3,9 @@
 
 iface::iface() {
 
-    draw(10, 0);
-}
-iface::iface(bool start) {
-
     
 }
+
     void iface::draw(int boy_hp, int count_ofm) {
 
         Bckg(28,31,0,120,COLOR_PAIR(2));

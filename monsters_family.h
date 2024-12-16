@@ -12,7 +12,7 @@ public:
     std::vector<std::vector<int>> wma;
 
     void find(int x, int y);
-    int monsters_move();
+    int monsters_move(bool stop);
     void give_some_boys_rand();
 
 private:

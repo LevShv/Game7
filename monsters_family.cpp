@@ -33,7 +33,7 @@ void monsters_family::give_some_boys_rand() {
         }
     }
 
-    int monsters_family::monsters_move() {
+    int monsters_family::monsters_move(bool stop) {
 
         int hp = 0;
 
@@ -49,7 +49,7 @@ void monsters_family::give_some_boys_rand() {
 
         for (scary_monster& M : *Monsters)
         {
-            if (M.move_monster() == 1)
+            if (M.move_monster(stop) == 1)
                 hp++;
 
         }
