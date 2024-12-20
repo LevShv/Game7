@@ -96,7 +96,7 @@ int make_move() {
             break;
         case 'e':
             iface inn;
-            inn.show_invent();
+            inn.show_invent(boy.invent);
             return 0;
             break;
 
@@ -388,38 +388,71 @@ void level_back_ff() {
 
 
 
+   
     bool gotooldman = true;
-
     bool iwasoldman1 = true;
-    bool ireadom1 = false;
-    bool spawn_mushroom = false;
-    bool ifindall = true;
-    bool iwasoldman2 = false;
-    bool gotoforest = false;
+    bool ireadom1 = true;
+    bool gotoborder = false;
 
     int nscore = 0;
     int sci = 0;
 
     while (true) {
         //mvprintw(17, 119, "2"); // 
-        if (gotooldman = true) {
+        if (gotooldman == true) {
             nscore = 1;
         }
         if (boy.x == 8 && boy.y == 19 && iwasoldman1 == true) {
 
-            intface.subs(" <Старец> - Ты мололец ученик мой, тв преодолел тяжелое испытание ",
+            intface.subs(" <Старец> - Ты молодец ученик мой, тв преодолел тяжелое испытание ",
                 "но нас ждет многое впереди...");
             getch();
+
+            intface.subs(" <Старец> - Я приготовлю зелье c помощью которого ты сможешь атаковать ",
+                "монстра в ближнем бою. Время действия зелья ограничено.");
+            getch();
+
+            intface.subs("Теперь тебе нужно отправиться в заброшенную деревню, ",
+                "которая находится на окраине леса.");
+            getch();
+
+            intface.subs("Там, в одном из домов, который находится в самой глубине деревни." ,
+                " лежит лук, который когда-то принадлежал великому охотнику.");
+            getch();
+
+            intface.subs("Ступай по дороге вверх по реке, собирай грибы по дороге",
+                "На пути будут встречаться различные монстры применяй зелья чтобы атаковать");
+            getch();
+
+            boy.add_to_invent("Зелье силы", 'o', 5, COLOR_PAIR(4));
+
+            iwasoldman1 = false;
+            gotooldman = false;
+
+        }
+        if (iwasoldman1 == false && ireadom1 == true) {
+            intface.subs("Ступай по дороге вверх по реке, собирай грибы по дороге",
+                "На пути будут встречаться различные монстры применяй зелья чтобы атаковать");
+            nscore = 2;
+            sci++;
+            gotoborder = true;
+            if (sci >= subtimming * nscore)
+                ireadom1 = false;
+
+        }
+        if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {
             break;
         }
         switch (nscore)
         {
-        case 0:
 
-            break;
 
         case 1:
             intface.score("Возращайтесь на базу");
+            break;
+
+        case 2:
+            intface.score("Отправляйтесь в деревню");
             break;
 
         default:
@@ -498,6 +531,12 @@ void level_back_ff() {
                     boy.count_of_m = 20;
                     boy.count_of_rm = 10;
                     boy.hp = 8;
+                    boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8));
+                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22));
+                    boy.add_to_invent("Желтогр", '^', 20, COLOR_PAIR(8));
+                    boy.add_to_invent("Краснолгазк", '"', 10, COLOR_PAIR(22));
+                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22));
+
                 }
                 level_back_ff();
             }

@@ -1,5 +1,7 @@
 #pragma once
 #include "curses.h"
+#include <vector>
+#include "ivent_thing.h"
 class iface {
 public:
 
@@ -10,7 +12,7 @@ public:
     void game_win();
     void subs(const char* a, const char* b);
     void score(const char* a);
-    void show_invent();
+    void show_invent(std::vector<ivent_thing> invent);
     int start_game();
 
 

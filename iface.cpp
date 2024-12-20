@@ -1,5 +1,7 @@
 #include "curses.h"
 #include "iface.h"
+#include "ivent_thing.h"
+#include "my_boy.h"
 
 iface::iface() {
 
@@ -47,9 +49,34 @@ iface::iface() {
         attroff(COLOR_PAIR(3));
     }
 
-    void iface::show_invent()
+    void iface::show_invent(std::vector<ivent_thing> invent)
     {
-        Bckg(10, 15, 40, 80, COLOR_PAIR(21));
+        int start_row = 10;
+        int start_col = 42;
+        int end_row = 16;
+        int end_col = 80;
+
+        Bckg(start_row, end_row, start_col - 2, end_col, COLOR_PAIR(21));
+
+        int j = 0;
+        int k = 0;
+
+        for (int i = 0; i < invent.size(); i++)
+        {
+            mvaddch(start_row + (j + 1), start_col + (k + 1), invent[i].icon);
+
+            if ((i+1) % 3 == 0 && i != 0) {
+
+                j = 0;
+                k += 2;
+            }
+            else {
+                j += 2;
+            }
+            
+        }
+
+        refresh();
         getch();
     }
 

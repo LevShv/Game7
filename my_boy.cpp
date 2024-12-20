@@ -11,11 +11,10 @@ my_boy::my_boy(int spx, int spy) : x(spx), y(spy)
 
 void my_boy::move_boy(char** map) {
 
-
-    
     if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'я') {
         if (map[y][x] == ' ') {
             attron(COLOR_PAIR(7));
+            
             move(y, x);
             printw("0");
             attroff(COLOR_PAIR(7));
@@ -38,13 +37,13 @@ void my_boy::move_boy(char** map) {
 
         if (map[y][x] == '.') {
             count_of_m++;
-            add_to_invent("Желтогрив", 1);
+            add_to_invent("Желтогрив", '.', 1, COLOR_PAIR(8));
         }
             
         else
         {
             count_of_rm++;
-            add_to_invent("Краснолгазик", 1);
+            add_to_invent("Краснолгазик", (char)133 , 1, COLOR_PAIR(22));
         }
 
         attron(COLOR_PAIR(7));
@@ -52,8 +51,6 @@ void my_boy::move_boy(char** map) {
         printw("0");
         map[y][x] = ' ';
         attroff(COLOR_PAIR(7));
-
-       
 
     }
     else {
@@ -78,8 +75,7 @@ void my_boy::move_boy(char** map) {
 
     xl = x;
     yl = y;
-   
-    
+ 
 }
 
 void my_boy::boy_reset(int start_pos_x, int start_boy_y)
@@ -91,7 +87,7 @@ void my_boy::boy_reset(int start_pos_x, int start_boy_y)
     count_of_rm = 0;
 }
 
-void my_boy::add_to_invent(std::string name, int count)
+void my_boy::add_to_invent(std::string name, char icon, int count, int color)
 {
     bool founded = false;
     for (ivent_thing var : invent)
@@ -101,10 +97,12 @@ void my_boy::add_to_invent(std::string name, int count)
             founded = true;
             break;
         }
-        if (founded == false) {
-  /*          ivent_thing var{ name, count };*/
-            invent.push_back({ name, count });
-        }
+        
+    }
+
+    if (founded == false) {
+        /*          ivent_thing var{ name, count };*/
+        invent.push_back({ name, icon ,count, color });
     }
 }
 

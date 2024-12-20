@@ -21,8 +21,9 @@ public:
 private:
     
 
-    int lx;
-    int ly;
+    int bx;
+    int by;
+
     bool started = false;
 
     int width;
@@ -54,6 +55,8 @@ private:
     std::vector<Point> way;
 
     std::vector<Point> shortestPath(int bx, int by);
+
+    bool check_boy();
 
 };
 

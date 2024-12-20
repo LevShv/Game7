@@ -27,6 +27,8 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
     
     std::vector<scary_monster::Point> scary_monster::shortestPath(int bx, int by) {
 
+
+
         scary_monster::Point start = { x, y };
         scary_monster::Point end = { by ,bx };
 
@@ -80,10 +82,8 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
     int scary_monster::move_monster(bool stop)
     {
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1&&  iseeya == true && delay == false && stop == false) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1 &&  iseeya == true && delay == false && stop == false) {
             
-            lx = x;
-            ly = y;
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
             
@@ -108,11 +108,18 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
             delay = false;
         }
 
-        if (iterofwaypoint == way.size()-1)
+        if (iterofwaypoint == way.size()-1 /*&& check_boy()*/)
             return 1;
 
         return 2;
     }
+   /* bool scary_monster::check_boy() {
+        if (x++ == boy.x && y == boy.y ||
+            x++ == boy.x && y == boy.y ||
+            x++ == boy.x && y == boy.y ||
+            x++ == boy.x && y == boy.y)
+        return 0;
+    }*/
 
     
 
