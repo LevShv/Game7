@@ -62,6 +62,10 @@ void colors_pairs() {
     init_pair(21, COLOR_WHITE, COLOR_BLACK); // Subs
     init_pair(22, COLOR_RED, 257); // Красный гриб
 
+    init_pair(23, 258, 8);//стрелка инвентаря
+
+    init_pair(24, COLOR_RED, COLOR_BLACK);//Красноглазик для инвентаря
+
 }
 
 int make_move() {

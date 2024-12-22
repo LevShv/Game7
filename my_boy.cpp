@@ -43,7 +43,7 @@ void my_boy::move_boy(char** map) {
         else
         {
             count_of_rm++;
-            add_to_invent("Краснолгазик", (char)133 , 1, COLOR_PAIR(22));
+            add_to_invent("Краснолгазик", 133 , 1, COLOR_PAIR(22));
         }
 
         attron(COLOR_PAIR(7));

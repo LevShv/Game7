@@ -8,8 +8,6 @@ iface::iface() {
     
 }
 
-    
-
     void iface::draw(int boy_hp, int count_ofm, std::vector<ivent_thing> &invent)
     {
         Bckg(28, 31, 0, 120, COLOR_PAIR(2));
@@ -55,35 +53,104 @@ iface::iface() {
     {
         int start_row = 10;
         int start_col = 42;
-        int end_row = 16;
+        int end_row = 18;
         int end_col = 80;
 
-        Bckg(start_row, end_row, start_col - 2, end_col, COLOR_PAIR(21));
+        bool exit = false;
 
-        int j = 0;
-        int k = 0;
+        while (!exit) {
 
-        for (int i = 0; i < invent.size(); i++)
-        {
-            mvaddch(start_row + (j + 1), start_col + (k + 1), invent[i].icon);
-            move(start_row + (j + 1), start_col + (k + 3));
+            Bckg(start_row, end_row, start_col - 2, end_col, COLOR_PAIR(2));
 
-            printw("%d",invent[i].count);
-            
+            move(start_row + 1, (end_col + start_col)/2 - 5);
 
-            if ((i+1) % 3 == 0 && i != 0) {
+            attron(COLOR_PAIR(3));
+            printw("Инвентарь");
+            attroff(COLOR_PAIR(3));
 
-                j = 0;
-                k += 8;
+            int j = 0;
+            int k = 0;
+
+            for (int i = 0; i < invent.size(); i++)
+            {
+                attron(invent[i].color);
+                move(start_row + (j + 3), start_col + (k + 1));
+                printw("%c",invent[i].icon);
+
+                attroff(invent[i].color);
+
+                /*mvaddch(start_row + (j + 3), start_col + (k + 2), ' ');*/
+                attron(COLOR_PAIR(3));
+                move(start_row + (j + 3), start_col + (k + 3));
+                printw("%d", invent[i].count);
+                attroff(COLOR_PAIR(3));
+                
+
+                if (posofptr == i) {
+                    move(start_row + (j + 3), start_col + (k - 2));
+
+                    attron(COLOR_PAIR(23));
+                    printw("->");
+                    attroff(COLOR_PAIR(23));
+                    
+                }
+
+                if ((i + 1) % 3 == 0 && i != 0) {
+                    j = 0;
+                    k += 8;
+                }
+
+                else {
+                    j += 2;
+                } 
+
+                
             }
-            else {
-                j += 2;
+            refresh();
+
+            switch (getch()) {
+            case 'w':
+                if (posofptr - 1 >= 0)
+                    posofptr -= 1;
+                break;
+
+            case 's':
+                if (posofptr + 1 < invent.size())
+                    posofptr += 1;
+                break;
+
+            case 'a':
+                if (posofptr - 3 >= 0)
+                    posofptr -= 3;
+                break;
+
+            case 'd':
+                if (posofptr + 3 < invent.size())
+                    posofptr += 3;
+                break;
+
+            case '1':
+
+                std::swap(invent[posofptr], invent[0]);
+                clean_left_corner();
+                draw_slots(invent);
+                 break;
+
+            case '2':
+
+                std::swap(invent[posofptr], invent[1]);
+                clean_left_corner();
+                draw_slots(invent);
+                 break;
+
+            case 'e':
+                 exit = true;
+                 break;
             }
-            
+           
+
         }
-
-        refresh();
-        getch();
+      
     }
 
     void iface::draw_slots(std::vector<ivent_thing>& invent)
@@ -166,9 +233,7 @@ iface::iface() {
         mvprintw(29, 26, str);
 
         attroff(COLOR_PAIR(3));
-    }
-
-    
+    }    
 
     void iface::Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair) {
         attron(color_pair);
@@ -180,4 +245,9 @@ iface::iface() {
         }
 
         attroff(color_pair);
+    }
+
+    void iface::clean_left_corner()
+    {
+        Bckg(28, 31, 0, 50, COLOR_PAIR(2));
     }
