@@ -9,9 +9,10 @@ public:
     my_map(int width_of_map, int length_of_map, int lv);
     void create_map(int level);
     void show_map();
-    void add_redmushrooms(int count, int posx, int posy);
     char** forest;
    
+    void add_mushrooms(char obj, int count, int posx, int posy);
+
     ~my_map();
     
 private:
@@ -31,7 +32,6 @@ private:
     void add_trees(int posx, int posy, int count);
     void add_trees(int posx1, int posy1, int posx2, int posy2, int count);
     
-    void add_mushrooms();
     
     void get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name);
 
@@ -45,6 +45,6 @@ private:
     {'|', '_', '_', '_', '_', '_', '_', '_', '|'}
     };
 
-    std::vector<std::vector<char>> river; 
+    std::vector<std::vector<char>> base_of_map; 
 };
 

@@ -21,8 +21,8 @@
         {
         case 1: 
 
-            get_data_ff(river, "river2.txt");
-            add_to_map(river, 10, 0);
+            get_data_ff(base_of_map, "river2.txt");
+            add_to_map(base_of_map, 10, 0);
 
             add_trees(10,12,100); // y x
             add_trees(27,87,50);
@@ -33,9 +33,17 @@
         case 2: 
 
             add_trees(300);
-            add_mushrooms();
+            add_mushrooms('.',20,120,29);
             break;
         
+        case 3:
+
+            get_data_ff(base_of_map, "way_to_village.txt");
+            add_to_map(base_of_map, 0, 0);
+            add_trees(100);
+    
+            break;
+
         default:
             break;
         }
@@ -153,26 +161,13 @@
         }
     }
 
-    void my_map::add_mushrooms()
+    void my_map::add_mushrooms(char obj, int count, int posx, int posy)
     {
         for (int i = 0; i < 20; ++i) {
             int rx = random_x();
             int ry = random_y();
-            if (forest[ry][rx] == ' ')
-                forest[ry][rx] = '.';
-            else
-                i--;
-        }
-    }
-
-    void my_map::add_redmushrooms(int count,int posx, int posy)
-    {
-        for (int i = 0; i < count; ++i) {
-            int rx = random_x();
-            int ry = random_y();
-         
             if (forest[ry][rx] == ' ' && ry < posx && rx > posy)
-                forest[ry][rx] = 133;
+                forest[ry][rx] = obj;
             else
                 i--;
         }
