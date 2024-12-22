@@ -8,11 +8,13 @@ iface::iface() {
     
 }
 
-    void iface::draw(int boy_hp, int count_ofm) {
+    
 
-        Bckg(28,31,0,120,COLOR_PAIR(2));
+    void iface::draw(int boy_hp, int count_ofm, std::vector<ivent_thing> &invent)
+    {
+        Bckg(28, 31, 0, 120, COLOR_PAIR(2));
         draw_hp_boy(boy_hp);
-       /* draw_Count_of_mushrooms(count_ofm);*/
+        draw_slots(invent);
     }
 
     void iface::game_over() {
@@ -49,7 +51,7 @@ iface::iface() {
         attroff(COLOR_PAIR(3));
     }
 
-    void iface::show_invent(std::vector<ivent_thing> invent)
+    void iface::show_invent(std::vector<ivent_thing> &invent)
     {
         int start_row = 10;
         int start_col = 42;
@@ -64,11 +66,15 @@ iface::iface() {
         for (int i = 0; i < invent.size(); i++)
         {
             mvaddch(start_row + (j + 1), start_col + (k + 1), invent[i].icon);
+            move(start_row + (j + 1), start_col + (k + 3));
+
+            printw("%d",invent[i].count);
+            
 
             if ((i+1) % 3 == 0 && i != 0) {
 
                 j = 0;
-                k += 2;
+                k += 8;
             }
             else {
                 j += 2;
@@ -80,7 +86,25 @@ iface::iface() {
         getch();
     }
 
-    int iface::start_game()
+    void iface::draw_slots(std::vector<ivent_thing>& invent)
+    {
+        if (invent.size() > 0) {
+
+            attron(COLOR_PAIR(3));
+
+            mvprintw(28, 15, ("[" + std::string(1, invent[0].icon) + "] " + invent[0].name += " <" + std::to_string(invent[0].count) + ">").c_str());
+            attroff(COLOR_PAIR(3));
+
+        }
+        if (invent.size() > 1 && invent[1].name != "") {
+
+            attron(COLOR_PAIR(3));
+            mvprintw(29, 15, ("[" + std::string(1, invent[1].icon) + "] " + invent[1].name += " <" + std::to_string(invent[1].count) + ">").c_str());
+            attroff(COLOR_PAIR(3));
+        }
+    }
+
+     int iface::start_game()
     {
         mvprintw(13, 55, "GAME7.EXE");
         getch();
@@ -143,6 +167,8 @@ iface::iface() {
 
         attroff(COLOR_PAIR(3));
     }
+
+    
 
     void iface::Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair) {
         attron(color_pair);

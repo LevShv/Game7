@@ -90,10 +90,10 @@ void my_boy::boy_reset(int start_pos_x, int start_boy_y)
 void my_boy::add_to_invent(std::string name, char icon, int count, int color)
 {
     bool founded = false;
-    for (ivent_thing var : invent)
+    for (int i = 0; i < invent.size(); i++)
     {
-        if (var.name == name) {
-            var.count++;
+        if (invent[i].name == name) {
+            invent[i].count++;
             founded = true;
             break;
         }

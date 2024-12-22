@@ -154,7 +154,7 @@ void level_start()
     map.show_map();
     boy.move_boy(map.forest);
     iface intface;
-    intface.draw(10, 0);
+    intface.draw(10, 0, boy.invent);
 
     
 
@@ -262,7 +262,7 @@ void level_start()
         map.show_map();
         boy.move_boy(map.forest);
 
-        intface.draw(boy.hp, boy.count_of_m);
+        intface.draw(boy.hp, boy.count_of_m, boy.invent);
 
         switch (nscore)
         {
@@ -306,7 +306,7 @@ void level_forest() {
     map.show_map();
 
     iface intface;
-    intface.draw(10, 0);
+    intface.draw(10, 0, boy.invent);
 
     monsters_family* badboys = new monsters_family(map.forest);
 
@@ -368,7 +368,7 @@ void level_forest() {
 
          
 
-        intface.draw(boy.hp, boy.count_of_m);
+        intface.draw(boy.hp, boy.count_of_m, boy.invent);
 
     }
 
@@ -384,7 +384,7 @@ void level_back_ff() {
     map.show_map();
     boy.move_boy(map.forest);
     iface intface;
-    intface.draw(10, 0);
+    intface.draw(10, 0, boy.invent);
 
 
 
@@ -472,7 +472,7 @@ void level_back_ff() {
         map.show_map();
         boy.move_boy(map.forest);
 
-        intface.draw(boy.hp, boy.count_of_m);
+        intface.draw(boy.hp, boy.count_of_m, boy.invent);
         game_iter++;
 
     }
