@@ -6,6 +6,7 @@ class monsters_family
 {
 public:
 
+    std::vector<monster_type> monsters;
     monsters_family(char** give_me_map);
     ~monsters_family();
     
@@ -17,6 +18,8 @@ public:
 
 private:
 
+   /* std::vector<>*/
+    char monster;
     char** map;
     std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
 

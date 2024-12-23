@@ -1,8 +1,11 @@
 #include "monsters_family.h"
 #include <random>
+#include <vector>
+
 
 
 monsters_family::monsters_family(char** give_me_map) : map(give_me_map) {
+        
     create_two_boys();
 }
 

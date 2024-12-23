@@ -2,6 +2,7 @@
 #include <curses.h>
 #include <vector>
 #include <windows.h>
+#include "monster_type.h"
 
 
 scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
@@ -25,24 +26,24 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
         }      
     }
     
-    std::vector<scary_monster::Point> scary_monster::shortestPath(int bx, int by) {
+    std::vector<Point> scary_monster::shortestPath(int bx, int by) {
 
 
 
-        scary_monster::Point start = { x, y };
-        scary_monster::Point end = { by ,bx };
+        Point start = { x, y };
+        Point end = { by ,bx };
 
         int rows = length;
         int cols = width;
 
-        std::vector<scary_monster::Point> directions = {
+        std::vector<Point> directions = {
             {-1, 0}, {1, 0}, {0, -1}, {0, 1},
             {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
         };
 
-        std::queue<scary_monster::Point> q;
-        std::unordered_set<scary_monster::Point, scary_monster::PointHash> visited;
-        std::unordered_map<scary_monster::Point, scary_monster::Point, scary_monster::PointHash> path;
+        std::queue<Point> q;
+        std::unordered_set<Point, scary_monster::PointHash> visited;
+        std::unordered_map<Point, Point, scary_monster::PointHash> path;
 
         q.push(start);
         visited.insert(start);
@@ -50,12 +51,12 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
 
         while (!q.empty()) {
 
-            scary_monster::Point current = q.front();
+            Point current = q.front();
             q.pop();
 
             if (current.x == end.x && current.y == end.y) {
                 // Восстановление пути
-                std::vector<scary_monster::Point> resultPath;
+                std::vector<Point> resultPath;
                 while (current.x != -1 && current.y != -1) {
                     resultPath.push_back(current);
                     current = path[current];
@@ -65,7 +66,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
             }
 
             for (const auto& dir : directions) {
-                scary_monster::Point next = { current.x + dir.x, current.y + dir.y };
+                Point next = { current.x + dir.x, current.y + dir.y };
 
                 if (next.x >= 0 && next.x < rows && next.y >= 0 && next.y < cols && /* ++x < width && ++y < length &&*/
                     map[next.x][next.y] == ' ' && visited.find(next) == visited.end()) {

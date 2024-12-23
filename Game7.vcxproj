@@ -134,6 +134,7 @@
     <ClCompile Include="ivent_thing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monsters_family.cpp" />
+    <ClCompile Include="monster_type.cpp" />
     <ClCompile Include="my_boy.cpp" />
     <ClCompile Include="my_map.cpp" />
     <ClCompile Include="scary_monster.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="iface.h" />
     <ClInclude Include="ivent_thing.h" />
     <ClInclude Include="monsters_family.h" />
+    <ClInclude Include="monster_type.h" />
     <ClInclude Include="my_boy.h" />
     <ClInclude Include="my_map.h" />
     <ClInclude Include="scary_monster.h" />

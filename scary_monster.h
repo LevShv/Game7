@@ -4,6 +4,7 @@
 #include <queue>
 #include <unordered_map>
 #include <unordered_set>
+#include "monster_type.h"
 
 class scary_monster {
 
@@ -36,27 +37,18 @@ private:
 
     int hp = 5;
 
-    struct Point {
-
-        int x, y;
-
-        bool operator==(const Point& other) const {
-            return x == other.x && y == other.y;
-        }
-    };
-
     struct PointHash {
 
         size_t operator()(const Point& p) const {
             return std::hash<int>()(p.x) ^ std::hash<int>()(p.y);
         }
     };
-
+    
+    monster_type monster;
     std::vector<Point> way;
 
     std::vector<Point> shortestPath(int bx, int by);
 
-    bool check_boy();
 
 };
 
