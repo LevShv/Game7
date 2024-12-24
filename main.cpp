@@ -7,6 +7,8 @@
 #include <monsters_family.h>
 #include "iface.h"
 #include <locale.h>
+#include <monster_type.h>
+#include <vector>
 
 int level = 0;
 
@@ -20,7 +22,10 @@ int start_pos_y = 21; // 21
 int subtimming = 10;
 
 int game_iter = 1;
+
 my_boy boy(start_pos_x, start_pos_y);
+std::vector<monster_type*> monsters;
+
 
 void colors_pairs() {
 
@@ -42,7 +47,7 @@ void colors_pairs() {
     init_pair(7, COLOR_BLUE, 257); // "0"
     init_pair(8, COLOR_YELLOW, 257);// грибы
 
-    init_pair(10, COLOR_RED, 257);
+    init_pair(10, COLOR_RED, 257); // W
 
     init_pair(11, COLOR_BLUE, COLOR_BLUE); // вода
     init_pair(12, COLOR_BLUE, 258); // край воды 
@@ -65,6 +70,35 @@ void colors_pairs() {
     init_pair(23, 258, 8);//стрелка инвентаря
 
     init_pair(24, COLOR_RED, COLOR_BLACK);//Красноглазик для инвентаря
+
+}
+
+void monsters_data() {
+
+    monster_type* W = new monster_type(
+        "W", 
+        'W', 
+        COLOR_PAIR(10),
+        { {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+          {-1,-1}, {-1,1}, {1, -1}, {1, 1}, },
+        2, 
+        1, 
+        10, 
+        5);
+
+    monster_type* Y = new monster_type(
+        "Y",
+        'Y',
+        COLOR_PAIR(10),
+        { /*{-1, 0}, {1, 0}, {0, -1}, {0, 1},*/
+          {-1,-1}, {-1,1}, {1, -1}, {1, 1}, },
+        1,
+        1,
+        30,
+        5);
+
+    monsters.push_back(W);
+    monsters.push_back(Y);
 
 }
 
@@ -312,7 +346,9 @@ void level_forest() {
     iface intface;
     intface.draw(10, 0, boy.invent);
 
-    monsters_family* badboys = new monsters_family(map.forest);
+    monsters_family* badboys = new monsters_family(map.forest, monsters[0]);
+
+    badboys->give_some_boys_rand(monsters[0]);
 
     while (true) {
 
@@ -334,8 +370,11 @@ void level_forest() {
         if (gotoborder == true && boy.x == 0 && boy.y > 10 && boy.y < 20) 
             break;
 
-        if (game_iter % 100 == 0)
-            badboys->give_some_boys_rand();
+        if (game_iter % 100 == 0) {
+            badboys->give_some_boys_rand(monsters[0]);
+            badboys->give_some_boys_rand(monsters[1]);
+        }
+           
 
         switch (nscore)
         {
@@ -594,7 +633,8 @@ void level_way_to_village() {
     noecho();
     start_color();
     colors_pairs();
-  
+    monsters_data();
+
     iface init;
     
     if (init.start_game()) {
@@ -672,4 +712,8 @@ void level_way_to_village() {
     
    
 
-}
+    for (monster_type* monster : monsters) {
+        delete monster;
+    }
+
+ }

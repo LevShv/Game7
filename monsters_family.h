@@ -7,22 +7,29 @@ class monsters_family
 public:
 
     std::vector<monster_type> monsters;
-    monsters_family(char** give_me_map);
+    //monsters_family(char** give_me_map);
+   /* monsters_family(char** give_me_map);*/
+    monsters_family(char** give_me_map, monster_type* first_type);
     ~monsters_family();
+
+    void give_some_boys_rand(monster_type* type);
     
     std::vector<std::vector<int>> wma;
 
     void find(int x, int y);
     int monsters_move(bool stop);
-    void give_some_boys_rand();
+
+
 
 private:
-
+    
    /* std::vector<>*/
     char monster;
     char** map;
-    std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
 
-    void create_two_boys();
+    std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
+    std::vector<monster_type*> types;
+
+    void create_two_boys(monster_type* type);
     
 };

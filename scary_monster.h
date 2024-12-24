@@ -13,11 +13,13 @@ public:
     int x;
     int y;
 
+    scary_monster(int spx, int spy, char** give_me_map, monster_type* mon);
+
     void give_waythim(int bx, int by);
 
     int move_monster(bool stop);
 
-    scary_monster(int spx, int spy, char** give_me_map);
+    /*scary_monster(int spx, int spy, char** give_me_map);*/
     
 private:
     
@@ -33,7 +35,7 @@ private:
     char** map;
 
     bool iseeya = false;
-    bool delay = false;
+    int delay = 0;
 
     int hp = 5;
 
@@ -44,7 +46,7 @@ private:
         }
     };
     
-    monster_type monster;
+    monster_type* monster;
     std::vector<Point> way;
 
     std::vector<Point> shortestPath(int bx, int by);

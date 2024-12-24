@@ -5,11 +5,12 @@
 #include "monster_type.h"
 
 
-scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
+scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type* mon) :
 
     x(spx),
     y(spy),
     iterofwaypoint(0),
+    monster(mon),
     map(give_me_map)
 
     {
@@ -20,7 +21,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
     void scary_monster::give_waythim(int bx, int by) {
 
         iterofwaypoint = 1;
-        if (pow(by - x, 2) + pow(bx - y, 2) < pow(10,2)) {
+        if (pow(by - x, 2) + pow(bx - y, 2) < pow(monster->radius,2)) {
             iseeya = true;
             way = shortestPath(bx, by);
         }      
@@ -36,10 +37,10 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
         int rows = length;
         int cols = width;
 
-        std::vector<Point> directions = {
+        std::vector<Point> directions = monster->directions;/*{
             {-1, 0}, {1, 0}, {0, -1}, {0, 1},
             {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
-        };
+        };*/
 
         std::queue<Point> q;
         std::unordered_set<Point, scary_monster::PointHash> visited;
@@ -83,30 +84,31 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map) :
     int scary_monster::move_monster(bool stop)
     {
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1 &&  iseeya == true && delay == false && stop == false) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1 &&  iseeya && (delay % monster->delay == 0) && stop == false) {
             
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
             
 
-            attron(COLOR_PAIR(5));
+            attron(monster->color);
             move(x, y);
            
-            printw("W");
-            attroff(COLOR_PAIR(5));
+            addch(monster->icon);
+            attroff(monster->color);
 
             iterofwaypoint++;
-            delay = true;
+            delay = 1;
             return 0;
         }
         else {
 
-            attron(COLOR_PAIR(5));
+            attron(monster->color);
             move(x, y);
-            printw("W");
-            attroff(COLOR_PAIR(5));
 
-            delay = false;
+            addch(monster->icon);
+            attroff(monster->color);
+
+            delay++;
         }
 
         if (iterofwaypoint == way.size()-1 /*&& check_boy()*/)
