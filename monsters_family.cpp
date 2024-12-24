@@ -17,17 +17,53 @@ void monsters_family::give_some_boys_rand(monster_type* type) {
 
     std::random_device rd;  // Используется для получения начального значения (seed)
     std::mt19937 gen(rd()); // Генератор случайных чисел (Mersenne Twister)
-
+    
     std::uniform_int_distribution<> disx(1, 120 - 1); // Равномерное распределение от 0 до 
     std::uniform_int_distribution<> disy(1, 28 - 1);
 
-    int rx = disx(gen);
-    int ry = disy(gen);
+    int rx, ry;
+
+    rx = disx(gen);
+    ry = disy(gen);
+
+    while (map[ry][rx] != ' ') {
+
+        rx = disx(gen);
+        ry = disy(gen);
+    }
 
     scary_monster W(ry, rx, map, type);
 
     Monsters->push_back(W);
 }
+
+void monsters_family::give_some_boys_rand(monster_type* type, int start_row, int end_row, int start_col, int end_col) {
+
+    std::random_device rd;  // Используется для получения начального значения (seed)
+    std::mt19937 gen(rd()); // Генератор случайных чисел (Mersenne Twister)
+
+    std::uniform_int_distribution<> disx(1, 120 - 1); // Равномерное распределение от 0 до 
+    std::uniform_int_distribution<> disy(1, 28 - 1);
+
+    int rx, ry;
+
+    rx = disx(gen);
+    ry = disy(gen);
+
+    while (map[ry][rx] != ' ' 
+        && (start_row > rx || rx > end_row)
+        && (start_col > ry || ry > end_col)) {
+
+        rx = disx(gen);
+        ry = disy(gen);
+    }
+
+    scary_monster W(ry, rx, map, type);
+
+    Monsters->push_back(W);
+}
+
+
 
     void monsters_family::find(int x, int y) {
         for (scary_monster& M : *Monsters)
@@ -55,14 +91,12 @@ void monsters_family::give_some_boys_rand(monster_type* type) {
         for (scary_monster& M : *Monsters)
         {
             if (M.move_monster(stop) == 1)
-                hp++;
+                hp += M.power;
 
         }
         return hp;
     }
-
-
-    
+  
     void monsters_family::create_two_boys(monster_type* type) {
 
         scary_monster W(7, 67, map, type);

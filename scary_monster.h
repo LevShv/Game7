@@ -12,6 +12,7 @@ public:
 
     int x;
     int y;
+    int power;
 
     scary_monster(int spx, int spy, char** give_me_map, monster_type* mon);
 
@@ -50,6 +51,9 @@ private:
     std::vector<Point> way;
 
     std::vector<Point> shortestPath(int bx, int by);
+
+    void print_me();
+    
 
 
 };

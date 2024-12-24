@@ -23,6 +23,7 @@ public:
         const std::string& name, 
         char icon, 
         int color, 
+        int color_in_1,
         const std::vector<Point>& directions, 
         int delay, 
         int power, 
@@ -31,7 +32,8 @@ public:
         : 
         name(name), 
         icon(icon), 
-        color(color), 
+        color(color),
+        color_in_1(color_in_1),
         directions(directions), 
         delay(delay), 
         power(power), 
@@ -42,11 +44,13 @@ public:
     std::string name;
 	char icon;
 	int color;
+    int color_in_1;
     std::vector<Point> directions;
     int delay;
     int power;
     int radius;
     int hp;
+
     
 
 };

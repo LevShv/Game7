@@ -16,6 +16,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
     {
     width = 120;
     length = 28;
+    power = monster->power;
     }    
 
     void scary_monster::give_waythim(int bx, int by) {
@@ -28,8 +29,6 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
     }
     
     std::vector<Point> scary_monster::shortestPath(int bx, int by) {
-
-
 
         Point start = { x, y };
         Point end = { by ,bx };
@@ -70,7 +69,8 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
                 Point next = { current.x + dir.x, current.y + dir.y };
 
                 if (next.x >= 0 && next.x < rows && next.y >= 0 && next.y < cols && /* ++x < width && ++y < length &&*/
-                    map[next.x][next.y] == ' ' && visited.find(next) == visited.end()) {
+                    (map[next.x][next.y] == ' ' || map[next.x][next.y] == '1' || map[next.x][next.y] == 'o')
+                    && visited.find(next) == visited.end()) {
                     q.push(next);
                     visited.insert(next);
                     path[next] = current;
@@ -88,41 +88,41 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
             
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
-            
 
-            attron(monster->color);
-            move(x, y);
-           
-            addch(monster->icon);
-            attroff(monster->color);
+            print_me();
 
             iterofwaypoint++;
             delay = 1;
             return 0;
         }
         else {
-
-            attron(monster->color);
-            move(x, y);
-
-            addch(monster->icon);
-            attroff(monster->color);
+            print_me();
 
             delay++;
         }
 
-        if (iterofwaypoint == way.size()-1 /*&& check_boy()*/)
+        if (iterofwaypoint == way.size() - 1 /*&& check_boy()*/)
             return 1;
 
         return 2;
     }
-   /* bool scary_monster::check_boy() {
-        if (x++ == boy.x && y == boy.y ||
-            x++ == boy.x && y == boy.y ||
-            x++ == boy.x && y == boy.y ||
-            x++ == boy.x && y == boy.y)
-        return 0;
-    }*/
+
+    void scary_monster::print_me()
+    {
+        move(x, y);
+
+        if (map[x][y] == '1') {
+            attron(monster->color_in_1);
+            addch(monster->icon);
+            attroff(monster->color_in_1);
+        }
+        else {
+            attron(monster->color);
+            addch(monster->icon);
+            attroff(monster->color);
+        }
+    }
+
 
     
 

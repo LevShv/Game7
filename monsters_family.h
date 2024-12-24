@@ -13,6 +13,7 @@ public:
     ~monsters_family();
 
     void give_some_boys_rand(monster_type* type);
+    void give_some_boys_rand(monster_type* type, int start_row, int end_row, int start_col, int end_col);
     
     std::vector<std::vector<int>> wma;
 

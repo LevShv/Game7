@@ -71,6 +71,10 @@ void colors_pairs() {
 
     init_pair(24, COLOR_RED, COLOR_BLACK);//Красноглазик для инвентаря
 
+    init_pair(25, COLOR_MAGENTA, 257); // Y
+    init_pair(26, COLOR_MAGENTA, 259); // Y1
+    init_pair(27, COLOR_RED, 259); // W1
+
 }
 
 void monsters_data() {
@@ -79,6 +83,7 @@ void monsters_data() {
         "W", 
         'W', 
         COLOR_PAIR(10),
+        COLOR_PAIR(27),
         { {-1, 0}, {1, 0}, {0, -1}, {0, 1},
           {-1,-1}, {-1,1}, {1, -1}, {1, 1}, },
         2, 
@@ -89,11 +94,12 @@ void monsters_data() {
     monster_type* Y = new monster_type(
         "Y",
         'Y',
-        COLOR_PAIR(10),
+        COLOR_PAIR(25),
+        COLOR_PAIR(26),
         { /*{-1, 0}, {1, 0}, {0, -1}, {0, 1},*/
           {-1,-1}, {-1,1}, {1, -1}, {1, 1}, },
         1,
-        1,
+        3,
         30,
         5);
 
@@ -348,8 +354,8 @@ void level_forest() {
 
     monsters_family* badboys = new monsters_family(map.forest, monsters[0]);
 
-    badboys->give_some_boys_rand(monsters[0]);
 
+    
     while (true) {
 
         if (boy.hp == 0) {
@@ -372,7 +378,7 @@ void level_forest() {
 
         if (game_iter % 100 == 0) {
             badboys->give_some_boys_rand(monsters[0]);
-            badboys->give_some_boys_rand(monsters[1]);
+          /*  badboys->give_some_boys_rand(monsters[1]);*/
         }
            
 
@@ -399,6 +405,7 @@ void level_forest() {
             sci--;
 
         }
+
         clear();
 
         map.show_map();
@@ -525,14 +532,15 @@ void level_way_to_village() {
 
     boy.y = 27;
 
+    int n = 4;
     my_map map(width, length, 3);
     map.show_map();
     boy.move_boy(map.forest);
     iface intface;
     intface.draw(10, 0, boy.invent);
 
-
-
+    monsters_family* badboys = new monsters_family(map.forest, monsters[0]);
+    badboys->give_some_boys_rand(monsters[1]);
 
     bool gotooldman = true;
     bool iwasoldman1 = true;
@@ -541,6 +549,13 @@ void level_way_to_village() {
 
     int nscore = 0;
     int sci = 0;
+
+    for (int i = 0; i < n; i++) {
+
+        badboys->give_some_boys_rand(monsters[0], 20, 29, 60, 100);
+        badboys->give_some_boys_rand(monsters[0], 20, 29, 60, 100);
+        badboys->give_some_boys_rand(monsters[1], 20, 29, 60, 100);
+    }
 
     while (true) {
         //mvprintw(17, 119, "2"); // 
@@ -593,7 +608,7 @@ void level_way_to_village() {
 
 
         case 1:
-            intface.score("Возращайтесь на базу");
+            intface.score("Отправляйтесь в деревню");
             break;
 
         case 2:
@@ -605,17 +620,25 @@ void level_way_to_village() {
         }
 
 
-        if (make_move() == 1) { ////////.............
+        bool move = make_move();
+        if (move) { ////////.............
             game_iter++;
+            badboys->find(boy.x, boy.y);
         }
         else {
             sci--;
+
         }
 
         clear();
 
         map.show_map();
         boy.move_boy(map.forest);
+
+        if (move)
+            boy.hp -= badboys->monsters_move(0);
+        else
+            badboys->monsters_move(1);
 
         intface.draw(boy.hp, boy.count_of_m, boy.invent);
         game_iter++;
