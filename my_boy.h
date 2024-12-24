@@ -19,16 +19,15 @@ public:
     
     void move_boy(char** map);
     void boy_reset(int start_pos_x, int start_boy_y);
-    void add_to_invent(std::string name, char icon, int count, int color);
-
-
+    void add_to_invent(std::string name, char icon, int count, int color, bool usage);
+    void do_something(int num, char** map);
     std::vector<ivent_thing> invent;
-
-    
    
 private:
 
     int xl;
     int yl;
+
+    void print_me(int color);
 };
 

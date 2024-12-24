@@ -34,6 +34,7 @@
 
             add_trees(300);
             add_mushrooms('.',20,120,29);
+            add_mushrooms(133, 30, 120, 29);
             break;
         
         case 3:
@@ -41,6 +42,9 @@
             get_data_ff(base_of_map, "way_to_village.txt");
             add_to_map(base_of_map, 0, 0);
             add_trees(100);
+            add_mushrooms(133, 20, 120, 29);
+            add_mushrooms('.', 5, 120, 29);
+            add_mushrooms(',', 3, 120, 29);
     
             break;
 
@@ -57,71 +61,56 @@
             char* str = forest[i];
 
             for (int j = 0; j < width; j++) {
-                if (*str == '~') {
 
-                    attron(COLOR_PAIR(12));
-                    printw("%c", *str);
-                    attroff(COLOR_PAIR(12));
-                    
-                }
-                else if (*str == '1') {
+                switch (*str)
+                {
+                case '~':
+                    print_char('~', COLOR_PAIR(12));
+                break;
 
-                    attron(COLOR_PAIR(14));
-                    printw("%c", *str);
-                    attroff(COLOR_PAIR(14));
+                case '1':
+                    print_char(' ', COLOR_PAIR(14));
+                break;
 
-                }
-                else if (*str == '2') {
+                case '.':
+                    print_char('.', COLOR_PAIR(8));
+                    break;
 
-                    attron(COLOR_PAIR(14));
-                    printw("%c", *str);
-                    attroff(COLOR_PAIR(14));
+                case '_':
+                    print_char('_', COLOR_PAIR(8));
+                    break;
 
-                }
-                else if (*str == '.') {
-                    attron(COLOR_PAIR(8));
-                    printw("%c", *str);
-                    attroff(COLOR_PAIR(8));
-                }
-                else if (*str == '_') {
-                    attron(COLOR_PAIR(8));
-                    addch('_'); //151
-                    attroff(COLOR_PAIR(8));
-                }
-                else if (*str == '|') {
-                    attron(COLOR_PAIR(8));
-                    addch(124);
-                    attroff(COLOR_PAIR(8));
-                }
-                else if (*str == 'g') {     // Кровать подушка
+                case '|':
+                    print_char(124, COLOR_PAIR(8));
+                    break;
 
-                    attron(COLOR_PAIR(17));
-                    addch(' ');
-                    attroff(COLOR_PAIR(17));
+                case 'g':
+                    print_char('g', COLOR_PAIR(17));
+                    break;
 
-                }
-                else if (*str == 'S') {        
+                case 'S':
+                    print_char('S', COLOR_PAIR(19));
+                    break;
 
-                    attron(COLOR_PAIR(19));
-                    addch('S');
-                    attroff(COLOR_PAIR(19)); // Старец
-
-                }
-                else if (*str == (char)133) {
+                case (char)133:
 
                     attron(COLOR_PAIR(22));
-                    addch(133);
-                    attroff(COLOR_PAIR(22)); // красный гриб
+                    addch(133); //151
+                    attroff(COLOR_PAIR(22));
+                    break;
 
+                case ',':
+                    print_char(',', COLOR_PAIR(28));
+                    break;
+
+                case 'o':
+                    print_char('o', COLOR_PAIR(28));
+                    break;
+                default:
+                    print_char(*str, COLOR_PAIR(4));
+                    break;
                 }
-                else {
-               
-
-                    attron(COLOR_PAIR(4));
-                    printw("%c", *str);
-
-                    attroff(COLOR_PAIR(4));
-                }
+                
                 str++;
                 
             }
@@ -163,7 +152,7 @@
 
     void my_map::add_mushrooms(char obj, int count, int posx, int posy)
     {
-        for (int i = 0; i < 20; ++i) {
+        for (int i = 0; i < count; ++i) {
             int rx = random_x();
             int ry = random_y();
             if (forest[ry][rx] == ' ' && ry < posx && rx > posy)
@@ -248,4 +237,11 @@
         std::uniform_int_distribution<> disy(1, length - 1);
 
         return disy(gen);
+    }
+
+    void my_map::print_char(char obj, int color)
+    {
+        attron(color);
+        addch(obj); //151
+        attroff(color);
     }

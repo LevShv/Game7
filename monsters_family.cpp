@@ -50,9 +50,9 @@ void monsters_family::give_some_boys_rand(monster_type* type, int start_row, int
     rx = disx(gen);
     ry = disy(gen);
 
-    while (map[ry][rx] != ' ' 
-        && (start_row > rx || rx > end_row)
-        && (start_col > ry || ry > end_col)) {
+    while (map[ry][rx] != ' ' &&
+        rx >= start_col && rx <= end_col &&
+        ry >= start_row && ry <= end_row) {
 
         rx = disx(gen);
         ry = disy(gen);

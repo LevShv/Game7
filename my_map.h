@@ -25,6 +25,9 @@ private:
     int random_x();
     int random_y();
 
+    void print_char(char obj, int color);
+    /*void print_str(int color)*/
+
     void make_claen_map();
     void add_to_map(std::vector<std::vector<char>> addon, int posx, int posy);
 

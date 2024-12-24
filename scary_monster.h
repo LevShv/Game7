@@ -24,7 +24,7 @@ public:
     
 private:
     
-
+    bool alive = true;
     int bx;
     int by;
 

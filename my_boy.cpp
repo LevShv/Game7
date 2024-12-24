@@ -13,45 +13,40 @@ void my_boy::move_boy(char** map) {
 
     if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'я') {
         if (map[y][x] == ' ') {
-            attron(COLOR_PAIR(7));
-            
-            move(y, x);
-            printw("0");
-            attroff(COLOR_PAIR(7));
+
+            print_me(COLOR_PAIR(7));
         }
         else if (map[y][x] == '1'){
-            attron(COLOR_PAIR(16));
-            move(y, x);
-            printw("0");
-            attroff(COLOR_PAIR(16));
+
+            print_me(COLOR_PAIR(16));
         }
         else {
-            attron(COLOR_PAIR(18));
-            move(y, x);
-            printw("0");
-            attroff(COLOR_PAIR(18));
+
+            print_me(COLOR_PAIR(18));
         }
     }
 
-    else if (map[y][x] == '.' || map[y][x] == (char)133) {
+    else if (map[y][x] == '.' || map[y][x] == (char)133 || map[y][x] == ',') {
 
         if (map[y][x] == '.') {
+
             count_of_m++;
-            add_to_invent("Желтогрив", '.', 1, COLOR_PAIR(8));
+            add_to_invent("Желтогрив", '.', 1, COLOR_PAIR(8), 0);
+        }
+
+        if(map[y][x] == ',') {
+           
+            add_to_invent("Голубозубки", ',', 1, COLOR_PAIR(28), 0); //28
         }
             
-        else
+        if((map[y][x] == (char)133))
         {
             count_of_rm++;
-            add_to_invent("Краснолгазик", 133 , 1, COLOR_PAIR(22));
+            add_to_invent("Краснолгазик", 133 , 1, COLOR_PAIR(22), 0);
         }
 
-        attron(COLOR_PAIR(7));
-        move(y, x);
-        printw("0");
+        print_me(COLOR_PAIR(7));
         map[y][x] = ' ';
-        attroff(COLOR_PAIR(7));
-
     }
     else {
 
@@ -59,16 +54,11 @@ void my_boy::move_boy(char** map) {
         y = yl;
         
         if (map[y][x] == ' ') {
-            attron(COLOR_PAIR(7));
-            move(y, x);
-            printw("0");
-            attroff(COLOR_PAIR(7));
+
+            print_me(COLOR_PAIR(7));
         }
         else {
-            attron(COLOR_PAIR(16));
-            move(y, x);
-            printw("0");
-            attroff(COLOR_PAIR(16));
+            print_me(COLOR_PAIR(16));
         }
 
     }
@@ -87,7 +77,7 @@ void my_boy::boy_reset(int start_pos_x, int start_boy_y)
     count_of_rm = 0;
 }
 
-void my_boy::add_to_invent(std::string name, char icon, int count, int color)
+void my_boy::add_to_invent(std::string name, char icon, int count, int color, bool usage)
 {
     bool founded = false;
     for (int i = 0; i < invent.size(); i++)
@@ -102,10 +92,29 @@ void my_boy::add_to_invent(std::string name, char icon, int count, int color)
 
     if (founded == false) {
         /*          ivent_thing var{ name, count };*/
-        invent.push_back({ name, icon ,count, color });
+        invent.push_back({ name, icon ,count ,color , usage});
     }
 }
 
+void my_boy::do_something(int num, char** map)
+{
+    switch (invent[num].icon)
+    {
+    case 'o':
+        map[y][x] = 'o';
+        invent[num].count--;
+    default:
+        break;
+    }
+}
+
+void my_boy::print_me(int color) {
+
+    attron(color);
+    move(y, x);
+    printw("0");
+    attroff(color);
+}
 
 
 

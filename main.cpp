@@ -75,6 +75,8 @@ void colors_pairs() {
     init_pair(26, COLOR_MAGENTA, 259); // Y1
     init_pair(27, COLOR_RED, 259); // W1
 
+    init_pair(28, COLOR_BLUE, 257); // Голубозубки
+
 }
 
 void monsters_data() {
@@ -108,7 +110,7 @@ void monsters_data() {
 
 }
 
-int make_move() {
+int make_move(char** map) {
      switch (getch()) {
         case 'w':
             if (0 < boy.y) {
@@ -137,12 +139,22 @@ int make_move() {
             
           
             }
+        break;
+
+        case '1':
+            if (boy.invent.size() > 0 && boy.invent[0].usage)
+                boy.do_something(0, map);
+            return 0;
             break;
+
+            
         case 'e':
             iface inn;
             inn.show_invent(boy.invent);
             return 0;
-            break;
+        break;
+
+       
 
      }
      return 0;
@@ -293,7 +305,7 @@ void level_start()
         
       
 
-        if (make_move() == 1) { ////////.............
+        if (make_move(map.forest) == 1) { ////////.............
             game_iter++;
 
         }
@@ -396,7 +408,7 @@ void level_forest() {
             break;
         }
 
-        bool move = make_move();
+        bool move = make_move(map.forest);
         if (move) { ////////.............
             game_iter++;
             badboys->find(boy.x, boy.y);
@@ -474,7 +486,7 @@ void level_back_ff() {
                 "На пути будут встречаться различные монстры применяй зелья чтобы атаковать");
             getch();
 
-            boy.add_to_invent("Зелье силы", 'o', 5, COLOR_PAIR(4));
+            boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
 
             iwasoldman1 = false;
             gotooldman = false;
@@ -495,8 +507,6 @@ void level_back_ff() {
         }
         switch (nscore)
         {
-
-
         case 1:
             intface.score("Возращайтесь на базу");
             break;
@@ -510,7 +520,7 @@ void level_back_ff() {
         }
 
 
-        if (make_move() == 1) { ////////.............
+        if (make_move(map.forest) == 1) { ////////.............
             game_iter++;
         }
         else {
@@ -537,12 +547,13 @@ void level_way_to_village() {
     map.show_map();
     boy.move_boy(map.forest);
     iface intface;
-    intface.draw(10, 0, boy.invent);
+    intface.draw(boy.hp, 0, boy.invent);
 
     monsters_family* badboys = new monsters_family(map.forest, monsters[0]);
     badboys->give_some_boys_rand(monsters[1]);
 
-    bool gotooldman = true;
+
+    bool gotovil = true;
     bool iwasoldman1 = true;
     bool ireadom1 = true;
     bool gotoborder = false;
@@ -552,57 +563,25 @@ void level_way_to_village() {
 
     for (int i = 0; i < n; i++) {
 
-        badboys->give_some_boys_rand(monsters[0], 20, 29, 60, 100);
-        badboys->give_some_boys_rand(monsters[0], 20, 29, 60, 100);
-        badboys->give_some_boys_rand(monsters[1], 20, 29, 60, 100);
+        badboys->give_some_boys_rand(monsters[0], 20, 29, 0, 100);
+        badboys->give_some_boys_rand(monsters[0], 20, 29, 0, 100);
+        badboys->give_some_boys_rand(monsters[1], 20, 29, 0, 100);
     }
+
+    badboys->monsters_move(1);
+
 
     while (true) {
         //mvprintw(17, 119, "2"); // 
-        if (gotooldman == true) {
+        if (gotovil == true) {
             nscore = 1;
         }
-        if (boy.x == 8 && boy.y == 19 && iwasoldman1 == true) {
 
-            intface.subs(" <Старец> - Ты молодец ученик мой, тв преодолел тяжелое испытание ",
-                "но нас ждет многое впереди...");
-            getch();
-
-            intface.subs(" <Старец> - Я приготовлю зелье c помощью которого ты сможешь атаковать ",
-                "монстра в ближнем бою. Время действия зелья ограничено.");
-            getch();
-
-            intface.subs("Теперь тебе нужно отправиться в заброшенную деревню, ",
-                "которая находится на окраине леса.");
-            getch();
-
-            intface.subs("Там, в одном из домов, который находится в самой глубине деревни.",
-                " лежит лук, который когда-то принадлежал великому охотнику.");
-            getch();
-
-            intface.subs("Ступай по дороге вверх по реке, собирай грибы по дороге",
-                "На пути будут встречаться различные монстры применяй зелья чтобы атаковать");
-            getch();
-
-            boy.add_to_invent("Зелье силы", 'o', 5, COLOR_PAIR(4));
-
-            iwasoldman1 = false;
-            gotooldman = false;
-
-        }
-        if (iwasoldman1 == false && ireadom1 == true) {
-            intface.subs("Ступай по дороге вверх по реке, собирай грибы по дороге",
-                "На пути будут встречаться различные монстры применяй зелья чтобы атаковать");
-            nscore = 2;
-            sci++;
-            gotoborder = true;
-            if (sci >= subtimming * nscore)
-                ireadom1 = false;
-
-        }
-        if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {
+        
+        
+        /*if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {
             break;
-        }
+        }*/
         switch (nscore)
         {
 
@@ -620,7 +599,7 @@ void level_way_to_village() {
         }
 
 
-        bool move = make_move();
+        bool move = make_move(map.forest);
         if (move) { ////////.............
             game_iter++;
             badboys->find(boy.x, boy.y);
@@ -700,11 +679,11 @@ void level_way_to_village() {
                     boy.count_of_m = 20;
                     boy.count_of_rm = 10;
                     boy.hp = 8;
-                    boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8));
-                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22));
-                    boy.add_to_invent("Желтогр", '^', 20, COLOR_PAIR(8));
-                    boy.add_to_invent("Краснолгазк", '"', 10, COLOR_PAIR(22));
-                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22));
+                    boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8),0);
+                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+                    boy.add_to_invent("Желтогр", '^', 20, COLOR_PAIR(8), 0);
+                    boy.add_to_invent("Краснолгазк", '"', 10, COLOR_PAIR(22), 0);
+                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
 
                 }
                 level_back_ff();
@@ -714,11 +693,9 @@ void level_way_to_village() {
                     boy.count_of_m = 20;
                     boy.count_of_rm = 10;
                     boy.hp = 8;
-                    boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8));
-                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22));
-                    boy.add_to_invent("Желтогр", '^', 20, COLOR_PAIR(8));
-                    boy.add_to_invent("Краснолгазк", '"', 10, COLOR_PAIR(22));
-                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22));
+                    boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
+                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+                    boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
 
                 }
                 level_way_to_village();

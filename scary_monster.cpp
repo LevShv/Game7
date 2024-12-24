@@ -84,10 +84,13 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
     int scary_monster::move_monster(bool stop)
     {
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1 &&  iseeya && (delay % monster->delay == 0) && stop == false) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1 && alive && iseeya && (delay % monster->delay == 0) && stop == false) {
             
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
+
+            if (map[x][y] == 'o')
+                alive = false;
 
             print_me();
 
@@ -101,26 +104,40 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
             delay++;
         }
 
-        if (iterofwaypoint == way.size() - 1 /*&& check_boy()*/)
+        if (iterofwaypoint == way.size() - 1 && alive/*&& check_boy()*/)
             return 1;
+        
 
-        return 2;
+        return 0;
     }
 
     void scary_monster::print_me()
     {
         move(x, y);
-
-        if (map[x][y] == '1') {
-            attron(monster->color_in_1);
-            addch(monster->icon);
-            attroff(monster->color_in_1);
+        if (alive) {
+            if (map[x][y] == '1') {
+                attron(monster->color_in_1);
+                addch(monster->icon);
+                attroff(monster->color_in_1);
+            }
+            else {
+                attron(monster->color);
+                addch(monster->icon);
+                attroff(monster->color);
+            }
         }
-        else {
-            attron(monster->color);
-            addch(monster->icon);
-            attroff(monster->color);
-        }
+        else
+            if (map[x][y] == '1') {
+                attron(monster->color_in_1);
+                addch('x');
+                attroff(monster->color_in_1);
+            }
+            else {
+                attron(monster->color);
+                addch('x');
+                attroff(monster->color);
+            }
+        
     }
 
 

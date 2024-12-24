@@ -6,6 +6,7 @@ struct ivent_thing
 	char icon;
 	int count;
 	int color;
+	bool usage;
 
 };
 
