@@ -24,6 +24,7 @@ int subtimming = 10;
 int game_iter = 1;
 
 my_boy boy(start_pos_x, start_pos_y);
+
 std::vector<monster_type*> monsters;
 
 

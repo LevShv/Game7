@@ -16,9 +16,12 @@ protected:
     int subtimming = 10; // задержка вывода sub
     int game_iter; //  передать
 
+    int nscore = 0; // номер цели
+    int sci = 0; // счетчик итераций 
+
     my_boy boy; // передать
-    my_map map; // в конструкторе задать в соответствии с уровнем
-    iface intface;
+    my_map map; // передать арг
+    iface intface; 
     std::vector<monster_type*> monsters;
 
 public:
@@ -28,6 +31,8 @@ public:
 
     virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
     virtual void update() = 0; // Чисто виртуальная функция для обновления уровня
-
+    virtual void score_set() = 0; // 
+    virtual void draw() = 0;
+    //virtual void 
     int make_move(char** map);
 };
