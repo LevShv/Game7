@@ -300,11 +300,10 @@ void level_start()
             if (sci >= subtimming * nscore)
                 iwasoldman2delay = false;
         }
+
         if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) //  17, 119
             break;
-        
       
-
         if (make_move(map.forest) == 1) { ////////.............
             game_iter++;
 
@@ -623,6 +622,10 @@ void level_way_to_village() {
         game_iter++;
 
     }
+}
+
+void level_village() {
+
 }
 
  int main()

@@ -95,7 +95,19 @@ void my_boy::add_to_invent(std::string name, char icon, int count, int color, bo
         invent.push_back({ name, icon ,count ,color , usage});
     }
 }
+void my_boy::remove_thing(std::string name) {
 
+    for (int i = 0; i < invent.size(); i++)
+    {
+        if (invent[i].name == name) {
+            std::swap(invent[i], invent[invent.size() - 1]);
+            invent.pop_back();
+            break;
+
+        }
+
+    }
+}
 void my_boy::do_something(int num, char** map)
 {
     switch (invent[num].icon)

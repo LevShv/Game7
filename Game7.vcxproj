@@ -132,6 +132,8 @@
   <ItemGroup>
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="ivent_thing.cpp" />
+    <ClCompile Include="level.cpp" />
+    <ClCompile Include="level_start.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monsters_family.cpp" />
     <ClCompile Include="monster_type.cpp" />
@@ -142,6 +144,8 @@
   <ItemGroup>
     <ClInclude Include="iface.h" />
     <ClInclude Include="ivent_thing.h" />
+    <ClInclude Include="level.h" />
+    <ClInclude Include="level_start.h" />
     <ClInclude Include="monsters_family.h" />
     <ClInclude Include="monster_type.h" />
     <ClInclude Include="my_boy.h" />

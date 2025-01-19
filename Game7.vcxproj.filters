@@ -13,54 +13,90 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Исходные файлы\entities">
+      <UniqueIdentifier>{15873db1-9c1d-4386-8045-22c1c41709f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\entities\Boy">
+      <UniqueIdentifier>{11e610d7-49b7-49f3-aa1e-b5b5b909185f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\entities\Monsters">
+      <UniqueIdentifier>{fb5ecd5b-a039-4128-927c-f70e5489f8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\entities\Map">
+      <UniqueIdentifier>{11fa6751-5d3e-406d-baaf-1a1a60dbbddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels">
+      <UniqueIdentifier>{dea22ec2-47de-4d97-af12-09ce39df9202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\Base">
+      <UniqueIdentifier>{a065ba22-e73e-4d6b-870e-844acdde503d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\UI">
+      <UniqueIdentifier>{d06154c5-47ba-4328-a5cb-fbbe227a4b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\level_start">
+      <UniqueIdentifier>{d0fcdc4c-01d7-4d46-bfa9-d545ad70cd96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="my_boy.cpp">
+      <Filter>Исходные файлы\entities\Boy</Filter>
+    </ClCompile>
+    <ClCompile Include="monster_type.cpp">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="monsters_family.cpp">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="scary_monster.cpp">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="iface.cpp">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ivent_thing.cpp">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="my_map.cpp">
+      <Filter>Исходные файлы\entities\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="level.cpp">
+      <Filter>Исходные файлы\levels\Base</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="my_map.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="my_boy.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="scary_monster.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="iface.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="monsters_family.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="ivent_thing.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="monster_type.cpp">
-      <Filter>Исходные файлы</Filter>
+    <ClCompile Include="level_start.cpp">
+      <Filter>Исходные файлы\levels\level_start</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="my_map.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="my_boy.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="scary_monster.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="iface.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="monsters_family.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="ivent_thing.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\entities\Boy</Filter>
     </ClInclude>
     <ClInclude Include="monster_type.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="monsters_family.h">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="scary_monster.h">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="my_map.h">
+      <Filter>Исходные файлы\entities\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="iface.h">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ivent_thing.h">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Исходные файлы\levels\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="level_start.h">
+      <Filter>Исходные файлы\levels\level_start</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
