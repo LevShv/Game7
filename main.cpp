@@ -448,9 +448,6 @@ void level_back_ff() {
     boy.move_boy(map.forest);
     iface intface;
     intface.draw(10, 0, boy.invent);
-
-
-
    
     bool gotooldman = true;
     bool iwasoldman1 = true;
@@ -543,7 +540,8 @@ void level_way_to_village() {
 
     boy.y = 27;
 
-    int n = 4;
+ 
+
     my_map map(width, length, 3);
     map.show_map();
     boy.move_boy(map.forest);
@@ -553,7 +551,7 @@ void level_way_to_village() {
     monsters_family* badboys = new monsters_family(map.forest,0);
     badboys->give_some_boys_rand(1);
 
-
+    int n = 4;//
     bool gotovil = true;
     bool iwasoldman1 = true;
     bool ireadom1 = true;

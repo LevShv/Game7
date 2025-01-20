@@ -133,9 +133,11 @@
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="ivent_thing.cpp" />
     <ClCompile Include="level.cpp" />
-    <ClCompile Include="level_back_ff.cpp" />
+    <ClCompile Include="level_back_fforest.cpp" />
+    <ClCompile Include="level_forest.cpp" />
     <ClCompile Include="level_manager.cpp" />
     <ClCompile Include="level_start.cpp" />
+    <ClCompile Include="level_way_to_village.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monsters_family.cpp" />
     <ClCompile Include="monster_type.cpp" />
@@ -147,9 +149,11 @@
     <ClInclude Include="iface.h" />
     <ClInclude Include="ivent_thing.h" />
     <ClInclude Include="level.h" />
-    <ClInclude Include="level_back_ff.h" />
+    <ClInclude Include="level_back_fforest.h" />
+    <ClInclude Include="level_forest.h" />
     <ClInclude Include="level_manager.h" />
     <ClInclude Include="level_start.h" />
+    <ClInclude Include="level_way_to_village.h" />
     <ClInclude Include="monsters_family.h" />
     <ClInclude Include="monster_type.h" />
     <ClInclude Include="my_boy.h" />

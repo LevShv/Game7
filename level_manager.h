@@ -16,7 +16,6 @@ class level_manager
     bool all_levels_done();
 
     my_boy boy;
-    std::vector<monster_type*> monsters;
 
     private:
 

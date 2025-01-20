@@ -4,11 +4,9 @@
 #include "monsters_family.h"
 #include "vector"
 
-class level_back_ff : public Level {
+class level_forest : public Level {
 
 private:
-
- /*   monsters_family* badboys = new monsters_family(map.forest, monsters[0]);*/
 
     bool igotall = true;
     bool gotoborder = false;
@@ -16,12 +14,14 @@ private:
     void score_set() override;
     void draw() override;
 
+    monsters_family* badboys = nullptr;
+
 public:
 
-    //level_back_ff(my_boy& boy, ); // Конструктор принимает игрока
     void start() override;
     void update() override;
 
-
+    level_forest(my_boy& boy);
+    ~level_forest() override = default;
 
 };

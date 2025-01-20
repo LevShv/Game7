@@ -5,6 +5,7 @@ level_start::level_start(my_boy& boy) : Level(boy, 1) {}
 
 void level_start::start() {
 
+    clear();
     map.show_map();
     boy.move_boy(map.forest);
     intface.draw(10, 0, boy.invent);

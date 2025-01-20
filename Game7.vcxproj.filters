@@ -31,9 +31,6 @@
     <Filter Include="Исходные файлы\UI">
       <UniqueIdentifier>{d06154c5-47ba-4328-a5cb-fbbe227a4b31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\levels\level_start">
-      <UniqueIdentifier>{d0fcdc4c-01d7-4d46-bfa9-d545ad70cd96}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\engine">
       <UniqueIdentifier>{8d6a11bb-362c-4c52-9891-a579ad7c4b12}</UniqueIdentifier>
     </Filter>
@@ -43,8 +40,17 @@
     <Filter Include="Исходные файлы\levels\Level_manager">
       <UniqueIdentifier>{244c4032-470b-47b2-8fc4-95610bf50558}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\levels\level_back_ff">
+    <Filter Include="Исходные файлы\levels\1%29 level_start">
+      <UniqueIdentifier>{d0fcdc4c-01d7-4d46-bfa9-d545ad70cd96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\2%29 level_forest">
       <UniqueIdentifier>{3100ff1e-7f97-43a9-a851-ef38524d1e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\3%29 level_back_fforest">
+      <UniqueIdentifier>{793508bb-18a4-4a54-b5aa-8323bc4cedaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\4%29 level_way_to_village">
+      <UniqueIdentifier>{f0ccd3a0-4781-45c2-8e42-cd313e8eb765}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,16 +79,22 @@
       <Filter>Исходные файлы\levels\Base</Filter>
     </ClCompile>
     <ClCompile Include="level_start.cpp">
-      <Filter>Исходные файлы\levels\level_start</Filter>
+      <Filter>Исходные файлы\levels\1%29 level_start</Filter>
     </ClCompile>
     <ClCompile Include="level_manager.cpp">
       <Filter>Исходные файлы\levels\Level_manager</Filter>
     </ClCompile>
-    <ClCompile Include="level_back_ff.cpp">
+    <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы\levels\level_back_ff</Filter>
+    <ClCompile Include="level_forest.cpp">
+      <Filter>Исходные файлы\levels\2%29 level_forest</Filter>
+    </ClCompile>
+    <ClCompile Include="level_back_fforest.cpp">
+      <Filter>Исходные файлы\levels\3%29 level_back_fforest</Filter>
+    </ClCompile>
+    <ClCompile Include="level_way_to_village.cpp">
+      <Filter>Исходные файлы\levels\4%29 level_way_to_village</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,13 +123,19 @@
       <Filter>Исходные файлы\levels\Base</Filter>
     </ClInclude>
     <ClInclude Include="level_start.h">
-      <Filter>Исходные файлы\levels\level_start</Filter>
+      <Filter>Исходные файлы\levels\1%29 level_start</Filter>
     </ClInclude>
     <ClInclude Include="level_manager.h">
       <Filter>Исходные файлы\levels\Level_manager</Filter>
     </ClInclude>
-    <ClInclude Include="level_back_ff.h">
-      <Filter>Исходные файлы\levels\level_back_ff</Filter>
+    <ClInclude Include="level_forest.h">
+      <Filter>Исходные файлы\levels\2%29 level_forest</Filter>
+    </ClInclude>
+    <ClInclude Include="level_back_fforest.h">
+      <Filter>Исходные файлы\levels\3%29 level_back_fforest</Filter>
+    </ClInclude>
+    <ClInclude Include="level_way_to_village.h">
+      <Filter>Исходные файлы\levels\4%29 level_way_to_village</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
