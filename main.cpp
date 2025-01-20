@@ -9,6 +9,7 @@
 #include <locale.h>
 #include <monster_type.h>
 #include <vector>
+#include <level_manager.h>
 
 int level = 0;
 
@@ -644,20 +645,27 @@ void level_village() {
     iface init;
     
     if (init.start_game()) {
-        while (true) { // Основной ход
 
-            level_start();
-            level_forest();
+        level_manager level_Manager;
 
-            if (boy.hp == 0) {
-                boy.boy_reset(start_pos_x, start_pos_y);
-                continue;
-            }
+        while (!level_Manager.all_levels_done()) {
 
-            level_back_ff();
-            boy.boy_reset(start_pos_x, start_pos_y);
-
+            level_Manager.start_next_level();
         }
+        //while (true) { // Основной ход
+
+        //    level_start();
+        //    level_forest();
+
+        //    if (boy.hp == 0) {
+        //        boy.boy_reset(start_pos_x, start_pos_y);
+        //        continue;
+        //    }
+
+        //    level_back_ff();
+        //    boy.boy_reset(start_pos_x, start_pos_y);
+
+        //}
     }
     else {
         clear();

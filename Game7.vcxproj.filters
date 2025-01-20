@@ -22,9 +22,6 @@
     <Filter Include="Исходные файлы\entities\Monsters">
       <UniqueIdentifier>{fb5ecd5b-a039-4128-927c-f70e5489f8c5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\entities\Map">
-      <UniqueIdentifier>{11fa6751-5d3e-406d-baaf-1a1a60dbbddc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\levels">
       <UniqueIdentifier>{dea22ec2-47de-4d97-af12-09ce39df9202}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,15 @@
     </Filter>
     <Filter Include="Исходные файлы\levels\level_start">
       <UniqueIdentifier>{d0fcdc4c-01d7-4d46-bfa9-d545ad70cd96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine">
+      <UniqueIdentifier>{8d6a11bb-362c-4c52-9891-a579ad7c4b12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\Map">
+      <UniqueIdentifier>{11fa6751-5d3e-406d-baaf-1a1a60dbbddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\Level_manager">
+      <UniqueIdentifier>{244c4032-470b-47b2-8fc4-95610bf50558}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +64,7 @@
       <Filter>Исходные файлы\UI</Filter>
     </ClCompile>
     <ClCompile Include="my_map.cpp">
-      <Filter>Исходные файлы\entities\Map</Filter>
+      <Filter>Исходные файлы\engine\Map</Filter>
     </ClCompile>
     <ClCompile Include="level.cpp">
       <Filter>Исходные файлы\levels\Base</Filter>
@@ -68,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="level_start.cpp">
       <Filter>Исходные файлы\levels\level_start</Filter>
+    </ClCompile>
+    <ClCompile Include="level_manager.cpp">
+      <Filter>Исходные файлы\levels\Level_manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +93,7 @@
       <Filter>Исходные файлы\entities\Monsters</Filter>
     </ClInclude>
     <ClInclude Include="my_map.h">
-      <Filter>Исходные файлы\entities\Map</Filter>
+      <Filter>Исходные файлы\engine\Map</Filter>
     </ClInclude>
     <ClInclude Include="iface.h">
       <Filter>Исходные файлы\UI</Filter>
@@ -97,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="level_start.h">
       <Filter>Исходные файлы\levels\level_start</Filter>
+    </ClInclude>
+    <ClInclude Include="level_manager.h">
+      <Filter>Исходные файлы\levels\Level_manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

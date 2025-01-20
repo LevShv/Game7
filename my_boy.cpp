@@ -11,8 +11,8 @@ my_boy::my_boy(int spx, int spy) : x(spx), y(spy)
 
 my_boy::my_boy() {
 
-    xl = 59;
-    xy = 21;
+    x = 59;
+    y = 21;
 }
 
 void my_boy::move_boy(char** map) {

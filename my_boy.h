@@ -28,8 +28,8 @@ public:
    
 private:
 
-    int xl;
-    int yl;
+    int xl = 0;
+    int yl = 0;
 
     void print_me(int color);
 };
