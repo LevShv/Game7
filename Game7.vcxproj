@@ -137,6 +137,7 @@
     <ClCompile Include="level_forest.cpp" />
     <ClCompile Include="level_manager.cpp" />
     <ClCompile Include="level_start.cpp" />
+    <ClCompile Include="level_village.cpp" />
     <ClCompile Include="level_way_to_village.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monsters_family.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="level_forest.h" />
     <ClInclude Include="level_manager.h" />
     <ClInclude Include="level_start.h" />
+    <ClInclude Include="level_village.h" />
     <ClInclude Include="level_way_to_village.h" />
     <ClInclude Include="monsters_family.h" />
     <ClInclude Include="monster_type.h" />

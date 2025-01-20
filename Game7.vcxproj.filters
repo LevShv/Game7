@@ -58,6 +58,9 @@
     <Filter Include="archive\old main">
       <UniqueIdentifier>{59294081-9f7b-44e1-a42c-86f37442782d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\levels\5%29 level_village">
+      <UniqueIdentifier>{e23c9573-91b2-434a-a596-9275eb6c5a73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -105,6 +108,9 @@
     <ClCompile Include="old_main.cpp">
       <Filter>archive\old main</Filter>
     </ClCompile>
+    <ClCompile Include="level_village.cpp">
+      <Filter>Исходные файлы\levels\5%29 level_village</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -145,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="level_way_to_village.h">
       <Filter>Исходные файлы\levels\4%29 level_way_to_village</Filter>
+    </ClInclude>
+    <ClInclude Include="level_village.h">
+      <Filter>Исходные файлы\levels\5%29 level_village</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
