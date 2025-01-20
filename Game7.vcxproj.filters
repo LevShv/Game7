@@ -43,6 +43,9 @@
     <Filter Include="Исходные файлы\levels\Level_manager">
       <UniqueIdentifier>{244c4032-470b-47b2-8fc4-95610bf50558}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\levels\level_back_ff">
+      <UniqueIdentifier>{3100ff1e-7f97-43a9-a851-ef38524d1e07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -69,14 +72,17 @@
     <ClCompile Include="level.cpp">
       <Filter>Исходные файлы\levels\Base</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="level_start.cpp">
       <Filter>Исходные файлы\levels\level_start</Filter>
     </ClCompile>
     <ClCompile Include="level_manager.cpp">
       <Filter>Исходные файлы\levels\Level_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="level_back_ff.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы\levels\level_back_ff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="level_manager.h">
       <Filter>Исходные файлы\levels\Level_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="level_back_ff.h">
+      <Filter>Исходные файлы\levels\level_back_ff</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

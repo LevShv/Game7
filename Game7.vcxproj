@@ -133,6 +133,7 @@
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="ivent_thing.cpp" />
     <ClCompile Include="level.cpp" />
+    <ClCompile Include="level_back_ff.cpp" />
     <ClCompile Include="level_manager.cpp" />
     <ClCompile Include="level_start.cpp" />
     <ClCompile Include="main.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="iface.h" />
     <ClInclude Include="ivent_thing.h" />
     <ClInclude Include="level.h" />
+    <ClInclude Include="level_back_ff.h" />
     <ClInclude Include="level_manager.h" />
     <ClInclude Include="level_start.h" />
     <ClInclude Include="monsters_family.h" />

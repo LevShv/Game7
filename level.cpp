@@ -2,7 +2,13 @@
 
 
 Level::Level(my_boy& boy, int map_type)
-: boy(boy), map(width, length, map_type) {}
+: boy(boy), map(width, length, map_type) 
+{
+
+}
+
+Level::Level(my_boy& boy, int map_type, std::vector<monster_type*>* monsters)
+: boy(boy), map(width, length, map_type), monsters(monsters) {}
 
 int Level::make_move(char** map) {
 
@@ -42,5 +48,9 @@ int Level::make_move(char** map) {
         break;
     }
     return 0;
+}
+
+Level::~Level() {
+
 }
 

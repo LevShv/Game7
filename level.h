@@ -19,14 +19,15 @@ protected:
     int nscore = 0; // номер цели
     int sci = 0; // счетчик итераций 
 
-    my_boy boy; // передать
+    my_boy& boy; // передать
     my_map map; // передать арг
     iface intface; 
-    std::vector<monster_type*> monsters;
+    std::vector<monster_type*>* monsters;
 
 public:
 
     Level(my_boy& boy, int map_type);
+    Level(my_boy& boy, int map_type, std::vector<monster_type*>* monsters);
     virtual ~Level() = default;
 
     virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
