@@ -12,33 +12,25 @@ public:
 
     int x;
     int y;
+
     int power;
 
     scary_monster(int spx, int spy, char** give_me_map, monster_type* mon);
 
     void give_waythim(int bx, int by);
-
     int move_monster(bool stop);
 
-    /*scary_monster(int spx, int spy, char** give_me_map);*/
+    
     
 private:
-    
-    bool alive = true;
-    int bx;
-    int by;
 
     bool started = false;
+    bool alive = true;
 
-    int width;
-    int length;
-    int iterofwaypoint;
+    int iterofwaypoint = 0;
     char** map;
 
     bool iseeya = false;
-    int delay = 0;
-
-    int hp = 5;
 
     struct PointHash {
 
@@ -50,12 +42,19 @@ private:
     monster_type* monster;
 
     std::vector<Point> way;
-
     std::vector<Point> shortestPath(int bx, int by);
 
     void print_me();
-    
+  
+    char icon;
+    int color;
+    int color_in_1;
+    const std::vector<Point>& directions;
+    int delay;
 
+    int radius ;
+    int hp;
+        
 
 };
 

@@ -6,26 +6,30 @@
 
 
 
-monsters_family::monsters_family(char** give_me_map, monster_type* first_type) : map(give_me_map) {
-    give_some_boys_rand(first_type);
+monsters_family::monsters_family(char** give_me_map, int type) : map(give_me_map) {
+
+    monsters_data();
+    give_some_boys_rand(type);
+
+    
+}
+monsters_family::monsters_family() {
+
+    monsters_data();
 }
 
-monsters_family::monsters_family(char** give_me_map, int mType)
-{
-
-}
 
 monsters_family::~monsters_family() {
 
-    for (monster_type* type : types) {
+    for (monster_type* type : variations) {
         delete type;
 }
     delete Monsters;
 }
 
-void monsters_family::give_some_boys_rand(monster_type* type) {
+void monsters_family::give_some_boys_rand(int type) {
 
-   
+
     int rx, ry;
     random_point(&rx, &ry);
 
@@ -33,12 +37,13 @@ void monsters_family::give_some_boys_rand(monster_type* type) {
         random_point(&rx, &ry);
     }
 
-    scary_monster W(ry, rx, map, type);
+    scary_monster W(ry, rx, map, variations[type]);
 
     Monsters->push_back(W);
 }
 
-void monsters_family::give_some_boys_rand(monster_type* type, int start_row, int end_row, int start_col, int end_col) {
+
+void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, int start_col, int end_col) {
 
 
     int rx, ry;
@@ -51,7 +56,7 @@ void monsters_family::give_some_boys_rand(monster_type* type, int start_row, int
         random_point(&rx, &ry);
     }
 
-    scary_monster W(ry, rx, map, type);
+    scary_monster W(ry, rx, map, variations[type]);
 
     Monsters->push_back(W);
 }
@@ -90,10 +95,10 @@ void monsters_family::give_some_boys_rand(monster_type* type, int start_row, int
         return hp;
     }
   
-    void monsters_family::create_two_boys(monster_type* type) {
+    void monsters_family::create_two_boys(int type) {
 
-        scary_monster W(7, 67, map, type);
-        scary_monster I(18, 51, map, type);
+        scary_monster W(7, 67, map, variations[type]);
+        scary_monster I(18, 51, map, variations[type]);
 
         Monsters->push_back(W);
         Monsters->push_back(I);
@@ -125,8 +130,8 @@ void monsters_family::give_some_boys_rand(monster_type* type, int start_row, int
               30,
               5);
 
-        types.push_back(W);
-        types.push_back(Y);
+        variations.push_back(W);
+        variations.push_back(Y);
     }
 
     void monsters_family::random_point(int* rx, int* ry) {

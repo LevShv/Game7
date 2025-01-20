@@ -5,24 +5,27 @@
 #include "monster_type.h"
 
 
-scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type* mon) :
-
-    x(spx),
+scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type* mon)
+    : x(spx),
     y(spy),
     iterofwaypoint(0),
     monster(mon),
-    map(give_me_map)
-
-    {
-    width = 120;
-    length = 28;
-    power = monster->power;
-    }    
+    map(give_me_map),
+    directions(mon->directions),
+    power(mon->power),
+    icon(mon->icon),
+    color(mon->color),
+    color_in_1(mon->color_in_1),
+    delay(mon->delay),
+    radius(mon->radius),
+    hp(mon->hp) {
+   
+}
 
     void scary_monster::give_waythim(int bx, int by) {
 
         iterofwaypoint = 1;
-        if (pow(by - x, 2) + pow(bx - y, 2) < pow(monster->radius,2)) {
+        if (pow(by - x, 2) + pow(bx - y, 2) < pow(radius,2)) {
             iseeya = true;
             way = shortestPath(bx, by);
         }      
@@ -33,10 +36,10 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
         Point start = { x, y };
         Point end = { by ,bx };
 
-        int rows = length;
-        int cols = width;
+        int rows = 28;
+        int cols = 120;
 
-        std::vector<Point> directions = monster->directions;/*{
+        std::vector<Point> dir = directions;/*{
             {-1, 0}, {1, 0}, {0, -1}, {0, 1},
             {-1, -1}, {-1, 1}, {1, -1}, {1, 1}
         };*/

@@ -365,7 +365,7 @@ void level_forest() {
     iface intface;
     intface.draw(10, 0, boy.invent);
 
-    monsters_family* badboys = new monsters_family(map.forest, monsters[0]);
+    monsters_family* badboys = new monsters_family(map.forest,0);
 
 
     
@@ -390,7 +390,7 @@ void level_forest() {
             break;
 
         if (game_iter % 100 == 0) {
-            badboys->give_some_boys_rand(monsters[0]);
+            badboys->give_some_boys_rand(0);
           /*  badboys->give_some_boys_rand(monsters[1]);*/
         }
            
@@ -550,8 +550,8 @@ void level_way_to_village() {
     iface intface;
     intface.draw(boy.hp, 0, boy.invent);
 
-    monsters_family* badboys = new monsters_family(map.forest, monsters[0]);
-    badboys->give_some_boys_rand(monsters[1]);
+    monsters_family* badboys = new monsters_family(map.forest,0);
+    badboys->give_some_boys_rand(1);
 
 
     bool gotovil = true;
@@ -564,9 +564,9 @@ void level_way_to_village() {
 
     for (int i = 0; i < n; i++) {
 
-        badboys->give_some_boys_rand(monsters[0], 20, 29, 0, 100);
-        badboys->give_some_boys_rand(monsters[0], 20, 29, 0, 100);
-        badboys->give_some_boys_rand(monsters[1], 20, 29, 0, 100);
+        badboys->give_some_boys_rand(0, 20, 29, 0, 100);
+        badboys->give_some_boys_rand(0, 20, 29, 0, 100);
+        badboys->give_some_boys_rand(1, 20, 29, 0, 100);
     }
 
     badboys->monsters_move(1);
