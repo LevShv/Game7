@@ -11,13 +11,12 @@ void level_way_to_village::start()
 {
     boy.y = 27;
 
-    my_map map(width, length, 3);
+
     map.show_map();
     boy.move_boy(map.forest);
-    iface intface;
     intface.draw(boy.hp, 0, boy.invent);
 
-    monsters_family* badboys = new monsters_family(map.forest, 0);
+    badboys = new monsters_family(map.forest, 0);
     badboys->give_some_boys_rand(1);
 
     for (int i = 0; i < count_of_three_monsters; i++) {
@@ -32,18 +31,19 @@ void level_way_to_village::start()
 
 void level_way_to_village::update()
 {
-    
-    if (gotovil == true) {
-        nscore = 1;
+    while (true) {
+
+        if (gotovil == true) {
+            nscore = 1;
+        }
+
+        if (boy.x > 65 && boy.x < 80 && boy.y == 0) {
+            break;
+        }
+
+        score_set();
+        draw();
     }
-
-    /*if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {
-        break;
-    }*/
-
-    score_set();
-    draw();
-    
 }
 
 void level_way_to_village::score_set()

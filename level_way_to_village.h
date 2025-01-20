@@ -6,7 +6,7 @@ class level_way_to_village : public Level
 public:
     
 	level_way_to_village(my_boy& boy);
-	~level_way_to_village() override = default;
+	~level_way_to_village() override;
 	void start() override;
 	void update() override;
 
@@ -19,7 +19,6 @@ private:
 	bool gotovil = true;
 	bool iwasoldman1 = true;
 	bool ireadom1 = true;
-	bool gotoborder = false;
 
 	void score_set() override;
 	void draw() override;

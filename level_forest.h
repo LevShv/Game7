@@ -22,6 +22,6 @@ public:
     void update() override;
 
     level_forest(my_boy& boy);
-    ~level_forest() override = default;
+    ~level_forest() override;
 
 };
