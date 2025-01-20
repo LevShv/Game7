@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 
-struct ivent_thing
+struct invent_thing
 {
     std::string name;
     char icon;
@@ -32,7 +32,7 @@ public:
     void add_to_invent(std::string name, char icon, int count, int color, bool usage);
     void remove_thing(std::string name);
     void do_something(int num, char** map);
-    std::vector<ivent_thing> invent;
+    std::vector<invent_thing> invent;
    
 private:
 

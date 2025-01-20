@@ -8,7 +8,7 @@ iface::iface() {
     
 }
 
-    void iface::draw(int boy_hp, int count_ofm, std::vector<ivent_thing> &invent)
+    void iface::draw(int boy_hp, int count_ofm, std::vector<invent_thing> &invent)
     {
         Bckg(28, 31, 0, 120, COLOR_PAIR(2));
         draw_hp_boy(boy_hp);
@@ -49,7 +49,7 @@ iface::iface() {
         attroff(COLOR_PAIR(3));
     }
 
-    void iface::show_invent(std::vector<ivent_thing> &invent)
+    void iface::show_invent(std::vector<invent_thing> &invent)
     {
         int start_row = 10;
         int start_col = 42;
@@ -153,7 +153,7 @@ iface::iface() {
       
     }
 
-    void iface::draw_slots(std::vector<ivent_thing>& invent)
+    void iface::draw_slots(std::vector<invent_thing>& invent)
     {
         if (invent.size() > 0) {
 
