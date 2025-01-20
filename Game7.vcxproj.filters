@@ -78,9 +78,6 @@
     <ClCompile Include="iface.cpp">
       <Filter>Исходные файлы\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ivent_thing.cpp">
-      <Filter>Исходные файлы\UI</Filter>
-    </ClCompile>
     <ClCompile Include="my_map.cpp">
       <Filter>Исходные файлы\engine\Map</Filter>
     </ClCompile>
@@ -129,9 +126,6 @@
       <Filter>Исходные файлы\engine\Map</Filter>
     </ClInclude>
     <ClInclude Include="iface.h">
-      <Filter>Исходные файлы\UI</Filter>
-    </ClInclude>
-    <ClInclude Include="ivent_thing.h">
       <Filter>Исходные файлы\UI</Filter>
     </ClInclude>
     <ClInclude Include="level.h">

@@ -1,7 +1,7 @@
 #include "my_boy.h"
 #include "curses.h"
 #include <my_map.h>
-#include "ivent_thing.h"
+//#include "ivent_thing.h"
 
 my_boy::my_boy(int spx, int spy) : x(spx), y(spy) 
 {

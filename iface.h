@@ -1,7 +1,7 @@
 #pragma once
 #include "curses.h"
 #include <vector>
-#include "ivent_thing.h"
+#include <my_boy.h>
 class iface {
 public:
 

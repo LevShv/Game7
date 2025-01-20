@@ -131,7 +131,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="iface.cpp" />
-    <ClCompile Include="ivent_thing.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="level_back_fforest.cpp" />
     <ClCompile Include="level_forest.cpp" />
@@ -149,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iface.h" />
-    <ClInclude Include="ivent_thing.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="level_back_fforest.h" />
     <ClInclude Include="level_forest.h" />

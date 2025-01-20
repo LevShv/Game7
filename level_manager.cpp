@@ -23,6 +23,11 @@ void level_manager::start_next_level() {
     }
 }
 
+void level_manager::chose_level(int level)
+{
+
+}
+
 
 bool level_manager::all_levels_done() {
     return currentLevelIndex >= level_factories.size();

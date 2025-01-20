@@ -1,6 +1,6 @@
 #include "curses.h"
 #include "iface.h"
-#include "ivent_thing.h"
+//#include "ivent_thing.h"
 #include "my_boy.h"
 
 iface::iface() {

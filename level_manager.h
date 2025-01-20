@@ -14,7 +14,9 @@ class level_manager
     ~level_manager() = default;
 
     void start_next_level();
+    void chose_level(int level);
     bool all_levels_done();
+    
 
     int currentLevelIndex = 0;
 
@@ -22,6 +24,9 @@ class level_manager
 
     private:
 
+
+
+   /* std::vector<std::unique_ptr<*/
     std::vector<std::function<std::unique_ptr<Level>()>> level_factories;
     std::vector<std::unique_ptr<Level>> levels;
     

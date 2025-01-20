@@ -1,8 +1,17 @@
 #pragma once
 #include <vector>
 #include <string>
-#include <ivent_thing.h>
+#include <string>
 
+struct ivent_thing
+{
+    std::string name;
+    char icon;
+    int count;
+    int color;
+    bool usage;
+
+};
 
 class my_boy {
 
