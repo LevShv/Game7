@@ -50,7 +50,4 @@ int Level::make_move(char** map) {
     return 0;
 }
 
-Level::~Level() {
-
-}
 

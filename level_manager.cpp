@@ -10,7 +10,7 @@
 level_manager::level_manager() {
 
     levels.push_back(std::make_unique<level_start>(boy));
-    levels.push_back(std::make_unique<level_back_ff>(boy,monsters));
+   /* levels.push_back(std::make_unique<level_back_ff>(boy,monsters));*/
  /*   levels.push_back(std::make_unique<LevelBackFF>());
     levels.push_back(std::make_unique<LevelWayToVillage>());*/
 }

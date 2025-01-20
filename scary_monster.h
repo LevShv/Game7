@@ -48,6 +48,7 @@ private:
     };
     
     monster_type* monster;
+
     std::vector<Point> way;
 
     std::vector<Point> shortestPath(int bx, int by);
