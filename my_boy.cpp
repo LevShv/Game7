@@ -9,6 +9,12 @@ my_boy::my_boy(int spx, int spy) : x(spx), y(spy)
     yl = y;
 }
 
+my_boy::my_boy() {
+
+    xl = 59;
+    xy = 21;
+}
+
 void my_boy::move_boy(char** map) {
 
     if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'ÿ') {
