@@ -100,30 +100,29 @@
             switch (lv)
             {
             case 48:
-                Manager.currentLevelIndex = 0;
+                Manager.select_level(0);
                 chose = false;
                 break;
 
             case 49:
-                Manager.currentLevelIndex = 1;
+                Manager.select_level(1);
                 chose = false;
                 break;
 
             case 50:
-                Manager.currentLevelIndex = 2;
+                Manager.select_level(2);
                 chose = false;
                 break;
 
             case 51:
-                Manager.currentLevelIndex = 3;
+                Manager.select_level(3);
                 chose = false;
                 break;
-                    /*boy.count_of_m = 20;
-                    boy.count_of_rm = 10;
-                    boy.hp = 8;
-                    boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
-                    boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
-                    boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);*/
+
+                    //boy.hp = 8;
+                    //boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
+                    //boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+                    //boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);*/
 
 
                 // level_way_to_village();

@@ -23,11 +23,31 @@ void level_manager::start_next_level() {
     }
 }
 
-void level_manager::chose_level(int level)
+void level_manager::select_level(int level)
 {
+    currentLevelIndex = level;
+
+    switch (level)
+    {
+        case 2:
+
+            boy.hp = 8;
+            boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
+            boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+
+        break;
+            
+        case 3:
+
+            boy.hp = 8;
+            boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
+            boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+            boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
+
+        break;
+    }
 
 }
-
 
 bool level_manager::all_levels_done() {
     return currentLevelIndex >= level_factories.size();
