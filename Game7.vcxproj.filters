@@ -52,6 +52,12 @@
     <Filter Include="Исходные файлы\levels\4%29 level_way_to_village">
       <UniqueIdentifier>{f0ccd3a0-4781-45c2-8e42-cd313e8eb765}</UniqueIdentifier>
     </Filter>
+    <Filter Include="archive">
+      <UniqueIdentifier>{5c60ad81-55f9-4ed7-b921-ac3290d68d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="archive\old main">
+      <UniqueIdentifier>{59294081-9f7b-44e1-a42c-86f37442782d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -95,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="level_way_to_village.cpp">
       <Filter>Исходные файлы\levels\4%29 level_way_to_village</Filter>
+    </ClCompile>
+    <ClCompile Include="old_main.cpp">
+      <Filter>archive\old main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

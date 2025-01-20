@@ -143,6 +143,7 @@
     <ClCompile Include="monster_type.cpp" />
     <ClCompile Include="my_boy.cpp" />
     <ClCompile Include="my_map.cpp" />
+    <ClCompile Include="old_main.cpp" />
     <ClCompile Include="scary_monster.cpp" />
   </ItemGroup>
   <ItemGroup>
