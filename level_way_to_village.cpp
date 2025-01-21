@@ -31,7 +31,7 @@ void level_way_to_village::start()
 
 void level_way_to_village::update()
 {
-    while (true) {
+    while (!exit_) {
 
         if (gotovil == true) {
             nscore = 1;

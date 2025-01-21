@@ -20,11 +20,13 @@ public:
     int y;
 
     int hp = 10;
+
     int count_of_m = 0;
     int count_of_rm = 0;
 
-    my_boy(int spx, int spy);
+    std::vector<invent_thing> invent;
 
+    my_boy(int spx, int spy);
     my_boy();
     
     void move_boy(char** map);
@@ -32,7 +34,9 @@ public:
     void add_to_invent(std::string name, char icon, int count, int color, bool usage);
     void remove_thing(std::string name);
     void do_something(int num, char** map);
-    std::vector<invent_thing> invent;
+
+    void save();
+  
    
 private:
 

@@ -1,7 +1,10 @@
 #include "my_boy.h"
 #include "curses.h"
 #include <my_map.h>
-//#include "ivent_thing.h"
+#include <chrono>
+#include <fstream>
+#include <iomanip>
+#include <sstream> 
 
 my_boy::my_boy(int spx, int spy) : x(spx), y(spy) 
 {
@@ -101,6 +104,7 @@ void my_boy::add_to_invent(std::string name, char icon, int count, int color, bo
         invent.push_back({ name, icon ,count ,color , usage});
     }
 }
+
 void my_boy::remove_thing(std::string name) {
 
     for (int i = 0; i < invent.size(); i++)
@@ -114,6 +118,7 @@ void my_boy::remove_thing(std::string name) {
 
     }
 }
+
 void my_boy::do_something(int num, char** map)
 {
     switch (invent[num].icon)
@@ -124,6 +129,49 @@ void my_boy::do_something(int num, char** map)
     default:
         break;
     }
+}
+
+void my_boy::save()
+{
+    auto now = std::chrono::system_clock::now();
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+
+    std::tm tm;
+
+    localtime_s(&tm, &now_time_t); 
+
+    std::ostringstream filename_stream;
+    filename_stream << "player_save_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".txt";
+    std::string filename = filename_stream.str();
+
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        // Если файл не удалось открыть, выводим ошибку
+        printw("Ошибка: не удалось сохранить игру!\n");
+        refresh();
+        return;
+    }
+
+
+    file << "hp: " << hp << "\n";
+
+    file << "x: " << x << "\n";
+    file << "y: " << y << "\n";
+
+    file << "count_of_m: " << count_of_m << "\n";
+    file << "count_of_rm: " << count_of_rm << "\n";
+
+    file << "invent_size: " << invent.size() << "\n"; 
+    for (const auto& item : invent) {
+        file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
+    }
+
+    file.close();
+
+    printw("Игра успешно сохранена в файл: %s\n", filename.c_str());
+    refresh();
+
+    
 }
 
 void my_boy::print_me(int color) {

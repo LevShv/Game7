@@ -21,7 +21,7 @@ void level_forest::start()
 
 void level_forest::update()
 {
-    while (true) {
+    while (!exit_) {
 
         if (boy.hp == 0) {
             intface.game_over();

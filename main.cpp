@@ -67,6 +67,14 @@
 
 }
 
+ void call_manager(level_manager& Manager) {
+
+     while (!Manager.all_levels_done()) {
+
+         Manager.start_next_level();
+     }
+ }
+
  int main()
  {
     std::system("chcp 1251");
@@ -79,53 +87,64 @@
 
 
     iface init;
-    level_manager Manager;
-
+    
     int button_save = 0;
     int selection = 0;
+    bool download = false;
+    int num_of_download = 0;
 
-    init.pause_menu();
+ /*   init.pause_menu();*/
 
     while (true) {
+
+        level_manager Manager;
 
         int start_level = 0;
         bool go_back = false;
 
-        switch (init.main_menu(button_save)) {
-
-        case 0:
-
-            while (!Manager.all_levels_done()) {
-
-                Manager.start_next_level();
-            }
-            break;
-
-        case 1:
-
-            clear();
-
-            button_save = 1;
-            selection = init.level_selection();
-
-            clear();
-
-            if ( selection == 27)
-                break;
-
-            else {
-                Manager.currentLevelIndex = selection;
-
-                while (!Manager.all_levels_done()) {
-
-                    Manager.start_next_level();
-                }
-                break;
-            }
-
-        case 3:
-            break;
+        if (download) {
+            download = false;
+            // load_ff();
         }
+        else {
+            switch (init.main_menu(button_save)) {
+
+            case 0:
+
+                call_manager(Manager);
+
+                break;
+
+            case 1:
+
+                clear();
+
+                button_save = 1;
+                selection = init.level_selection();
+
+                clear();
+
+                if (selection == 27)
+                    break;
+
+                else {
+                    Manager.currentLevelIndex = selection;
+
+                    call_manager(Manager);
+
+                    break;
+                }
+
+            case 3:
+                //init.load()
+                break;
+            }
+
+            if (Manager.download) {
+                download = true;
+                num_of_download = Manager.number_of_download;
+            }
+        }    
     }
     endwin();
 

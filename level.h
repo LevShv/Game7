@@ -19,8 +19,10 @@ protected:
     int nscore = 0; // номер цели
     int sci = 0; // счетчик итераций 
 
+
+
     my_boy& boy; // передать
-    my_map map; // передать арг
+    my_map map; 
     iface intface; 
     std::vector<monster_type*>* monsters;
 
@@ -28,7 +30,7 @@ protected:
     virtual void draw() = 0;
     //virtual void 
     int make_move(char** map);
-
+    void pause();
 
 public:
 
@@ -37,5 +39,9 @@ public:
 
     virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
     virtual void update() = 0; // Чисто виртуальная функция для обновления уровня
+
+    bool exit_ = false;
+    bool download = false;
+    int number_of_loading;
 
 };

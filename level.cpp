@@ -44,13 +44,39 @@ int Level::make_move(char** map) {
         return 0;
         break;
     case 27:
-        intface.pause_menu();
+        pause();
         return 0;
     }
    
 
     return 0;
 }
+
+void Level::pause()
+{
+    int choice = intface.pause_menu();
+
+    if (choice == 1) {
+
+        // загрузка
+        // number_of_loading
+        // int res = init.load();
+        // if(res == 27)
+        //      pause();
+        // else
+        // { 
+        // download = true;
+        // nuber_of_loading = res;
+        // exit_ = true;
+
+    }
+     
+    if (choice == 2)
+        exit_ = true;
+    
+}
+
+
 
 
 

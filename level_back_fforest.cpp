@@ -15,7 +15,7 @@ void level_back_fforest::start()
 
 void level_back_fforest::update()
 {
-    while (true) {
+    while (!exit_) {
 
         if (gotooldman == true) {
             nscore = 1;

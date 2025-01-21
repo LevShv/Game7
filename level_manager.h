@@ -22,6 +22,9 @@ class level_manager
 
     my_boy boy;
 
+    int number_of_download;
+    bool download;
+
     private:
 
 
@@ -29,6 +32,7 @@ class level_manager
     std::vector<std::function<std::unique_ptr<Level>()>> level_factories;
     std::vector<std::unique_ptr<Level>> levels;
     
+    bool off = false;
 
 
     

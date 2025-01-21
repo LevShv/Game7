@@ -341,7 +341,6 @@ int iface::pause_menu()
     switch (button) {
 
     case 0:
-        start_game();
         return 0;
 
     case 1:

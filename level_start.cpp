@@ -13,7 +13,7 @@ void level_start::start() {
 
 void level_start::update() {
 
-    while (true) {
+    while (!exit_) {
 
         //mvprintw(17, 119, "2"); // 
         if (gotooldman == true) {
