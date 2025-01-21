@@ -24,16 +24,18 @@ protected:
     iface intface; 
     std::vector<monster_type*>* monsters;
 
-public:
-
-    Level(my_boy& boy, int map_type);
-    Level(my_boy& boy, int map_type, std::vector<monster_type*>* monsters);
-    virtual ~Level() = default;
-
-    virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
-    virtual void update() = 0; // Чисто виртуальная функция для обновления уровня
     virtual void score_set() = 0; // 
     virtual void draw() = 0;
     //virtual void 
     int make_move(char** map);
+
+
+public:
+
+    Level(my_boy& boy, int map_type);
+    virtual ~Level() = default;
+
+    virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
+    virtual void update() = 0; // Чисто виртуальная функция для обновления уровня
+
 };
