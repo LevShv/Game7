@@ -17,7 +17,10 @@ public:
 
     int start_game();
     int level_selection();
-    int main_menu();
+    int main_menu(int button_save);
+
+    int pause_menu();
+
 
 private:
 

@@ -46,7 +46,12 @@ int Level::make_move(char** map) {
         intface.show_invent(boy.invent);
         return 0;
         break;
+    case 27:
+        intface.pause_menu();
+        return 0;
     }
+   
+
     return 0;
 }
 

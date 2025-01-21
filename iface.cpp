@@ -132,8 +132,12 @@ void iface::show_invent(std::vector<invent_thing> &invent)
                 break;
 
         case 'e':
-                exit = true;
-                break;
+             exit = true;
+             break;
+
+        case 27:
+            exit = true;
+            break;
         }
            
 
@@ -185,25 +189,45 @@ int iface::start_game()
 
 int iface::level_selection()
 {
+    int level;
+    bool chose = true;
+
     Bckg(0, 29, 0, 120, COLOR_PAIR(29));
+    cmvprintw(5, 51, "Введите номер уровня", COLOR_PAIR(4)); 
+   
+    while (chose) {
+    
+        switch (getch())
+        {
+        case 48:
+            return 0;
 
-    cmvprintw(5, 51, "Введите номер уровня", COLOR_PAIR(4));
+        case 49:
+            return 1;
 
-    return getch();
+        case 50:
+            return 2;
+
+        case 51:
+            return 3;
+
+        case 27:
+            return 27;
+        }
+    }
 }
 
-int iface::main_menu() {
+int iface::main_menu(int button_save) {
 
 
     bool selected = false;
-    int button = 0;
+    int button = button_save;
 
     while (!selected) {
-        int button_wide = 31;
 
         Bckg(0, 29, 0, 120, COLOR_PAIR(29));
         Bckg_effect();
-        cmvprintw(5, 55, "GAME7.EXE", COLOR_PAIR(4));
+        cmvprintw(5, 55, "GAME7.EXE", COLOR_PAIR(32));
 
             
         Bckg(8, 10, 44, 75, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(30));
@@ -252,6 +276,90 @@ int iface::main_menu() {
     }
     return 0;
 }
+
+int iface::pause_menu()
+{
+
+    bool selected = false;
+    int button = 0;
+
+    while (!selected) {
+
+        int bsx = 44; // Начальная координата X
+        int bex = 75; // Конечная координата X
+        int bsy = 5;
+        
+        int height = 2; // Высота кнопки
+        int between = 2;
+
+        Bckg(2, 22, 42, 77, COLOR_PAIR(30));
+        /*Bckg_effect();*/
+        cmvprintw(3, 57, "Пауза", COLOR_PAIR(23));
+
+
+        Bckg(bsy, bsy + height, bsx, bex, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        cmvprintw(bsy + 1, 55, "Продолжить", (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 1
+        bsy += between + height;
+
+        Bckg(bsy, bsy + height, bsx, bex, (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        cmvprintw(bsy + 1, 55, "Сохранить", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 2
+        bsy += between + height;
+
+        Bckg(bsy, bsy + height, bsx, bex, (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        cmvprintw(bsy + 1, 55, "Загрузить", (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 3
+        bsy += between + height;
+
+        Bckg(bsy, bsy + height, bsx, bex, (button == 3) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        cmvprintw(bsy + 1, 50, "Выйти в главное меню", (button == 3) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 4
+        bsy += between + height;
+
+        refresh();
+
+
+        switch (getch()) {
+
+        case 'w':
+            button = (button - 1 + 4) % 4; //!
+            break;
+
+        case 's':
+            button = (button + 1) % 4;
+            break;
+
+        case 10:
+            selected = true;
+            break;
+
+        case 27:
+            return 0;
+
+        default:
+            break;
+        }
+    }
+
+    switch (button) {
+
+    case 0:
+        start_game();
+        return 0;
+
+    case 1:
+        return 1;
+
+    case 2:
+
+        return 2;
+    case 3:
+
+        return 3;
+
+    }
+    return 0;
+
+
+}
+
 
 void iface::draw_hp_boy(int hp) {
 
@@ -324,6 +432,7 @@ void iface::Bckg_effect()
     attroff(COLOR_PAIR(32));
 
 }
+
 int iface::random_x()
 {
 

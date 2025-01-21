@@ -1,14 +1,6 @@
 
 #include <curses.h>
-#include <my_map.h>
-#include <my_boy.h>
-#include <monster.h>
-#include <scary_monster.h>
-#include <monsters_family.h>
-#include "iface.h"
-#include <locale.h>
-#include <monster_type.h>
-#include <vector>
+#include <iface.h>
 #include <level_manager.h>
 
  void colors_pairs() {
@@ -18,9 +10,9 @@
     init_color(258, 0, 0, 128); // темно-синий
     init_color(259, 189, 183, 107); // бежевый
     init_color(260, 240, 230, 140); // светло-бежевый
-    init_color(301, 213, 213, 213); // светло-серый для меню
+    init_color(301, 213, 213, 213); // темно-серый для меню
 
-
+    init_pair(0, COLOR_WHITE, COLOR_BLACK); // default
     init_pair(1, COLOR_RED, COLOR_RED); // полоска здоровья
     init_pair(2, COLOR_BLACK, 8); // цвет "Boy"
     init_pair(3, COLOR_BLACK, 8); // цвет "Грибы"
@@ -69,6 +61,10 @@
 
     init_pair(32, COLOR_MAGENTA, 257); // цвет для эффекта
 
+    init_pair(33, COLOR_WHITE, 301); // цвет кнопки в меню паузы
+    init_pair(34, COLOR_WHITE, COLOR_BLACK);
+ 
+
 }
 
  int main()
@@ -81,59 +77,57 @@
     start_color();
     colors_pairs();
 
+
     iface init;
     level_manager Manager;
 
-    switch (init.main_menu()) {
+    int button_save = 0;
+    int selection = 0;
 
-    case 0:
-        
-        while (!Manager.all_levels_done()) {
+    init.pause_menu();
 
-            Manager.start_next_level();
-        }
-        break;
+    while (true) {
 
-    case 1:
+        int start_level = 0;
+        bool go_back = false;
 
-        clear();
+        switch (init.main_menu(button_save)) {
 
-        bool chose = true;
-        while (chose) { 
+        case 0:
 
-            switch (init.level_selection())
-            {
-            case 48:
-                Manager.select_level(0);
-                chose = false;
+            while (!Manager.all_levels_done()) {
+
+                Manager.start_next_level();
+            }
+            break;
+
+        case 1:
+
+            clear();
+
+            button_save = 1;
+            selection = init.level_selection();
+
+            clear();
+
+            if ( selection == 27)
                 break;
 
-            case 49:
-                Manager.select_level(1);
-                chose = false;
-                break;
+            else {
+                Manager.currentLevelIndex = selection;
 
-            case 50:
-                Manager.select_level(2);
-                chose = false;
-                break;
+                while (!Manager.all_levels_done()) {
 
-            case 51:
-                Manager.select_level(3);
-                chose = false;
+                    Manager.start_next_level();
+                }
                 break;
             }
-            clear();
-            //  boy.boy_reset(start_pos_x, start_pos_y);
 
+        case 3:
+            break;
         }
-        while (!Manager.all_levels_done()) {
-
-            Manager.start_next_level();
-        }
-        break;
-
     }
     endwin();
 
  }
+
