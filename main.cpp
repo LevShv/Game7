@@ -18,6 +18,7 @@
     init_color(258, 0, 0, 128); // темно-синий
     init_color(259, 189, 183, 107); // бежевый
     init_color(260, 240, 230, 140); // светло-бежевый
+    init_color(301, 213, 213, 213); // светло-серый для меню
 
 
     init_pair(1, COLOR_RED, COLOR_RED); // полоска здоровья
@@ -61,6 +62,13 @@
 
     init_pair(28, COLOR_BLUE, 257); // Голубозубки
 
+    init_pair(29, 257, 257); //фон главного меню
+    init_pair(30, 8, 8); //фон кнопок главного меню
+
+    init_pair(31, COLOR_BLACK,COLOR_WHITE); //цвет выбранной кнопки
+
+    init_pair(32, COLOR_MAGENTA, 257); // цвет для эффекта
+
 }
 
  int main()
@@ -74,30 +82,26 @@
     colors_pairs();
 
     iface init;
-    
-    if (init.start_game()) {
+    level_manager Manager;
 
-        level_manager Manager;
+    switch (init.main_menu()) {
 
+    case 0:
+        
         while (!Manager.all_levels_done()) {
 
             Manager.start_next_level();
         }
-    }
+        break;
 
-    else {
+    case 1:
 
         clear();
 
-        level_manager Manager;
         bool chose = true;
-        while (chose) { // Поуровневый режим
+        while (chose) { 
 
-            mvprintw(7, 15, "Choose level");
-            int lv = getch();
-            clear();
-
-            switch (lv)
+            switch (init.level_selection())
             {
             case 48:
                 Manager.select_level(0);
@@ -118,26 +122,18 @@
                 Manager.select_level(3);
                 chose = false;
                 break;
-
-                    //boy.hp = 8;
-                    //boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
-                    //boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
-                    //boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);*/
-
-
-                // level_way_to_village();
             }
             clear();
-          //  boy.boy_reset(start_pos_x, start_pos_y);
-            
+            //  boy.boy_reset(start_pos_x, start_pos_y);
+
         }
         while (!Manager.all_levels_done()) {
 
             Manager.start_next_level();
         }
-        
+        break;
+
     }
-       
     endwin();
 
  }

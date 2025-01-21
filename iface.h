@@ -2,6 +2,7 @@
 #include "curses.h"
 #include <vector>
 #include <my_boy.h>
+#include <random>
 class iface {
 public:
 
@@ -13,8 +14,10 @@ public:
     void subs(const char* a, const char* b);
     void score(const char* a);
     void show_invent(std::vector<invent_thing> &invent);
-    int start_game();
 
+    int start_game();
+    int level_selection();
+    int main_menu();
 
 private:
 
@@ -22,12 +25,18 @@ private:
 
     int xposofhp = 29;
     int yposofhp = 50;
+
     void draw_hp_boy(int hp);
     void draw_Count_of_mushrooms(int count_ofm);
     void draw_slots(std::vector<invent_thing> &invent);
-    void Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair);
-    void clean_left_corner();
 
+    void Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair);
+    void Bckg_effect();
+    void clean_left_corner();
+    void cmvprintw(int y, int x, const char* text, int color_pair);
+    
+    int random_x();
+    int random_y();
     
     
 };
