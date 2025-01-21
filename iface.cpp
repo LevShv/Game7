@@ -287,30 +287,30 @@ int iface::pause_menu()
 
         int bsx = 44; // Начальная координата X
         int bex = 75; // Конечная координата X
-        int bsy = 5;
+        int bsy = 7;
         
         int height = 2; // Высота кнопки
-        int between = 2;
+        int between = 3;
 
-        Bckg(2, 22, 42, 77, COLOR_PAIR(30));
+        Bckg(4, 21, 42, 77, COLOR_PAIR(30));
         /*Bckg_effect();*/
-        cmvprintw(3, 57, "Пауза", COLOR_PAIR(23));
+        cmvprintw(5, 57, "Пауза", COLOR_PAIR(23));
 
 
         Bckg(bsy, bsy + height, bsx, bex, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
         cmvprintw(bsy + 1, 55, "Продолжить", (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 1
         bsy += between + height;
 
+        //Bckg(bsy, bsy + height, bsx, bex, (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        //cmvprintw(bsy + 1, 55, "Сохранить", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 2
+        //bsy += between + height;
+
         Bckg(bsy, bsy + height, bsx, bex, (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 55, "Сохранить", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 2
+        cmvprintw(bsy + 1, 55, "Загрузить", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 3
         bsy += between + height;
 
         Bckg(bsy, bsy + height, bsx, bex, (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 55, "Загрузить", (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 3
-        bsy += between + height;
-
-        Bckg(bsy, bsy + height, bsx, bex, (button == 3) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 50, "Выйти в главное меню", (button == 3) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 4
+        cmvprintw(bsy + 1, 50, "Выйти в главное меню", (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 4
         bsy += between + height;
 
         refresh();
@@ -319,11 +319,11 @@ int iface::pause_menu()
         switch (getch()) {
 
         case 'w':
-            button = (button - 1 + 4) % 4; //!
+            button = (button - 1 + 3) % 3; //!
             break;
 
         case 's':
-            button = (button + 1) % 4;
+            button = (button + 1) % 3;
             break;
 
         case 10:
@@ -350,9 +350,9 @@ int iface::pause_menu()
     case 2:
 
         return 2;
-    case 3:
+    //case 3:
 
-        return 3;
+    //    return 3;
 
     }
     return 0;
