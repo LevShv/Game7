@@ -1,10 +1,9 @@
 #include "my_boy.h"
 #include "curses.h"
 #include <my_map.h>
-#include <chrono>
 #include <fstream>
-#include <iomanip>
-#include <sstream> 
+#include "file_tools.h"
+
 
 my_boy::my_boy(int spx, int spy) : x(spx), y(spy) 
 {
@@ -56,6 +55,11 @@ void my_boy::move_boy(char** map) {
 
         print_me(COLOR_PAIR(7));
         map[y][x] = ' ';
+    }
+    else if (map[y][x] == 'g') {
+
+        std::string path;
+        save(path);
     }
     else {
 
@@ -131,20 +135,11 @@ void my_boy::do_something(int num, char** map)
     }
 }
 
-void my_boy::save()
+void my_boy::save(std::string path)
 {
-    auto now = std::chrono::system_clock::now();
-    auto now_time_t = std::chrono::system_clock::to_time_t(now);
-
-    std::tm tm;
-
-    localtime_s(&tm, &now_time_t); 
-
-    std::ostringstream filename_stream;
-    filename_stream << "player_save_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".txt";
-    std::string filename = filename_stream.str();
-
-    std::ofstream file(filename);
+    file_tools ft;
+    path = ft.new_file_name();
+    std::ofstream file(path);
     if (!file.is_open()) {
         // Если файл не удалось открыть, выводим ошибку
         printw("Ошибка: не удалось сохранить игру!\n");
@@ -162,13 +157,14 @@ void my_boy::save()
     file << "count_of_rm: " << count_of_rm << "\n";
 
     file << "invent_size: " << invent.size() << "\n"; 
+
     for (const auto& item : invent) {
         file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
     }
 
     file.close();
 
-    printw("Игра успешно сохранена в файл: %s\n", filename.c_str());
+    printw("Игра успешно сохранена в файл: %s\n", path.c_str());
     refresh();
 
     

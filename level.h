@@ -32,6 +32,7 @@ protected:
     int make_move(char** map);
     void pause();
 
+
 public:
 
     Level(my_boy& boy, int map_type);

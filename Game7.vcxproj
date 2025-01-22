@@ -77,6 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\llvvv\source\repos\Game7;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="file_tools.cpp" />
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="level_back_fforest.cpp" />
@@ -147,6 +149,7 @@
     <ClCompile Include="scary_monster.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="file_tools.h" />
     <ClInclude Include="iface.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="level_back_fforest.h" />

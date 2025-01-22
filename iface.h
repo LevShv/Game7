@@ -3,6 +3,12 @@
 #include <vector>
 #include <my_boy.h>
 #include <random>
+#include <chrono>
+#include <fstream>
+#include <iomanip>
+#include <sstream> 
+
+
 class iface {
 public:
 
@@ -20,6 +26,7 @@ public:
     int main_menu(int button_save);
 
     int pause_menu();
+    std::string save_screen();
 
 
 private:
@@ -41,5 +48,8 @@ private:
     int random_x();
     int random_y();
     
+    std::vector<std::string> getPlayerSaveFiles(std::string& directory);
+    void delete_save(std::string filename);
+    std::string new_file_name();
     
 };

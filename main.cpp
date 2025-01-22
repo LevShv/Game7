@@ -63,6 +63,8 @@
 
     init_pair(33, COLOR_WHITE, 301); // цвет кнопки в меню паузы
     init_pair(34, COLOR_WHITE, COLOR_BLACK);
+
+    init_pair(35, 301, 301); // задник закгрузок 
  
 
 }
@@ -93,7 +95,8 @@
     bool download = false;
     int num_of_download = 0;
 
- /*   init.pause_menu();*/
+    //init.pause_menu();
+    init.save_screen();
 
     while (true) {
 

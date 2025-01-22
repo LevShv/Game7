@@ -35,7 +35,7 @@ public:
     void remove_thing(std::string name);
     void do_something(int num, char** map);
 
-    void save();
+    void save(std::string path);
   
    
 private:

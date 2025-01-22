@@ -1,7 +1,9 @@
 #include "curses.h"
 #include "iface.h"
-//#include "ivent_thing.h"
 #include "my_boy.h"
+#include <filesystem>
+#include <iostream>
+
 
 iface::iface() {
 
@@ -359,6 +361,105 @@ int iface::pause_menu()
 
 }
 
+std::string iface::save_screen()
+{
+    std::string path;
+
+    bool selected = false;
+    int button = 0;
+
+    std::string directory = ".";
+    std::vector<std::string> saveFiles = getPlayerSaveFiles(directory);
+
+    int Count_of_saves = saveFiles.size();
+   
+    while (!selected) {
+
+        int bsx = 44; // Начальная координата X
+        int bex = 75; // Конечная координата X
+        int bsy = 7;
+
+        int height = 2; // Высота кнопки
+        int between = 3;
+
+        Bckg(0, 29, 0, 120, COLOR_PAIR(29));
+        Bckg_effect();
+
+        Bckg(4, 21, 41, 79, COLOR_PAIR(30));
+        Bckg(11, 20 , 43, 77, COLOR_PAIR(35));
+
+        cmvprintw(5, 55, "Загрузить", COLOR_PAIR(23));
+
+
+        Bckg(bsy, bsy + height, bsx, bex, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        cmvprintw(bsy + 1, 57, "Новое", (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 1
+        bsy += 4;
+
+        for (int i = 0; i < Count_of_saves; i++) {
+            cmvprintw(bsy + i, 43, saveFiles[i].c_str(), (button == i+1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+            
+        }
+
+        refresh();
+
+        switch (getch()) {
+
+        case 'w':
+            button = (button - 1 + (Count_of_saves+1)) % (Count_of_saves+1); //!
+            break;
+
+        case 's':
+            button = (button + 1) % (Count_of_saves + 1);
+            break;
+
+        case 10:
+
+            selected = true;
+
+            if (button == 0) 
+                path = new_file_name();
+            else 
+                path = saveFiles[button-1];
+
+            saveFiles = getPlayerSaveFiles(directory);
+            Count_of_saves = saveFiles.size();
+            break;
+
+        case 27:
+
+            return 0;
+            
+        case 'i':
+
+            delete_save(saveFiles[button - 1]);
+            saveFiles = getPlayerSaveFiles(directory);
+            Count_of_saves = saveFiles.size();
+
+        default:
+            break;
+        }
+    }
+
+
+    switch (button) {
+
+    case 0:
+        return 0;
+
+    case 1:
+        return 0;
+
+    case 2:
+
+        return 0;
+        //case 3:
+
+        //    return 3;
+
+    }
+   
+   return std::string();
+}
 
 void iface::draw_hp_boy(int hp) {
 
@@ -452,6 +553,51 @@ int iface::random_y()
     std::uniform_int_distribution<> disy(1, 29 - 1);
 
     return disy(gen);
+}
+
+std::vector<std::string> iface::getPlayerSaveFiles(std::string& directory)
+{
+    std::vector<std::string> saveFiles;
+    namespace fs = std::filesystem;
+
+    for (auto& entry : fs::directory_iterator(directory)) 
+    {
+        if (entry.is_regular_file()) 
+        { 
+            std::string filename = entry.path().filename().string(); 
+            if (filename.find("player_save_") == 0) { 
+                saveFiles.push_back(filename); 
+            }
+        }
+    }
+
+    return saveFiles;
+}
+
+void iface::delete_save(std::string filename)
+{
+    namespace fs = std::filesystem;
+
+    if (fs::exists(filename))
+        fs::remove(filename);
+       
+
+}
+
+std::string iface::new_file_name()
+{
+    auto now = std::chrono::system_clock::now();
+    auto now_time_t = std::chrono::system_clock::to_time_t(now);
+
+    std::tm tm;
+
+    localtime_s(&tm, &now_time_t);
+
+    std::ostringstream filename_stream;
+
+    filename_stream << "player_save_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".txt";
+
+    return filename_stream.str();
 }
 
 /*void iface::button(int start_row, int end_row, int start_col, int end_col, int color_pair_bckg, int y, int x, const char* text, int color_pair_text)
