@@ -31,6 +31,7 @@ protected:
     //virtual void 
     int make_move(char** map);
     void pause();
+    void save_check();
 
 
 public:

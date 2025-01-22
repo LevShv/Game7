@@ -59,21 +59,57 @@ void Level::pause()
     if (choice == 1) {
 
         // загрузка
-        // number_of_loading
-        // int res = init.load();
-        // if(res == 27)
-        //      pause();
-        // else
-        // { 
-        // download = true;
-        // nuber_of_loading = res;
-        // exit_ = true;
+         /*number_of_loading
+         int res = init.load();
+         if(res == 27)
+              pause_menu();
+         else
+         { 
+         download = true;
+         nuber_of_loading = res;
+         exit_ = true;*/
 
     }
      
     if (choice == 2)
         exit_ = true;
     
+}
+
+void Level::save_check()
+{
+    if (map.forest[boy.y][boy.x] == 'g') {
+
+        std::string path;
+        iface init;
+        path = init.save_screen();
+
+        std::ofstream file(path);
+        if (!file.is_open()) {
+
+            printw("Ошибка: не удалось сохранить игру!\n");
+            refresh();
+            return;
+        }
+
+        file << "level: " << boy.where << "\n";
+
+        file << "hp: " << boy.hp << "\n";
+
+        file << "x: " << boy.x << "\n";
+        file << "y: " << boy.y << "\n";
+
+        file << "invent_size: " << boy.invent.size() << "\n";
+
+        for (const auto& item : boy.invent) {
+            file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
+        }
+
+        file.close();
+        
+    }
+
+
 }
 
 

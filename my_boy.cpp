@@ -3,6 +3,7 @@
 #include <my_map.h>
 #include <fstream>
 #include "file_tools.h"
+#include <iface.h>
 
 
 my_boy::my_boy(int spx, int spy) : x(spx), y(spy) 
@@ -56,11 +57,11 @@ void my_boy::move_boy(char** map) {
         print_me(COLOR_PAIR(7));
         map[y][x] = ' ';
     }
-    else if (map[y][x] == 'g') {
+    /*else if (map[y][x] == 'g') {
 
-        std::string path;
-        save(path);
-    }
+       
+        save();
+    }*/
     else {
 
         x = xl;
@@ -135,26 +136,26 @@ void my_boy::do_something(int num, char** map)
     }
 }
 
-void my_boy::save(std::string path)
+void my_boy::save()
 {
-    file_tools ft;
-    path = ft.new_file_name();
+    std::string path;
+    iface init;
+    path = init.save_screen();
+
     std::ofstream file(path);
     if (!file.is_open()) {
-        // Если файл не удалось открыть, выводим ошибку
+
         printw("Ошибка: не удалось сохранить игру!\n");
         refresh();
         return;
     }
 
+    file << "level: " << where << "\n";
 
     file << "hp: " << hp << "\n";
 
     file << "x: " << x << "\n";
     file << "y: " << y << "\n";
-
-    file << "count_of_m: " << count_of_m << "\n";
-    file << "count_of_rm: " << count_of_rm << "\n";
 
     file << "invent_size: " << invent.size() << "\n"; 
 

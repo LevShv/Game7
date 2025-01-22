@@ -16,6 +16,8 @@ void level_manager::start_next_level() {
 
     if (currentLevelIndex < level_factories.size()) {
 
+        boy.where = currentLevelIndex;
+
         levels.push_back(level_factories[currentLevelIndex]());
         levels.back()->start();
         levels.back()->update();

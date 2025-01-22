@@ -439,26 +439,8 @@ std::string iface::save_screen()
             break;
         }
     }
-
-
-    switch (button) {
-
-    case 0:
-        return 0;
-
-    case 1:
-        return 0;
-
-    case 2:
-
-        return 0;
-        //case 3:
-
-        //    return 3;
-
-    }
-   
-   return std::string();
+    clear();
+   return path;
 }
 
 void iface::draw_hp_boy(int hp) {

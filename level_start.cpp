@@ -96,10 +96,11 @@ void level_start::update() {
         if (make_move(map.forest) == 1) { ////////.............
             game_iter++;
         }
+
         else {
             sci--;
         }
-
+        save_check();
         draw();
         score_set();
     }

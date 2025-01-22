@@ -20,7 +20,7 @@ public:
     int y;
 
     int hp = 10;
-
+    int where = 0;
     int count_of_m = 0;
     int count_of_rm = 0;
 
@@ -35,7 +35,7 @@ public:
     void remove_thing(std::string name);
     void do_something(int num, char** map);
 
-    void save(std::string path);
+    void save();
   
    
 private:

@@ -96,7 +96,7 @@
     int num_of_download = 0;
 
     //init.pause_menu();
-    init.save_screen();
+    //init.save_screen();
 
     while (true) {
 
