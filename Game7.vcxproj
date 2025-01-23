@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="button_table.cpp" />
     <ClCompile Include="file_tools.cpp" />
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="level.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="scary_monster.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="button_table.h" />
     <ClInclude Include="file_tools.h" />
     <ClInclude Include="iface.h" />
     <ClInclude Include="level.h" />

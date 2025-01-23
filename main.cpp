@@ -114,6 +114,7 @@
 
             case 0:
 
+                init.start_game();
                 call_manager(Manager);
 
                 break;
@@ -138,10 +139,15 @@
                     break;
                 }
 
-            case 3:
+            case 2:
                 //init.load()
                 break;
+            case 3:
+                endwin();
+                exit(0);
+                break;
             }
+
 
             if (Manager.download) {
                 download = true;

@@ -1,0 +1,95 @@
+#include "button_table.h"
+
+
+
+button_table::button_table(int start_x_pos, int end_x_pos, int start_y_pos, int height, int between, int color_, int color_press) :
+
+	start_x_pos(start_x_pos), 
+	end_x_pos(end_x_pos), 
+	start_y_pos(start_y_pos), 
+	height(height), 
+	between(between), 
+	color_(color_), 
+	color_press(color_press)
+{
+}
+
+void button_table::add(std::string label)
+{
+	button_coll.push_back(button(label));
+}
+
+int button_table::draw_nget(int button_save)
+{	
+	bool selected = false;
+	int num = button_save;
+
+	int count = button_coll.size();
+	while (!selected) {
+
+		draw_once(num);
+		refresh();
+
+		switch (getch()) {
+
+		case 'w':
+			num = (num - 1 + count) % count; //!
+			break;
+
+		case 's':
+			num = (num + 1) % count;
+			break;
+
+		case 10:
+			selected = true;
+			break;
+
+		case 27:
+			return 0;
+
+		default:
+			break;
+		}
+
+	}
+	
+	return num;
+
+}
+
+void button_table::draw_once(int num)
+{
+	int bsy = start_y_pos;
+	int count = button_coll.size();
+
+	for (int i = 0; i < count; i++) {
+
+		int startx_label_text = (end_x_pos + start_x_pos + 1) / 2 - (button_coll[i].label.size() + 1) / 2;
+		frame(bsy, bsy + height, start_x_pos, end_x_pos, (num == i) ? color_press : color_);
+		cmvprintw(bsy + 1, startx_label_text, button_coll[i].label.c_str(), (num == i) ? color_press : color_);
+		bsy += between + height;
+
+	}
+}
+
+void button_table::frame(int start_row, int end_row, int start_col, int end_col, int color_pair)
+{
+	attron(color_pair);
+
+	for (int row = start_row; row <= end_row; row++) {
+		for (int col = start_col; col <= end_col; col++) {
+			mvprintw(row, col, " ");
+		}
+	}
+
+	attroff(color_pair);
+}
+
+void button_table::cmvprintw(int y, int x, const char* text, int color_pair)
+{
+	attron(color_pair);
+	mvprintw(y, x, text);
+	attroff(color_pair);
+}
+
+button::button(std::string label) : label(label) {}

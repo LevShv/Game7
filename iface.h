@@ -7,6 +7,8 @@
 #include <fstream>
 #include <iomanip>
 #include <sstream> 
+#include <button_table.h>
+#include <functional>
 
 
 class iface {
@@ -31,6 +33,7 @@ public:
 
 private:
 
+    
     int posofptr = 0;
 
     int xposofhp = 29;

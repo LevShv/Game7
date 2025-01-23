@@ -221,37 +221,35 @@ int iface::level_selection()
 
 int iface::main_menu(int button_save) {
 
-
     bool selected = false;
-    int button = button_save;
+    int num = button_save;
+    int count = 4;
+
+    button_table bt(44, 75, 6, 2, 3, COLOR_PAIR(3), COLOR_PAIR(31));
+
+    bt.add("Новая игра");
+    bt.add("Поуровневый режим");
+    bt.add("Загрузить");
+    bt.add("Выйти из игры");
 
     while (!selected) {
 
         Bckg(0, 29, 0, 120, COLOR_PAIR(29));
         Bckg_effect();
-        cmvprintw(5, 55, "GAME7.EXE", COLOR_PAIR(32));
+        cmvprintw(3, 55, "GAME7.EXE", COLOR_PAIR(32));
 
-            
-        Bckg(8, 10, 44, 75, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(30));
-        cmvprintw(9, 55, "Новая игра", (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(3)); // 1
-
-        Bckg(13, 15, 44, 75, (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(30));
-        cmvprintw(14, 52, "Поуровневый режим", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(3)); // 2
-
-        Bckg(18, 20, 44, 75, (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(30));
-        cmvprintw(19, 55, "Загрузить", (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(3)); // 3
-
+        bt.draw_once(num);
+   
         refresh();
-
 
         switch (getch()) {
 
         case 'w': 
-            button = (button - 1 + 3) % 3; 
+            num = (num - 1 + count) % count;
             break;
 
         case 's': 
-            button = (button + 1) % 3; 
+            num = (num + 1 + count) % count;
             break;
 
         case 10: 
@@ -262,102 +260,21 @@ int iface::main_menu(int button_save) {
             break;
         }
     }
-     
-    switch (button) {
-
-    case 0:
-        start_game();
-        return 0;
-
-    case 1:
-        return 1;
-
-    case 2:
-        return 2;
-
-    }
-    return 0;
+    return num;
 }
 
 int iface::pause_menu()
 {
+    button_table bt(44, 75, 7, 2, 3, COLOR_PAIR(33), COLOR_PAIR(31));
 
-    bool selected = false;
-    int button = 0;
+    bt.add("Продолжить");
+    bt.add("Загрузить");
+    bt.add("Выйти в главное меню");
 
-    while (!selected) {
+    Bckg(4, 21, 42, 77, COLOR_PAIR(30));
+    cmvprintw(5, 57, "Пауза", COLOR_PAIR(23));
 
-        int bsx = 44; // Начальная координата X
-        int bex = 75; // Конечная координата X
-        int bsy = 7;
-        
-        int height = 2; // Высота кнопки
-        int between = 3;
-
-        Bckg(4, 21, 42, 77, COLOR_PAIR(30));
-        /*Bckg_effect();*/
-        cmvprintw(5, 57, "Пауза", COLOR_PAIR(23));
-
-
-        Bckg(bsy, bsy + height, bsx, bex, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 55, "Продолжить", (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 1
-        bsy += between + height;
-
-        //Bckg(bsy, bsy + height, bsx, bex, (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        //cmvprintw(bsy + 1, 55, "Сохранить", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 2
-        //bsy += between + height;
-
-        Bckg(bsy, bsy + height, bsx, bex, (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 55, "Загрузить", (button == 1) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 3
-        bsy += between + height;
-
-        Bckg(bsy, bsy + height, bsx, bex, (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 50, "Выйти в главное меню", (button == 2) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 4
-        bsy += between + height;
-
-        refresh();
-
-
-        switch (getch()) {
-
-        case 'w':
-            button = (button - 1 + 3) % 3; //!
-            break;
-
-        case 's':
-            button = (button + 1) % 3;
-            break;
-
-        case 10:
-            selected = true;
-            break;
-
-        case 27:
-            return 0;
-
-        default:
-            break;
-        }
-    }
-
-    switch (button) {
-
-    case 0:
-        return 0;
-
-    case 1:
-        return 1;
-
-    case 2:
-
-        return 2;
-    //case 3:
-
-    //    return 3;
-
-    }
-    return 0;
-
+    return bt.draw_nget(0);
 
 }
 
@@ -581,12 +498,5 @@ std::string iface::new_file_name()
 
     return filename_stream.str();
 }
-
-/*void iface::button(int start_row, int end_row, int start_col, int end_col, int color_pair_bckg, int y, int x, const char* text, int color_pair_text)
-{
-    Bckg(start_row, end_row, start_col, end_col, color_pair_bckg);
-    cmvprintw(19, 55, "Загрузить", COLOR_PAIR(3));
-
-}*/
 
 

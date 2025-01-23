@@ -56,6 +56,9 @@
     <Filter Include="Исходные файлы\engine\file_tools">
       <UniqueIdentifier>{ea38d2f3-043b-42ad-a134-c6ad0bb82d2b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\UI\button">
+      <UniqueIdentifier>{33c70d49-b533-4e41-b645-c146df9bfc13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -106,6 +109,9 @@
     <ClCompile Include="file_tools.cpp">
       <Filter>Исходные файлы\engine\file_tools</Filter>
     </ClCompile>
+    <ClCompile Include="button_table.cpp">
+      <Filter>Исходные файлы\UI\button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -149,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="file_tools.h">
       <Filter>Исходные файлы\engine\file_tools</Filter>
+    </ClInclude>
+    <ClInclude Include="button_table.h">
+      <Filter>Исходные файлы\UI\button</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
