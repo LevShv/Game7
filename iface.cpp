@@ -276,13 +276,14 @@ int iface::pause_menu()
 
 std::string iface::save_screen()
 {
+    file_tools ft;
     std::string path;
 
     bool selected = false;
     int num = 0;
 
     std::string directory = ".";
-    std::vector<std::string> saveFiles = getPlayerSaveFiles(directory);
+    std::vector<std::string> saveFiles = ft.getPlayerSaveFiles(directory);
 
     int Count_of_saves = saveFiles.size();
 
@@ -332,22 +333,22 @@ std::string iface::save_screen()
             selected = true;
 
             if (num == 0)
-                path = new_file_name();
+                path = ft.new_file_name();
             else 
                 path = saveFiles[num -1];
 
-            saveFiles = getPlayerSaveFiles(directory);
+            saveFiles = ft.getPlayerSaveFiles(directory);
             Count_of_saves = saveFiles.size();
             break;
 
         case 27:
 
-            return 0;
+            return "0";
             
         case 'i':
 
-            delete_save(saveFiles[num - 1]);
-            saveFiles = getPlayerSaveFiles(directory);
+            ft.delete_save(saveFiles[num - 1]);
+            saveFiles = ft.getPlayerSaveFiles(directory);
             Count_of_saves = saveFiles.size();
 
         default:
@@ -409,51 +410,6 @@ void iface::Bckg_effect()
     }
     attroff(COLOR_PAIR(32));
 
-}
-
-std::vector<std::string> iface::getPlayerSaveFiles(std::string& directory)
-{
-    std::vector<std::string> saveFiles;
-    namespace fs = std::filesystem;
-
-    for (auto& entry : fs::directory_iterator(directory)) 
-    {
-        if (entry.is_regular_file()) 
-        { 
-            std::string filename = entry.path().filename().string(); 
-            if (filename.find("player_save_") == 0) { 
-                saveFiles.push_back(filename); 
-            }
-        }
-    }
-
-    return saveFiles;
-}
-
-void iface::delete_save(std::string filename)
-{
-    namespace fs = std::filesystem;
-
-    if (fs::exists(filename))
-        fs::remove(filename);
-       
-
-}
-
-std::string iface::new_file_name()
-{
-    auto now = std::chrono::system_clock::now();
-    auto now_time_t = std::chrono::system_clock::to_time_t(now);
-
-    std::tm tm;
-
-    localtime_s(&tm, &now_time_t);
-
-    std::ostringstream filename_stream;
-
-    filename_stream << "player_save_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".txt";
-
-    return filename_stream.str();
 }
 
 

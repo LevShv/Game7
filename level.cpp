@@ -1,6 +1,5 @@
 #include "level.h"
 
-
 Level::Level(my_boy& boy, int map_type)
 : boy(boy), map(width, length, map_type) 
 {
@@ -84,28 +83,32 @@ void Level::save_check()
         iface init;
         path = init.save_screen();
 
-        std::ofstream file(path);
-        if (!file.is_open()) {
+        if (path != "0") {
 
-            printw("Ошибка: не удалось сохранить игру!\n");
-            refresh();
-            return;
+            std::ofstream file(path);
+            if (!file.is_open()) {
+
+                printw("Ошибка: не удалось сохранить игру!\n");
+                refresh();
+                return;
+            }
+
+            file << "level: " << boy.where << "\n";
+
+            file << "hp: " << boy.hp << "\n";
+
+            file << "x: " << boy.x << "\n";
+            file << "y: " << boy.y << "\n";
+
+            file << "invent_size: " << boy.invent.size() << "\n";
+
+            for (const auto& item : boy.invent) {
+                file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
+            }
+
+            file.close();
         }
-
-        file << "level: " << boy.where << "\n";
-
-        file << "hp: " << boy.hp << "\n";
-
-        file << "x: " << boy.x << "\n";
-        file << "y: " << boy.y << "\n";
-
-        file << "invent_size: " << boy.invent.size() << "\n";
-
-        for (const auto& item : boy.invent) {
-            file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
-        }
-
-        file.close();
+        
         
     }
 

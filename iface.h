@@ -2,13 +2,14 @@
 #include "curses.h"
 #include <vector>
 #include <my_boy.h>
-
 #include <draw.h>
+#include <button_table.h>
+#include <file_tools.h>
+
 #include <chrono>
 #include <fstream>
 #include <iomanip>
 #include <sstream> 
-#include <button_table.h>
 #include <filesystem>
 #include <iostream>
 
