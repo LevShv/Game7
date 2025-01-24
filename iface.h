@@ -50,11 +50,11 @@ private:
     void Bckg_effect();
     void clean_left_corner();
     
-    int random_x();
+ /*   int random_x();
     int random_y();
     
     std::vector<std::string> getPlayerSaveFiles(std::string& directory);
     void delete_save(std::string filename);
-    std::string new_file_name();
+    std::string new_file_name();*/
     
 };
