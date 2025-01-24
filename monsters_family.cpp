@@ -1,6 +1,5 @@
 #include "monsters_family.h"
 #include <random>
-#include <vector>
 #include "monster_type.h"
 #include <curses.h>
 

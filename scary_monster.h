@@ -1,9 +1,7 @@
 #pragma once
 #include <set>
 #include <vector>
-#include <queue>
-#include <unordered_map>
-#include <unordered_set>
+
 #include "monster_type.h"
 
 class scary_monster {

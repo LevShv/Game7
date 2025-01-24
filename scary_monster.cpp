@@ -1,8 +1,9 @@
 #include "scary_monster.h"
 #include <curses.h>
-#include <vector>
-#include <windows.h>
 #include "monster_type.h"
+#include <queue>
+#include <unordered_map>
+#include <unordered_set>
 
 
 scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type* mon)
