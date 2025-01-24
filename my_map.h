@@ -1,9 +1,6 @@
 ﻿#pragma once
 #include <vector>
 #include <string>
-#include <random>
-#include <file_tools.h>
-#include <curses.h>
 
 class my_map
 {
@@ -38,8 +35,6 @@ private:
     void add_trees(int posx, int posy, int count);
     void add_trees(int posx1, int posy1, int posx2, int posy2, int count);
     
-    
-    void get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name);
 
     std::vector<std::vector<char>> home = {
     {'_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_'},

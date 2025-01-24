@@ -1,5 +1,8 @@
 
 #include <my_map.h>
+#include <random>
+#include <file_tools.h>
+#include <curses.h>
 
 my_map::my_map(int width_of_map, int length_of_map, int lv) : width(width_of_map), length(length_of_map),level(lv){
 
