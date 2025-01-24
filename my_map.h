@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include <vector>
 #include <string>
+#include <random>
+#include <file_tools.h>
+#include <curses.h>
 
 class my_map
 {
