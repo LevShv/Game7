@@ -1,7 +1,4 @@
 #include "level_forest.h"
-#include "level.h"
-
-
 
 level_forest::level_forest(my_boy& boy) : Level(boy, 2) {}
 

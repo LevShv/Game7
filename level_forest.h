@@ -1,8 +1,7 @@
 #pragma once
 #include "level.h"
-//#include "monster_type.h"
 #include "monsters_family.h"
-#include "vector"
+
 
 class level_forest : public Level {
 

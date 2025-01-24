@@ -1,7 +1,4 @@
 #pragma once
-#include <curses.h>
-#include <random>
-
 
 class draw
 {

@@ -1,4 +1,6 @@
 #include "level.h"
+#include <fstream>
+
 
 Level::Level(my_boy& boy, int map_type)
 : boy(boy), map(width, length, map_type) 

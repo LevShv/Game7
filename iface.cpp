@@ -1,5 +1,7 @@
 
 #include "iface.h"
+#include "curses.h"
+#include <button_table.h>
 
 iface::iface() {
 

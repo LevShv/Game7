@@ -1,4 +1,6 @@
 #include "draw.h"
+#include <curses.h>
+#include <random>
 
 void draw::cmvprintw(int y, int x, const char* text, int color_pair)
 {
