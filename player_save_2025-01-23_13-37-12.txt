@@ -1,0 +1,5 @@
+level: 0
+hp: 10
+x: 58
+y: 20
+invent_size: 0

@@ -6,20 +6,21 @@
 class button {
 public:
 
-    int n = 0;
+    int number;
     std::string label;
-
-    int start_row = 0;
-    int end_row = 0;
-    int start_col = 0;
-    int end_col = 0;
-
-    int x_of_label = 0;
-
-    button(std::string lebel);
+    button(std::string label);
+    button(int number, std::string label, int start_x_pos, int end_x_pos, int start_y_pos, int height, int color_, int color_press);
+    void draw(int num);
 
 private:
-    
+
+    int start_row;
+    int end_row;
+    int start_col;
+    int end_col;
+
+    int color_;
+    int color_press;
 };
 #include <curses.h>
 class button_table

@@ -59,6 +59,9 @@
     <Filter Include="Исходные файлы\UI\button">
       <UniqueIdentifier>{33c70d49-b533-4e41-b645-c146df9bfc13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\UI\Base">
+      <UniqueIdentifier>{3ec0e9b4-4201-4b04-a469-236ae6e9014e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -112,6 +115,9 @@
     <ClCompile Include="button_table.cpp">
       <Filter>Исходные файлы\UI\button</Filter>
     </ClCompile>
+    <ClCompile Include="draw.cpp">
+      <Filter>Исходные файлы\UI\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -158,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="button_table.h">
       <Filter>Исходные файлы\UI\button</Filter>
+    </ClInclude>
+    <ClInclude Include="draw.h">
+      <Filter>Исходные файлы\UI\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

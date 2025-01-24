@@ -1,9 +1,5 @@
-#include "curses.h"
-#include "iface.h"
-#include "my_boy.h"
-#include <filesystem>
-#include <iostream>
 
+#include "iface.h"
 
 iface::iface() {
 
@@ -283,12 +279,14 @@ std::string iface::save_screen()
     std::string path;
 
     bool selected = false;
-    int button = 0;
+    int num = 0;
 
     std::string directory = ".";
     std::vector<std::string> saveFiles = getPlayerSaveFiles(directory);
 
     int Count_of_saves = saveFiles.size();
+
+    button bt(0,"Новое", 44, 75, 7, 2, COLOR_PAIR(33), COLOR_PAIR(31));
    
     while (!selected) {
 
@@ -308,12 +306,12 @@ std::string iface::save_screen()
         cmvprintw(5, 55, "Загрузить", COLOR_PAIR(23));
 
 
-        Bckg(bsy, bsy + height, bsx, bex, (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
-        cmvprintw(bsy + 1, 57, "Новое", (button == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 1
+        Bckg(bsy, bsy + height, bsx, bex, (num == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+        cmvprintw(bsy + 1, 57, "Новое", (num == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33)); // 1
         bsy += 4;
 
         for (int i = 0; i < Count_of_saves; i++) {
-            cmvprintw(bsy + i, 43, saveFiles[i].c_str(), (button == i+1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+            cmvprintw(bsy + i, 43, saveFiles[i].c_str(), (num == i+1) ? COLOR_PAIR(31) : COLOR_PAIR(33));
             
         }
 
@@ -322,21 +320,21 @@ std::string iface::save_screen()
         switch (getch()) {
 
         case 'w':
-            button = (button - 1 + (Count_of_saves+1)) % (Count_of_saves+1); //!
+            num = (num - 1 + (Count_of_saves+1)) % (Count_of_saves+1); //!
             break;
 
         case 's':
-            button = (button + 1) % (Count_of_saves + 1);
+            num = (num + 1) % (Count_of_saves + 1);
             break;
 
         case 10:
 
             selected = true;
 
-            if (button == 0) 
+            if (num == 0)
                 path = new_file_name();
             else 
-                path = saveFiles[button-1];
+                path = saveFiles[num -1];
 
             saveFiles = getPlayerSaveFiles(directory);
             Count_of_saves = saveFiles.size();
@@ -348,7 +346,7 @@ std::string iface::save_screen()
             
         case 'i':
 
-            delete_save(saveFiles[button - 1]);
+            delete_save(saveFiles[num - 1]);
             saveFiles = getPlayerSaveFiles(directory);
             Count_of_saves = saveFiles.size();
 
@@ -392,29 +390,9 @@ void iface::draw_Count_of_mushrooms(int count_ofm) {
     attroff(COLOR_PAIR(3));
 }    
 
-void iface::Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair) {
-    attron(color_pair);
-
-    for (int row = start_row; row <= end_row; row++) {
-        for (int col = start_col; col <= end_col; col++) {
-            mvprintw(row, col, " ");
-        }
-    }
-
-    attroff(color_pair);
-}
-
 void iface::clean_left_corner()
 {
     Bckg(28, 31, 0, 50, COLOR_PAIR(2));
-}
-
-void iface::cmvprintw(int y, int x, const char* text, int color_pair)
-{
-    attron(color_pair);
-    mvprintw(y, x, text);
-    attroff(color_pair);
-
 }
 
 void iface::Bckg_effect()
@@ -424,34 +402,13 @@ void iface::Bckg_effect()
 
     for (int i = 0; i < count_of_stars; i++) {
 
-        
-        mvaddch(random_y(), random_x(), '*');
+        int x, y;
+        randomi(x, y);
+        mvaddch(x, y, '*');
 
     }
     attroff(COLOR_PAIR(32));
 
-}
-
-int iface::random_x()
-{
-
-    std::random_device rd;  // Используется для получения начального значения (seed)
-    std::mt19937 gen(rd()); // Генератор случайных чисел (Mersenne Twister)
-
-    std::uniform_int_distribution<> disx(1, 120 - 1); // Равномерное распределение от 0 до 
-
-    return disx(gen);
-}
-
-int iface::random_y()
-{
-
-    std::random_device rd;  // Используется для получения начального значения (seed)
-    std::mt19937 gen(rd()); // Генератор случайных чисел (Mersenne Twister)
-
-    std::uniform_int_distribution<> disy(1, 29 - 1);
-
-    return disy(gen);
 }
 
 std::vector<std::string> iface::getPlayerSaveFiles(std::string& directory)

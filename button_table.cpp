@@ -1,7 +1,5 @@
 #include "button_table.h"
 
-
-
 button_table::button_table(int start_x_pos, int end_x_pos, int start_y_pos, int height, int between, int color_, int color_press) :
 
 	start_x_pos(start_x_pos), 
@@ -93,3 +91,22 @@ void button_table::cmvprintw(int y, int x, const char* text, int color_pair)
 }
 
 button::button(std::string label) : label(label) {}
+
+button::button(int number, std::string label, int start_x_pos, int end_x_pos, int start_y_pos, int end_col, int color_, int color_press) :
+
+	number(number),
+	label(label),
+	start_row(start_x_pos),
+	end_row(end_x_pos),
+	start_col(start_y_pos),
+	end_col(end_col),
+	color_(color_),
+	color_press(color_press)
+
+{}
+
+//void button::draw(int num)
+//{
+//	 frame(bsy, bsy + height, bsx, bex, (num == 0) ? color_pair(31) : color_pair(33));
+//        cmvprintw(bsy + 1, 57, "новое", (num == 0) ? color_pair(31) : color_pair(33)); // 1
+//}

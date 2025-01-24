@@ -2,16 +2,19 @@
 #include "curses.h"
 #include <vector>
 #include <my_boy.h>
-#include <random>
+
+#include <draw.h>
 #include <chrono>
 #include <fstream>
 #include <iomanip>
 #include <sstream> 
 #include <button_table.h>
-#include <functional>
+#include <filesystem>
+#include <iostream>
 
 
-class iface {
+
+class iface : public draw{
 public:
 
     iface();
@@ -43,10 +46,8 @@ private:
     void draw_Count_of_mushrooms(int count_ofm);
     void draw_slots(std::vector<invent_thing> &invent);
 
-    void Bckg(int start_row, int end_row, int start_col, int end_col, int color_pair);
     void Bckg_effect();
     void clean_left_corner();
-    void cmvprintw(int y, int x, const char* text, int color_pair);
     
     int random_x();
     int random_y();
