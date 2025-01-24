@@ -43,3 +43,19 @@ std::string file_tools::new_file_name()
 
     return filename_stream.str();
 }
+void file_tools::get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name)
+{
+    std::ifstream inputFile(name);
+    std::string line;
+
+    while (std::getline(inputFile, line)) {
+        std::vector<char> row;
+
+        for (char ch : line) {
+            row.push_back(ch);
+        }
+        mapobj.push_back(row);
+    }
+    inputFile.close();
+}
+
