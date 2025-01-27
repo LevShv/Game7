@@ -5,11 +5,9 @@ level_back_fforest::level_back_fforest(my_boy& boy) : Level(boy, 1) {}
 void level_back_fforest::start()
 {
     boy.x = 119;
-
-    my_map map(width, length, 1);
+    clear();
     map.show_map();
-    boy.move_boy(map.forest);
-    iface intface;
+    boy.move_boy(map.forest);;
     intface.draw(10, 0, boy.invent);
 }
 
@@ -65,7 +63,15 @@ void level_back_fforest::update()
             break;
         }
 
+        if (make_move(map.forest) == 1) { ////////.............
+            game_iter++;
+        }
+        else {
+            sci--;
+        }
+
         score_set();
+        save_check();
         draw();
     }
 }
@@ -89,12 +95,7 @@ void level_back_fforest::score_set()
 
 void level_back_fforest::draw()
 {
-    if (make_move(map.forest) == 1) { ////////.............
-        game_iter++;
-    }
-    else {
-        sci--;
-    }
+    
 
     clear();
 
