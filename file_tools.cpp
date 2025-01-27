@@ -4,15 +4,36 @@
 #include <fstream>
 #include <iomanip>
 
-#include <filesystem>
+namespace fs = std::filesystem;
+
+file_tools::file_tools() {
+
+    def_path = fs::current_path();
+
+}
+
+std::string file_tools::save_directory() {
 
 
-std::vector<std::string> file_tools::getPlayerSaveFiles(std::string& directory)
+    fs::path saveDirectory = def_path / "Saves";
+
+    if (!fs::exists(saveDirectory)) {
+        fs::create_directory(saveDirectory);
+    }
+
+    return saveDirectory.string();
+}
+
+std::string file_tools::maps_directory()
+{
+    return (def_path / "Maps").string();
+}
+
+std::vector<std::string> file_tools::getPlayerSaveFiles()
 {
     std::vector<std::string> saveFiles;
-    namespace fs = std::filesystem;
 
-    for (auto& entry : fs::directory_iterator(directory))
+    for (auto& entry : fs::directory_iterator(save_directory()))
     {
         if (entry.is_regular_file())
         {
@@ -28,7 +49,6 @@ std::vector<std::string> file_tools::getPlayerSaveFiles(std::string& directory)
 
 void file_tools::delete_save(std::string filename)
 {
-    namespace fs = std::filesystem;
 
     if (fs::exists(filename))
         fs::remove(filename);
@@ -46,12 +66,42 @@ std::string file_tools::new_file_name()
     std::ostringstream filename_stream;
 
     filename_stream << "player_save_" << std::put_time(&tm, "%Y-%m-%d_%H-%M-%S") << ".txt";
-
-    return filename_stream.str();
+    fs::path default_path = save_directory();
+    return (default_path / filename_stream.str()).string();
 }
+
+void file_tools::save_boy(my_boy &boy, std::string path) {
+
+    if (path != "0") {
+
+        std::ofstream file(path);
+        if (!file.is_open()) {
+
+            return;
+        }
+
+        file << "level: " << boy.where << "\n";
+
+        file << "hp: " << boy.hp << "\n";
+
+        file << "x: " << boy.x << "\n";
+        file << "y: " << boy.y << "\n";
+
+        file << "invent_size: " << boy.invent.size() << "\n";
+
+        for (const auto& item : boy.invent) {
+            file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
+        }
+
+        file.close();
+    }
+}
+
 void file_tools::get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name)
 {
-    std::ifstream inputFile(name);
+
+    fs::path def = maps_directory();
+    std::ifstream inputFile(def / name);
     std::string line;
 
     while (std::getline(inputFile, line)) {

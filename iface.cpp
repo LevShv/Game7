@@ -284,8 +284,8 @@ std::string iface::save_screen()
     bool selected = false;
     int num = 0;
 
-    std::string directory = ".";
-    std::vector<std::string> saveFiles = ft.getPlayerSaveFiles(directory);
+    std::string directory = ft.save_directory();
+    std::vector<std::string> saveFiles = ft.getPlayerSaveFiles();
 
     int Count_of_saves = saveFiles.size();
 
@@ -339,7 +339,7 @@ std::string iface::save_screen()
             else 
                 path = saveFiles[num -1];
 
-            saveFiles = ft.getPlayerSaveFiles(directory);
+            saveFiles = ft.getPlayerSaveFiles();
             Count_of_saves = saveFiles.size();
             break;
 
@@ -350,7 +350,7 @@ std::string iface::save_screen()
         case 'i':
 
             ft.delete_save(saveFiles[num - 1]);
-            saveFiles = ft.getPlayerSaveFiles(directory);
+            saveFiles = ft.getPlayerSaveFiles();
             Count_of_saves = saveFiles.size();
 
         default:
