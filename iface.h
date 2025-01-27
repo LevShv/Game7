@@ -24,7 +24,7 @@ public:
 
     int pause_menu();
     std::string save_screen();
-    
+    std::string load_screen();
 
 
 private:

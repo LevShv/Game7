@@ -361,6 +361,77 @@ std::string iface::save_screen()
    return path;
 }
 
+std::string iface::load_screen()
+{
+    file_tools ft;
+    std::string path;
+
+    bool selected = false;
+    int num = 0;
+
+    std::string directory = ft.save_directory();
+    std::vector<std::string> saveFiles = ft.getPlayerSaveFiles();
+
+    int Count_of_saves = saveFiles.size();
+
+
+    while (!selected) {
+
+        int bsx = 44; // Начальная координата X
+        int bex = 75; // Конечная координата X
+        int bsy = 7;
+
+        int height = 2; // Высота кнопки
+        int between = 3;
+
+        Bckg(0, 29, 0, 120, COLOR_PAIR(29));
+        Bckg_effect();
+
+        Bckg(4, 21, 41, 79, COLOR_PAIR(30));
+        Bckg(7, 20, 43, 77, COLOR_PAIR(35));
+
+        cmvprintw(5, 55, "Загрузить", COLOR_PAIR(23));
+
+        for (int i = 0; i < Count_of_saves; i++) {
+            cmvprintw(bsy + i, 43, saveFiles[i].c_str(), (num == i) ? COLOR_PAIR(31) : COLOR_PAIR(33));
+
+        }
+
+        refresh();
+
+        switch (getch()) {
+
+        case 'w':
+            num = (num - 1 + Count_of_saves % Count_of_saves); //!
+            break;
+
+        case 's':
+            num = (num + 1) % Count_of_saves;
+            break;
+
+        case 10:
+
+            return saveFiles[num];
+
+
+        case 27:
+
+            return "0";
+
+        case 'i':
+
+            ft.delete_save(saveFiles[num - 1]);
+            saveFiles = ft.getPlayerSaveFiles();
+            Count_of_saves = saveFiles.size();
+
+        default:
+            break;
+        }
+    }
+    clear();
+    return path;
+}
+
 void iface::draw_hp_boy(int hp) {
 
     cmvprintw(29, 46, "Boy", COLOR_PAIR(3));

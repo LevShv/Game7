@@ -97,6 +97,61 @@ void file_tools::save_boy(my_boy &boy, std::string path) {
     }
 }
 
+int file_tools::load_boy(my_boy& boy, std::string path)
+{
+
+
+    if (path == "0") {
+        return -1; // Неверный путь
+    }
+    fs::path dir = save_directory();
+
+    std::ifstream file(dir / path);
+
+    if (!file.is_open()) {
+        return -2; // Файл не удалось открыть
+    }
+    boy.invent.clear();
+    std::string line;
+
+    while (std::getline(file, line)) {
+
+        std::istringstream iss(line);
+        std::string key;
+        iss >> key;
+
+        if (key == "level:") {
+            iss >> boy.where;
+        }
+        else if (key == "hp:") {
+            iss >> boy.hp;
+        }
+        else if (key == "x:") {
+            iss >> boy.x;
+        }
+        else if (key == "y:") {
+            iss >> boy.y;
+        }
+        else if (key == "invent_size:") {
+            int invent_size;
+            iss >> invent_size;
+        /*    boy.invent.resize(invent_size);*/ // Изменяем размер вектора
+        }
+        else {
+            // Чтение данных предмета
+            invent_thing item;
+            iss >> item.name >> item.icon >> item.count >> item.color >> item.usage;
+            boy.invent.push_back(item);
+        }
+    }
+
+    file.close();
+
+    boy.x++;
+
+    return boy.where; // Успешное чтение
+}
+
 void file_tools::get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name)
 {
 

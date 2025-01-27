@@ -59,17 +59,19 @@ void Level::pause()
 
     if (choice == 1) {
 
-         // загрузка
-         // number_of_loading
-         // int res = init.load();
-        /* if(res == 27)
-              pause_menu();
-         else
-         { 
-         download = true;
-         nuber_of_loading = res;
-         exit_ = true;*/
+        file_tools ft;
+        std::string path = intface.load_screen();
 
+        if (path == "0")
+            intface.pause_menu();
+        try {
+            number_of_loading = ft.load_boy(boy, path);
+            download = true;
+            exit_ = true; 
+        }
+        catch (const std::exception& e) {
+
+        }
     }
      
     if (choice == 2)

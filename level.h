@@ -12,17 +12,16 @@ protected:
 
     int width = 120;
     int length = 28;
-    int start_pos_x = 59; //
-    int start_pos_y = 21; //
+    int start_pos_x = 59; 
+    int start_pos_y = 21; 
     int subtimming = 10; // задержка вывода sub
     int game_iter; //  передать
 
-    int nscore = 0; // номер цели
+    int nscore = 0; 
     int sci = 0; // счетчик итераций 
 
 
-
-    my_boy& boy; // передать
+    my_boy& boy;
     my_map map; 
     iface intface; 
     std::vector<monster_type*>* monsters;

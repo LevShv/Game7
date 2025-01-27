@@ -22,6 +22,8 @@ public:
     void delete_save(std::string filename);
     std::string new_file_name();
     void save_boy(my_boy &boy, std::string path);
+    int load_boy(my_boy& boy, std::string path);
+
     void get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name);
 };
 

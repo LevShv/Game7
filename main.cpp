@@ -92,24 +92,27 @@
     
     int button_save = 0;
     int selection = 0;
-    bool download = false;
-    int num_of_download = 0;
+
 
     //init.pause_menu();
     //init.save_screen();
   /*  init.load_screen();*/
+
+    level_manager Manager;
+
     while (true) {
 
-        level_manager Manager;
+        
 
-        int start_level = 0;
-        bool go_back = false;
+        if (Manager.download) {
 
-        if (download) {
-            download = false;
-            // load_ff();
+            Manager.download = false;
+            call_manager(Manager);
         }
         else {
+
+  
+
             switch (init.main_menu(button_save)) {
 
             case 0:
@@ -147,12 +150,6 @@
                 endwin();
                 exit(0);
                 break;
-            }
-
-
-            if (Manager.download) {
-                download = true;
-                num_of_download = Manager.number_of_download;
             }
         }    
     }

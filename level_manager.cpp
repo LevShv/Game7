@@ -22,13 +22,10 @@ void level_manager::start_next_level() {
         levels.back()->start();
         levels.back()->update();
 
-        if (levels.back()->exit_)
-            if (levels.back()->download) {
-                off = true;
-                number_of_download = levels.back()->number_of_loading;
-            }
-        else
-            off = true;
+        if (levels.back()->exit_) {
+            currentLevelIndex = levels.back()->number_of_loading--;
+            download = true;
+        }
 
         currentLevelIndex++;
     }
@@ -61,6 +58,8 @@ void level_manager::preset()
 
 bool level_manager::all_levels_done() {
 
-    if (off) return true;
+    if (download) {
+        return true;
+    }
     return currentLevelIndex >= level_factories.size();
 }

@@ -100,6 +100,7 @@ void level_start::update() {
         else {
             sci--;
         }
+        
         save_check();
         draw();
         score_set();
