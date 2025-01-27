@@ -97,7 +97,7 @@
 
     //init.pause_menu();
     //init.save_screen();
-
+  /*  init.load_screen();*/
     while (true) {
 
         level_manager Manager;
@@ -132,8 +132,9 @@
                     break;
 
                 else {
-                    Manager.currentLevelIndex = selection;
 
+                    Manager.currentLevelIndex = selection;
+                    Manager.preset();
                     call_manager(Manager);
 
                     break;

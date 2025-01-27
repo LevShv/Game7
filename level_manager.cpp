@@ -34,11 +34,10 @@ void level_manager::start_next_level() {
     }
 }
 
-void level_manager::select_level(int level)
+void level_manager::preset()
 {
-    currentLevelIndex = level;
 
-    switch (level)
+    switch (currentLevelIndex)
     {
         case 2:
 

@@ -14,7 +14,7 @@ class level_manager
     ~level_manager() = default;
 
     void start_next_level();
-    void select_level(int level);
+    void preset();
     bool all_levels_done();
     
 
