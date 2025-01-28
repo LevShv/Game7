@@ -98,11 +98,11 @@
     //init.save_screen();
   /*  init.load_screen();*/
 
+    // чиситка 
+
     level_manager Manager;
 
     while (true) {
-
-        
 
         if (Manager.download) {
 
@@ -111,7 +111,7 @@
         }
         else {
 
-  
+            Manager.reset();
 
             switch (init.main_menu(button_save)) {
 

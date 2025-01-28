@@ -70,3 +70,10 @@ bool level_manager::all_levels_done() {
     }
     return currentLevelIndex >= level_factories.size();
 }
+
+void level_manager::reset()
+{
+    boy = my_boy();
+    currentLevelIndex = 0;
+
+}
