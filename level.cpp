@@ -74,8 +74,10 @@ void Level::pause()
         }
     }
      
-    if (choice == 2)
+    if (choice == 2 && !intface.are_you_sure_screen()) {
         exit_ = true;
+    }
+       
     
 }
 

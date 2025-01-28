@@ -111,7 +111,7 @@
     //init.pause_menu();
     //init.save_screen();
    // init.load_screen();
-    if (!init.are_you_sure_screen()) exit(0);
+ /*   if (!init.are_you_sure_screen()) exit(0);*/
 
 
 

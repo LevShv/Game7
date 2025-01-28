@@ -460,7 +460,7 @@ bool iface::are_you_sure_screen()
             break;
 
         case 27:
-            selection = true;
+            return 1;
         }
 
     }
