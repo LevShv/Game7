@@ -1,9 +1,10 @@
 
 #include <string>
 #include <vector>
+#include <draw.h>
 
 #pragma once
-class button {
+class button : draw {
 public:
 
     int number;
@@ -23,7 +24,7 @@ private:
     int color_press;
 };
 #include <curses.h>
-class button_table
+class button_table : draw
 {
 private:
 
@@ -39,8 +40,6 @@ private:
 
     std::vector<button> button_coll;
 
-    void frame(int start_row, int end_row, int start_col, int end_col, int color_pair);
-    void cmvprintw(int y, int x, const char* text, int color_pair);
 
 public:
 

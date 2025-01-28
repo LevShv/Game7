@@ -63,31 +63,11 @@ void button_table::draw_once(int num)
 	for (int i = 0; i < count; i++) {
 
 		int startx_label_text = (end_x_pos + start_x_pos + 1) / 2 - (button_coll[i].label.size() + 1) / 2;
-		frame(bsy, bsy + height, start_x_pos, end_x_pos, (num == i) ? color_press : color_);
+		Bckg(bsy, bsy + height, start_x_pos, end_x_pos, (num == i) ? color_press : color_);
 		cmvprintw(bsy + 1, startx_label_text, button_coll[i].label.c_str(), (num == i) ? color_press : color_);
 		bsy += between + height;
 
 	}
-}
-
-void button_table::frame(int start_row, int end_row, int start_col, int end_col, int color_pair)
-{
-	attron(color_pair);
-
-	for (int row = start_row; row <= end_row; row++) {
-		for (int col = start_col; col <= end_col; col++) {
-			mvprintw(row, col, " ");
-		}
-	}
-
-	attroff(color_pair);
-}
-
-void button_table::cmvprintw(int y, int x, const char* text, int color_pair)
-{
-	attron(color_pair);
-	mvprintw(y, x, text);
-	attroff(color_pair);
 }
 
 button::button(std::string label) : label(label) {}
@@ -107,6 +87,6 @@ button::button(int number, std::string label, int start_x_pos, int end_x_pos, in
 
 //void button::draw(int num)
 //{
-//	 frame(bsy, bsy + height, bsx, bex, (num == 0) ? color_pair(31) : color_pair(33));
+//	 Bckg(bsy, bsy + height, bsx, bex, (num == 0) ? color_pair(31) : color_pair(33));
 //        cmvprintw(bsy + 1, 57, "новое", (num == 0) ? color_pair(31) : color_pair(33)); // 1
 //}
