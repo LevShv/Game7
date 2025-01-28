@@ -169,4 +169,7 @@
       <Filter>Исходные файлы\UI\Base</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

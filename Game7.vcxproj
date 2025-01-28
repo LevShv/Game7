@@ -168,7 +168,23 @@
     <ClInclude Include="my_map.h" />
     <ClInclude Include="scary_monster.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets" Condition="Exists('packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets')" />
+    <Import Project="packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets" Condition="Exists('packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets')" />
+    <Import Project="packages\sfml_system.2.6.0\build\native\sfml_system.targets" Condition="Exists('packages\sfml_system.2.6.0\build\native\sfml_system.targets')" />
+    <Import Project="packages\sfml_audio.2.6.0\build\native\sfml_audio.targets" Condition="Exists('packages\sfml_audio.2.6.0\build\native\sfml_audio.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets'))" />
+    <Error Condition="!Exists('packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets'))" />
+    <Error Condition="!Exists('packages\sfml_system.2.6.0\build\native\sfml_system.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_system.2.6.0\build\native\sfml_system.targets'))" />
+    <Error Condition="!Exists('packages\sfml_audio.2.6.0\build\native\sfml_audio.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_audio.2.6.0\build\native\sfml_audio.targets'))" />
+  </Target>
 </Project>

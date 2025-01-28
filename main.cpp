@@ -2,6 +2,7 @@
 #include <curses.h>
 #include <iface.h>
 #include <level_manager.h>
+#include <SFML/Audio.hpp>
 
  void colors_pairs() {
 
@@ -64,8 +65,11 @@
     init_pair(33, COLOR_WHITE, 301); // цвет кнопки в меню паузы
     init_pair(34, COLOR_WHITE, COLOR_BLACK);
 
-    init_pair(35, 301, 301); // задник закгрузок 
- 
+    init_pair(35, 301, 301); // задник закгрузок / экран вы уверены?
+    init_pair(36, COLOR_WHITE, 301); // цвет текста на экран вы уверены?
+
+    init_pair(37, COLOR_WHITE, 257);
+    init_pair(38, COLOR_WHITE, 8);
 
 }
 
@@ -87,6 +91,16 @@
     start_color();
     colors_pairs();
 
+    sf::Music music;
+    if (!music.openFromFile("Main.wav")) {
+
+        return -1;
+    }
+
+    // Воспроизводим музыку
+    music.setLoop(1);
+    music.setVolume(100);
+  /*  music.play();*/
 
     iface init;
     
@@ -96,9 +110,10 @@
 
     //init.pause_menu();
     //init.save_screen();
-  /*  init.load_screen();*/
+   // init.load_screen();
+    if (!init.are_you_sure_screen()) exit(0);
 
-    // чиситка 
+
 
     level_manager Manager;
 
@@ -114,12 +129,12 @@
             Manager.reset();
 
             switch (init.main_menu(button_save)) {
-
+            
             case 0:
-
+                music.stop();
                 init.start_game();
                 call_manager(Manager);
-
+               
                 break;
 
             case 1:
@@ -151,6 +166,7 @@
                 exit(0);
                 break;
             }
+            
         }    
     }
     endwin();
