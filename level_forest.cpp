@@ -14,6 +14,7 @@ void level_forest::start()
     map.show_map();
     intface.draw(10, 0, boy.invent);
     badboys = new monsters_family(map.forest, 0);
+    nscore = 1;
 }
 
 void level_forest::update()
