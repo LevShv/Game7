@@ -1,3 +1,5 @@
+#include "file_tools.h"
+#include "iface.h"
 #include "level_manager.h"
 #include "level_start.h"
 #include "level_forest.h"
@@ -76,4 +78,21 @@ void level_manager::reset()
     boy = my_boy();
     currentLevelIndex = 0;
 
+}
+
+bool level_manager::load_game()
+{
+    iface intface;
+    file_tools ft;
+    std::string path = intface.load_screen();
+
+    if (path == "0")
+        return 0;
+    try {
+        currentLevelIndex = ft.load_boy(boy, path);
+    }
+    catch (const std::exception& e) {
+        return 0;
+    }
+    return 1;
 }

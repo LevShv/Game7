@@ -113,7 +113,7 @@
    // init.load_screen();
  /*   if (!init.are_you_sure_screen()) exit(0);*/
 
-
+    file_tools ft;
 
     level_manager Manager;
 
@@ -159,8 +159,9 @@
                 }
 
             case 2:
-                //init.load()
+                if(Manager.load_game()) call_manager(Manager);
                 break;
+
             case 3:
                 endwin();
                 exit(0);

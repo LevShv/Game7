@@ -1,11 +1,12 @@
 #pragma once
 
+#include <curses.h>
+#include <vector>
 #include "monsters_family.h"
 #include "my_boy.h"
-#include <vector>
 #include "my_map.h"
 #include "iface.h"
-#include <curses.h>
+
 
 class Level {
 protected:

@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <locale>
 #include <curses.h>
+
 namespace fs = std::filesystem;
 
 file_tools::file_tools() {
