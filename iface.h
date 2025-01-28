@@ -21,8 +21,11 @@ public:
     int main_menu(int button_save);
 
     int pause_menu();
+
     std::string save_screen();
     std::string load_screen();
+
+    bool are_you_sure_screen();
 
 
 private:

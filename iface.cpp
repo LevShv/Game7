@@ -427,6 +427,47 @@ std::string iface::load_screen()
     return path;
 }
 
+bool iface::are_you_sure_screen()
+{
+    bool selection = false;
+    int num = 1;
+
+    Bckg(8, 17, 38, 82, COLOR_PAIR(35));
+    cmvprintw(9, 40,"Вы действительно хотите выйти?", COLOR_PAIR(36));
+    cmvprintw(10, 40, "Весь несохраненный прогресс будет потерян", COLOR_PAIR(36));
+
+    button yes_but(0, "Выйти", 13, 15, 42, 57, COLOR_PAIR(38), COLOR_PAIR(31));
+    button no_but(1, "Остаться", 13, 15, 63, 78, COLOR_PAIR(38), COLOR_PAIR(31));
+
+    while (!selection) {
+
+        yes_but.draw(num);
+        no_but.draw(num);
+
+        switch (getch()) {
+
+        case 'a':
+            num = (num + 1) % 2;
+            break;
+
+        case 'd':
+            num = (num + 1) % 2;
+            break;
+
+        case 10:
+            if (num == 0) return 0;
+            if (num == 1) return 1;
+            break;
+
+        case 27:
+            selection = true;
+        }
+
+    }
+
+    getch();
+}
+
 void iface::draw_hp_boy(int hp) {
 
     cmvprintw(29, 46, "Boy", COLOR_PAIR(3));
