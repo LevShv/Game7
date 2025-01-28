@@ -19,3 +19,7 @@ void level_village::score_set()
 void level_village::draw()
 {
 }
+
+void level_village::moving()
+{
+}

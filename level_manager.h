@@ -24,15 +24,17 @@ class level_manager
 
     int number_of_download;
     bool download;
+    
 
     private:
 
+    bool stop_level = false;
 
     //std::vector<std::unique_ptr<
     std::vector<std::function<std::unique_ptr<Level>()>> level_factories;
     std::vector<std::unique_ptr<Level>> levels;
     
-    bool off = false;
+  
 
 
     

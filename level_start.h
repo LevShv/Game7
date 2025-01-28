@@ -17,6 +17,7 @@ class level_start : public Level {
 
         void score_set() override;
         void draw() override;
+        void moving() override;
 
     public:
 

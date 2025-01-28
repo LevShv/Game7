@@ -12,6 +12,7 @@ private:
 
     void score_set() override;
     void draw() override;
+    void moving() override;
 
     monsters_family* badboys = nullptr;
 

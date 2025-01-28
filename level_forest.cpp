@@ -44,7 +44,7 @@ void level_forest::update()
         if (gotoborder == true && boy.x == 0 && boy.y > 10 && boy.y < 20)
             break;
 
-        score_set();
+        moving();
         draw();
 
     }
@@ -69,18 +69,7 @@ void level_forest::score_set()
 
 void level_forest::draw()
 {
-    
-
-    bool move = make_move(map.forest);
-    if (move) { ////////.............
-        game_iter++;
-        badboys->find(boy.x, boy.y);
-    }
-    else {
-        sci--;
-
-    }
-
+   
     clear();
 
     map.show_map();
@@ -92,4 +81,18 @@ void level_forest::draw()
         badboys->monsters_move(1);
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
+    score_set();
+}
+
+void level_forest::moving()
+{
+    bool move = make_move(map.forest);
+    if (move) { ////////.............
+        game_iter++;
+        badboys->find(boy.x, boy.y);
+    }
+    else {
+        sci--;
+
+    }
 }

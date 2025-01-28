@@ -28,6 +28,7 @@ protected:
 
     virtual void score_set() = 0; // 
     virtual void draw() = 0;
+    virtual void moving() = 0;
     //virtual void 
     int make_move(char** map);
     void pause();

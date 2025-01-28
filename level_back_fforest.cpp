@@ -63,15 +63,9 @@ void level_back_fforest::update()
             break;
         }
 
-        if (make_move(map.forest) == 1) { ////////.............
-            game_iter++;
-        }
-        else {
-            sci--;
-        }
-
-        score_set();
-        save_check();
+       
+       
+        moving();
         draw();
     }
 }
@@ -103,5 +97,19 @@ void level_back_fforest::draw()
     boy.move_boy(map.forest);
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
+   
     game_iter++;
+    score_set();
+}
+
+void level_back_fforest::moving()
+{
+    if (make_move(map.forest) == 1) { ////////.............
+        game_iter++;
+    }
+    else {
+        sci--;
+    }
+    save_check();
+
 }

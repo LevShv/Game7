@@ -40,8 +40,8 @@ void level_way_to_village::update()
         if (boy.x > 65 && boy.x < 80 && boy.y == 0) {
             break;
         }
-
-        score_set();
+        moving();
+       
         draw();
     }
 }
@@ -67,16 +67,7 @@ void level_way_to_village::score_set()
 
 void level_way_to_village::draw()
 {
-    bool move = make_move(map.forest);
-
-    if (move) { ////////.............
-        game_iter++;
-        badboys->find(boy.x, boy.y);
-    }
-    else {
-        sci--;
-
-    }
+    
 
     clear();
 
@@ -90,4 +81,19 @@ void level_way_to_village::draw()
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
     game_iter++;
+    score_set();
+}
+
+void level_way_to_village::moving()
+{
+    bool move = make_move(map.forest);
+
+    if (move) { ////////.............
+        game_iter++;
+        badboys->find(boy.x, boy.y);
+    }
+    else {
+        sci--;
+
+    }
 }

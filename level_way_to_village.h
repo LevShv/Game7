@@ -22,6 +22,7 @@ private:
 
 	void score_set() override;
 	void draw() override;
+	void moving() override;
 
 };
 

@@ -92,18 +92,10 @@ void level_start::update() {
 
         if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) //  17, 119
             break;
-
-        if (make_move(map.forest) == 1) { ////////.............
-            game_iter++;
-        }
-
-        else {
-            sci--;
-        }
         
-        save_check();
+        moving();
         draw();
-        score_set();
+       
     }
 }
 
@@ -142,5 +134,19 @@ void level_start::draw()
     boy.move_boy(map.forest);
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
+    score_set();
+}
+
+void level_start::moving()
+{
+    if (make_move(map.forest) == 1) { ////////.............
+        game_iter++;
+    }
+
+    else {
+        sci--;
+    }
+
+    save_check();
 }
 
