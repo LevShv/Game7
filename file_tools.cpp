@@ -148,6 +148,7 @@ int file_tools::load_boy(my_boy& boy, std::string path)
     file.close();
 
     boy.x++;
+    boy.loaded_boy = true;
 
     return boy.where; // Успешное чтение
 }

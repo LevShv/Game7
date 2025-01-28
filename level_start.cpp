@@ -90,8 +90,12 @@ void level_start::update() {
                 iwasoldman2delay = false;
         }
 
-        if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) //  17, 119
+        if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) {
+            boy.loaded_boy = false;
             break;
+        }
+            //  17, 119
+          
         
         moving();
         draw();

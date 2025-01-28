@@ -24,6 +24,8 @@ public:
     int count_of_m = 0;
     int count_of_rm = 0;
 
+    bool loaded_boy = false;
+
     std::vector<invent_thing> invent;
 
     my_boy(int spx, int spy);

@@ -4,7 +4,9 @@ level_back_fforest::level_back_fforest(my_boy& boy) : Level(boy, 1) {}
 
 void level_back_fforest::start()
 {
-    boy.x = 119;
+    if (!boy.loaded_boy) {
+        boy.x = 119;
+    }
     clear();
     map.show_map();
     boy.move_boy(map.forest);;
@@ -60,6 +62,7 @@ void level_back_fforest::update()
         }
 
         if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {
+            boy.loaded_boy = false;
             break;
         }
 
