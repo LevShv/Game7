@@ -3,11 +3,6 @@
 #include "curses.h"
 #include <button_table.h>
 
-iface::iface() {
-
-    
-}
-
 void iface::draw(int boy_hp, int count_ofm, std::vector<invent_thing> &invent)
 {
     Bckg(28, 31, 0, 120, COLOR_PAIR(2));
@@ -306,7 +301,7 @@ std::string iface::save_screen()
         Bckg(4, 21, 41, 79, COLOR_PAIR(30));
         Bckg(11, 20 , 43, 77, COLOR_PAIR(35));
 
-        cmvprintw(5, 55, "Загрузить", COLOR_PAIR(23));
+        cmvprintw(5, 55, "Сохранить", COLOR_PAIR(23));
 
 
         Bckg(bsy, bsy + height, bsx, bex, (num == 0) ? COLOR_PAIR(31) : COLOR_PAIR(33));
@@ -402,7 +397,7 @@ std::string iface::load_screen()
         switch (getch()) {
 
         case 'w':
-            num = (num - 1 + Count_of_saves % Count_of_saves); //!
+            num = (num - 1 + Count_of_saves) % Count_of_saves; //!
             break;
 
         case 's':

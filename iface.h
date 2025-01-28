@@ -9,8 +9,6 @@
 class iface : public draw{
 public:
 
-    iface();
-
     void draw(int boy_hp, int count_ofm, std::vector<invent_thing>& invent);
     void game_over();
     void game_win();
