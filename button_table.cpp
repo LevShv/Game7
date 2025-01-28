@@ -85,8 +85,9 @@ button::button(int number, std::string label, int start_x_pos, int end_x_pos, in
 
 {}
 
-//void button::draw(int num)
-//{
-//	 Bckg(bsy, bsy + height, bsx, bex, (num == 0) ? color_pair(31) : color_pair(33));
-//        cmvprintw(bsy + 1, 57, "новое", (num == 0) ? color_pair(31) : color_pair(33)); // 1
-//}
+void button::draw(int num)
+{
+     int startx_label_text = (start_col + end_col + 1) / 2 - (label.size() + 1) / 2;
+	 Bckg(start_row, end_row, start_col, end_col, (num == number) ? color_press : color_);
+     cmvprintw((start_row + end_row) /2, startx_label_text, label.c_str(), (num == number) ? color_press : color_); // 1
+}
