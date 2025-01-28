@@ -12,7 +12,7 @@ void level_forest::start()
     clear();
     boy.x = 1;
     map.show_map();
-    intface.draw(10, 0, boy.invent);
+    intface.draw(boy.hp, 0, boy.invent);
     badboys = new monsters_family(map.forest, 0);
     nscore = 1;
 }

@@ -8,7 +8,7 @@ void level_start::start() {
     clear();
     map.show_map();
     boy.move_boy(map.forest);
-    intface.draw(10, 0, boy.invent);
+    intface.draw(boy.hp, 0, boy.invent);
 }
 
 void level_start::update() {
