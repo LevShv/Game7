@@ -3,7 +3,8 @@
 #include <chrono>
 #include <fstream>
 #include <iomanip>
-
+#include <locale>
+#include <curses.h>
 namespace fs = std::filesystem;
 
 file_tools::file_tools() {
@@ -87,10 +88,10 @@ void file_tools::save_boy(my_boy &boy, std::string path) {
         file << "x: " << boy.x << "\n";
         file << "y: " << boy.y << "\n";
 
-        file << "invent_size: " << boy.invent.size() << "\n";
+        //file << "invent_size: " << boy.invent.size() << "\n";
 
         for (const auto& item : boy.invent) {
-            file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
+            file << "!" << " " << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
         }
 
         file.close();
@@ -99,23 +100,25 @@ void file_tools::save_boy(my_boy &boy, std::string path) {
 
 int file_tools::load_boy(my_boy& boy, std::string path)
 {
-
-
+    // Устанавливаем локаль для поддержки русского языка
+    //std::locale::global(std::locale("")); // Локаль по умолчанию системы
+    //std::wcout.imbue(std::locale()); // Для вывода широких символов (если нужно)
+    std::locale::global(std::locale("Russian_Russia.1251"));
     if (path == "0") {
         return -1; // Неверный путь
     }
-    fs::path dir = save_directory();
 
+    fs::path dir = save_directory();
     std::ifstream file(dir / path);
 
     if (!file.is_open()) {
         return -2; // Файл не удалось открыть
     }
-    boy.invent.clear();
+
+    boy.invent.clear(); // Очищаем инвентарь перед загрузкой
     std::string line;
 
     while (std::getline(file, line)) {
-
         std::istringstream iss(line);
         std::string key;
         iss >> key;
@@ -132,25 +135,33 @@ int file_tools::load_boy(my_boy& boy, std::string path)
         else if (key == "y:") {
             iss >> boy.y;
         }
-        else if (key == "invent_size:") {
-            int invent_size;
-            iss >> invent_size;
-        /*    boy.invent.resize(invent_size);*/ // Изменяем размер вектора
-        }
         else {
-            // Чтение данных предмета
+
             invent_thing item;
-            iss >> item.name >> item.icon >> item.count >> item.color >> item.usage;
+
+            std::string name;
+            char icon;
+            int count, color, usage;
+
+            iss >> name >> icon >> count >> color >> usage;
+                
+            item.name = name;
+            item.icon = icon; 
+            item.count = count;
+            item.color = color;
+            item.usage = usage;
             boy.invent.push_back(item);
+
         }
     }
 
-    file.close();
+        file.close();
 
-    boy.x++;
-    boy.loaded_boy = true;
+        boy.x++; 
+        boy.loaded_boy = true; 
 
-    return boy.where; // Успешное чтение
+        return boy.where;
+    
 }
 
 void file_tools::get_data_ff(std::vector<std::vector<char>>& mapobj, std::string name)
