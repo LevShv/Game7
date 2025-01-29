@@ -90,6 +90,8 @@
     noecho();
     start_color();
     colors_pairs();
+    timeout(500);
+    nodelay(stdscr, TRUE);
 
     track *my_track = new track();
     my_track->play(my_track->Main);

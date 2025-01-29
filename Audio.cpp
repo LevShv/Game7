@@ -22,8 +22,22 @@ void track::stop()
     loaded_track->stop();
 }
 
+sound::sound() {
 
+    step = new sf::Music();
+    file_tools* ft = new file_tools();
+    std::string path = ft->music_directory() + '/';
+
+    if (!step->openFromFile(ft->sounds_directory() + '/' + "step.wav")) {
+        return;
+    }
+}
 track::~track()
 {
     delete loaded_track;
+}
+
+void sound::play(sf::Music* thing)
+{
+    thing->play();
 }

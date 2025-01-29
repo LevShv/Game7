@@ -6,6 +6,7 @@
 class track
 {
 public:
+
 	std::string Main = "Main.wav";
 
 	void play(std::string song);
@@ -13,6 +14,20 @@ public:
 	~track();
 
 private:
+	
 	sf::Music* loaded_track;
+
+};
+
+class sound {
+
+public:
+
+	sound();
+	sf::Music* step;
+	void play(sf::Music*);
+	void stop();
+	
+
 };
 
