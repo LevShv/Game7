@@ -62,6 +62,12 @@
     <Filter Include="Исходные файлы\UI\Base">
       <UniqueIdentifier>{3ec0e9b4-4201-4b04-a469-236ae6e9014e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Config">
+      <UniqueIdentifier>{93271c30-db85-42fe-a39f-1d27bb6f7996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\Audio">
+      <UniqueIdentifier>{2143c325-fc23-43ea-881a-605ea692e125}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -118,6 +124,9 @@
     <ClCompile Include="draw.cpp">
       <Filter>Исходные файлы\UI\Base</Filter>
     </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Исходные файлы\engine\Audio</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -168,8 +177,13 @@
     <ClInclude Include="draw.h">
       <Filter>Исходные файлы\UI\Base</Filter>
     </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Исходные файлы\engine\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <Filter>Исходные файлы\Config</Filter>
+    </None>
   </ItemGroup>
 </Project>

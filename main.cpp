@@ -2,7 +2,7 @@
 #include <curses.h>
 #include <iface.h>
 #include <level_manager.h>
-#include <SFML/Audio.hpp>
+#include <Audio.h>
 
  void colors_pairs() {
 
@@ -91,16 +91,8 @@
     start_color();
     colors_pairs();
 
-    sf::Music music;
-    if (!music.openFromFile("Main.wav")) {
-
-        return -1;
-    }
-
-    // Воспроизводим музыку
-    music.setLoop(1);
-    music.setVolume(100);
-  /*  music.play();*/
+    track *my_track = new track();
+    my_track->play(my_track->Main);
 
     iface init;
     
@@ -131,8 +123,9 @@
             switch (init.main_menu(button_save)) {
             
             case 0:
-                music.stop();
+               
                 init.start_game();
+                my_track->stop();
                 call_manager(Manager);
                
                 break;
@@ -153,13 +146,17 @@
 
                     Manager.currentLevelIndex = selection;
                     Manager.preset();
+                    my_track->stop();
                     call_manager(Manager);
 
                     break;
                 }
 
             case 2:
-                if(Manager.load_game()) call_manager(Manager);
+                if (Manager.load_game()) {
+                    my_track->stop();
+                    call_manager(Manager);
+                }
                 break;
 
             case 3:

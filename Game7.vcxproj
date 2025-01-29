@@ -149,6 +149,7 @@
     <ClCompile Include="my_map.cpp" />
     <ClCompile Include="old_main.cpp" />
     <ClCompile Include="scary_monster.cpp" />
+    <ClCompile Include="Audio.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="button_table.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="my_boy.h" />
     <ClInclude Include="my_map.h" />
     <ClInclude Include="scary_monster.h" />
+    <ClInclude Include="Audio.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
