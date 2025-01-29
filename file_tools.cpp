@@ -6,6 +6,7 @@
 #include <locale>
 #include <curses.h>
 
+
 namespace fs = std::filesystem;
 
 file_tools::file_tools() {
@@ -34,6 +35,10 @@ std::string file_tools::maps_directory()
 std::string file_tools::music_directory()
 {
     return (def_path / "Music").string();
+}
+std::string file_tools::sounds_directory()
+{
+    return (def_path / "Sounds").string();
 }
 
 std::vector<std::string> file_tools::getPlayerSaveFiles()

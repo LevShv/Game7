@@ -154,6 +154,8 @@ void iface::draw_slots(std::vector<invent_thing>& invent)
 
 int iface::start_game()
 {
+    
+    timeout(-1);
     clear();
     Bckg(0, 29, 0, 120, COLOR_PAIR(29));
     attron(COLOR_PAIR(4));
@@ -177,7 +179,7 @@ int iface::start_game()
 
     if (getch() == 27)
         return 0;
-
+    nodelay(stdscr, TRUE);
     clear();
     return 1;
 }

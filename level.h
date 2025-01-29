@@ -6,6 +6,7 @@
 #include "my_boy.h"
 #include "my_map.h"
 #include "iface.h"
+#include "Audio.h"
 
 
 class Level {
@@ -21,7 +22,7 @@ protected:
     int nscore = 0; 
     int sci = 0; // счетчик итераций 
 
-
+    sound sounds/* = new sound()*/;
     my_boy& boy;
     my_map map; 
     iface intface; 
