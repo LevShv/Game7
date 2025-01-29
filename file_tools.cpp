@@ -31,6 +31,11 @@ std::string file_tools::maps_directory()
     return (def_path / "Maps").string();
 }
 
+std::string file_tools::music_directory()
+{
+    return (def_path / "Music").string();
+}
+
 std::vector<std::string> file_tools::getPlayerSaveFiles()
 {
     std::vector<std::string> saveFiles;

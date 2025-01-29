@@ -17,6 +17,7 @@ public:
 
     std::string save_directory();
     std::string maps_directory();
+    std::string music_directory();
 
     std::vector<std::string> getPlayerSaveFiles();
     void delete_save(std::string filename);
