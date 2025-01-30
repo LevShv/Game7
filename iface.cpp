@@ -240,6 +240,9 @@ int iface::level_selection()
         case 51:
             return 3;
 
+        case 52:
+            return 4;
+
         case 27:
             return 27;
         }

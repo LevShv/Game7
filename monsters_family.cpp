@@ -83,14 +83,14 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
         int hp = 0;
 
         if (elapsed > 100 && stop == false) {
-            std::cout << "иду" << std::endl;
+          
             wait = false;
             last_time = now;
         }
             
         else {
             wait = true;
-            std::cout << "стою" << std::endl;
+          
         }
         // Проверяем дубликаты только если монстры двигаются
         if (!wait && Monsters.size() > 1) {

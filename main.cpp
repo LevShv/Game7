@@ -18,7 +18,7 @@
     init_pair(2, COLOR_BLACK, 8); // цвет "Boy"
     init_pair(3, COLOR_BLACK, 8); // цвет "Грибы"
 
-    init_pair(4, 7, 257); // темно-зеленый цвет фона
+    init_pair(4, COLOR_WHITE, 257); // темно-зеленый цвет фона
     init_pair(5, COLOR_RED, 257); // пара для фона
 
     init_pair(6, COLOR_BLACK, COLOR_BLACK); // черный для опустевшего здоровья
