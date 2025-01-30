@@ -2,6 +2,7 @@
 #include <random>
 #include "monster_type.h"
 #include <curses.h>
+#include <chrono>
 
 
 
@@ -71,27 +72,40 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
 
     int monsters_family::monsters_move(bool stop) {
 
+        bool makemove = false;
+
+        static char last_input = 0;
+        static auto last_time = std::chrono::steady_clock::now();
+
+        auto now = std::chrono::steady_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count();
+
         int hp = 0;
-        if (Monsters->size() > 2) {
-            for (int i = 0; i < Monsters->size() - 1; i++)
-            {
-                for (int j = i + 1; j < Monsters->size(); j++)
+
+        if (elapsed < 300 && stop == false) makemove == true;
+        else makemove = false;
+
+            if (Monsters->size() > 2) {
+                for (int i = 0; i < Monsters->size() - 1; i++)
                 {
-                    if ((*Monsters)[i].x == (*Monsters)[j].x && (*Monsters)[i].y == (*Monsters)[j].y) {
-                        (*Monsters)[i].x++;
+                    for (int j = i + 1; j < Monsters->size(); j++)
+                    {
+                        if ((*Monsters)[i].x == (*Monsters)[j].x && (*Monsters)[i].y == (*Monsters)[j].y) {
+                            (*Monsters)[i].x++;
+                        }
                     }
                 }
             }
-        }
+
+
+            for (scary_monster& M : *Monsters)
+            {
+                if (M.move_monster(makemove) == 1)
+                    hp += M.power;
+
+            }
+            return hp;
         
-
-        for (scary_monster& M : *Monsters)
-        {
-            if (M.move_monster(stop) == 1)
-                hp += M.power;
-
-        }
-        return hp;
     }
   
     void monsters_family::create_two_boys(int type) {

@@ -67,13 +67,12 @@ void level_way_to_village::score_set()
 
 void level_way_to_village::draw()
 {
-    
-
+   
     clear();
 
     map.show_map();
     boy.move_boy(map.forest);
-
+    
     if (move)
         boy.hp -= badboys->monsters_move(0);
     else
