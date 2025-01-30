@@ -1,6 +1,11 @@
 #include "level_forest.h"
 
-level_forest::level_forest(my_boy& boy) : Level(boy, 2) {}
+level_forest::level_forest(my_boy& boy) : Level(boy, 2) {
+
+    start_pos_x = 0;
+    start_pos_y = 10;
+
+}
 
 level_forest::~level_forest()
 {
@@ -9,8 +14,12 @@ level_forest::~level_forest()
 
 void level_forest::start()
 {
+    Level::start();
+   
+    boy.x = 0;
+
     clear();
-    boy.x = 1;
+    
     map.show_map();
     intface.draw(boy.hp, 0, boy.invent);
     badboys = new monsters_family(map.forest, 0);
@@ -20,12 +29,6 @@ void level_forest::start()
 void level_forest::update()
 {
     while (!exit_) {
-
-        if (boy.hp == 0) {
-            intface.game_over();
-            getch();
-            break;
-        }
 
         if (boy.count_of_m == 20 && igotall == true) {
             intface.subs("Все грибы собраны, возращаемся к старцу",
@@ -40,6 +43,12 @@ void level_forest::update()
 
         if (game_iter % 100 == 0) {
             badboys->give_some_boys_rand(0);
+        }
+
+        if (boy.hp <= 0) {
+            dead();
+            continue;
+            clear();
         }
 
         if (gotoborder == true && boy.x == 0 && boy.y > 10 && boy.y < 20)
@@ -77,9 +86,9 @@ void level_forest::draw()
     boy.move_boy(map.forest);
 
     if (move)
-        boy.hp -= badboys->monsters_move(0);
+        boy.hp -= badboys->monsters_move(false);
     else
-        badboys->monsters_move(1);
+        badboys->monsters_move(true);
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
     score_set();
@@ -87,7 +96,7 @@ void level_forest::draw()
 
 void level_forest::moving()
 {
-    bool move = make_move(map.forest);
+    move = make_move(map.forest);
     if (move) { ////////.............
         game_iter++;
         badboys->find(boy.x, boy.y);

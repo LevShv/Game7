@@ -29,6 +29,7 @@ class level_manager
 
     private:
 
+
     bool stop_level = false;
     std::vector<std::function<std::unique_ptr<Level>()>> level_factories;
     std::vector<std::unique_ptr<Level>> levels;

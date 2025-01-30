@@ -1,6 +1,10 @@
 #include "level_way_to_village.h"
 
-level_way_to_village::level_way_to_village(my_boy& boy) : Level(boy,3) {}
+level_way_to_village::level_way_to_village(my_boy& boy) : Level(boy,3) 
+{
+    start_pos_x = 65;
+    start_pos_y = 27;
+}
 
 level_way_to_village::~level_way_to_village()
 {
@@ -9,8 +13,9 @@ level_way_to_village::~level_way_to_village()
 
 void level_way_to_village::start()
 {
-    boy.y = 27;
+    Level::start();
 
+    boy.y = 27;
 
     map.show_map();
     boy.move_boy(map.forest);
@@ -35,6 +40,12 @@ void level_way_to_village::update()
 
         if (gotovil == true) {
             nscore = 1;
+        }
+
+        if (boy.hp <= 0) {
+            dead();  
+            clear();
+            continue;
         }
 
         if (boy.x > 65 && boy.x < 80 && boy.y == 0) {

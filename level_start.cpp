@@ -5,6 +5,7 @@ level_start::level_start(my_boy& boy) : Level(boy, 1) {}
 
 void level_start::start() {
 
+    Level::start();
     clear();
     map.show_map();
     boy.move_boy(map.forest);
@@ -89,6 +90,8 @@ void level_start::update() {
             if (sci >= subtimming * nscore)
                 iwasoldman2delay = false;
         }
+
+        if (boy.hp <= 0) dead();
 
         if (boy.x == 119 && boy.y > 10 && boy.y < 20 && gotoforest == true) {
             boy.loaded_boy = false;

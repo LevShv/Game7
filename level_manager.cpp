@@ -21,14 +21,21 @@ void level_manager::start_next_level() {
         boy.where = currentLevelIndex;
 
         levels.push_back(level_factories[currentLevelIndex]());
+
         levels.back()->start();
         levels.back()->update();
 
         if (levels.back()->exit_) {
+
             if (levels.back()->download == true) {
 
                 currentLevelIndex = levels.back()->number_of_loading;
                 download = true;
+            }
+            if (levels.back()->alived == true) {
+                start_next_level();
+                
+                //levels.back()->Level_setup();
             }
             stop_level = true;
         }

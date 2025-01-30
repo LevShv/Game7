@@ -1,12 +1,21 @@
 #include "level_back_fforest.h"
 
-level_back_fforest::level_back_fforest(my_boy& boy) : Level(boy, 1) {}
+level_back_fforest::level_back_fforest(my_boy& boy) : Level(boy, 1) 
+{
+
+    start_pos_x = 119;
+    start_pos_y = 10;
+    
+}
 
 void level_back_fforest::start()
 {
+    Level::start();
+
     if (!boy.loaded_boy) {
         boy.x = 119;
     }
+
     clear();
     map.show_map();
     boy.move_boy(map.forest);;
@@ -59,6 +68,12 @@ void level_back_fforest::update()
             if (sci >= subtimming * nscore)
                 ireadom1 = false;
 
+        }
+
+        if (boy.hp <= 0) {
+            dead();
+            clear();
+            continue;
         }
 
         if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {

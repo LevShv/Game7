@@ -71,6 +71,8 @@
     init_pair(37, COLOR_WHITE, 257);
     init_pair(38, COLOR_WHITE, 8);
 
+    init_pair(39, COLOR_RED, 301); // текст смерть
+
 }
 
  void call_manager(level_manager& Manager) {
@@ -101,7 +103,7 @@
     int button_save = 0;
     int selection = 0;
 
-
+  /*  init.game_over();*/
     //init.pause_menu();
     //init.save_screen();
    // init.load_screen();

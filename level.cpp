@@ -2,6 +2,7 @@
 #include <file_tools.h>
 #include <chrono>
 
+my_boy* Level::auto_saved = nullptr;
 
 Level::Level(my_boy& boy, int map_type)
 : boy(boy), map(width, length, map_type) 
@@ -15,10 +16,29 @@ Level::Level(my_boy& boy, int map_type)
     
 }
 
+void Level::Level_setup()
+{
+    boy.x = start_pos_x;
+    boy.y = start_pos_y;
+}
+
 Level::~Level()
 {
     delete Background;
     delete River;
+}
+
+void Level::start()
+{
+
+    if (boy.need_to_setup) {
+
+        boy.x = start_pos_x;
+        boy.y = start_pos_y;
+        boy.need_to_setup = false;
+    }
+
+    auto_saved = new my_boy(boy);
 }
 
 int Level::make_move(char** map) {
@@ -90,7 +110,6 @@ int Level::make_move(char** map) {
     return 1;
 }
 
-
 void Level::pause()
 {
     int choice = intface.pause_menu();
@@ -128,6 +147,19 @@ void Level::save_check()
         ft.save_boy(boy, intface.save_screen());
            
     }
+}
+
+void Level::dead()
+{
+    if (intface.game_over() == 0) {
+
+        boy = *auto_saved;
+        alived = true;
+        boy.need_to_setup = true;
+    }
+   
+    exit_ = true;
+   
 }
 
 

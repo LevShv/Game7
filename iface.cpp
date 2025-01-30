@@ -44,11 +44,7 @@ int iface::game_over() {
             if (num == 0) return 0;
             if (num == 1) return 1;
             break;
-
-        case 27:
-            return 1;
         }
-
     }
 
     getch();

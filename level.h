@@ -23,9 +23,11 @@ protected:
     int sci = 0; // счетчик итераций 
 
     bool move;
+  
 
     sound sounds/* = new sound()*/;
     my_boy& boy;
+    static my_boy* auto_saved;
     my_map map; 
     iface intface; 
     std::vector<monster_type*>* monsters;
@@ -40,19 +42,23 @@ protected:
     int make_move(char** map);
     void pause();
     void save_check();
+    void dead();
 
 
 
 public:
 
+    
     Level(my_boy& boy, int map_type);
+    void Level_setup();
     virtual ~Level();
 
-    virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
+    virtual void start(); // Чисто виртуальная функция для запуска уровня
     virtual void update() = 0; // Чисто виртуальная функция для обновления уровня
 
     bool exit_ = false;
     bool download = false;
+    bool alived = false;
     int number_of_loading;
 
 };

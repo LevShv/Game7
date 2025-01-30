@@ -25,6 +25,7 @@ public:
     int count_of_rm = 0;
 
     bool loaded_boy = false;
+    bool need_to_setup = false;
 
     std::vector<invent_thing> invent;
 
