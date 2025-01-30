@@ -2,7 +2,7 @@
 #include <file_tools.h>
 #include <chrono>
 
-my_boy* Level::auto_saved = nullptr;
+std::shared_ptr<my_boy> Level::auto_saved = nullptr;
 
 Level::Level(my_boy& boy, int map_type)
 : boy(boy), map(width, length, map_type) 
@@ -25,7 +25,7 @@ void Level::Level_setup()
 Level::~Level()
 {
     delete Background;
-    delete River;
+    delete River; 
 }
 
 void Level::start()
@@ -38,7 +38,12 @@ void Level::start()
         boy.need_to_setup = false;
     }
 
-    auto_saved = new my_boy(boy);
+    if (!auto_saved) {
+        auto_saved = std::make_shared<my_boy>(boy); // Создаём новый shared_ptr, копируя boy
+    }
+    else {
+        *auto_saved = boy; // Копируем данные из boy в auto_saved
+    }
 }
 
 int Level::make_move(char** map) {

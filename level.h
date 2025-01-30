@@ -27,7 +27,7 @@ protected:
 
     sound sounds/* = new sound()*/;
     my_boy& boy;
-    static my_boy* auto_saved;
+    static std::shared_ptr<my_boy> auto_saved;
     my_map map; 
     iface intface; 
     std::vector<monster_type*>* monsters;
