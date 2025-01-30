@@ -11,11 +11,12 @@ public:
 
 	void play(std::string song);
 	void stop();
+	sf::Music* loaded_track;
 	~track();
 
 private:
 	
-	sf::Music* loaded_track;
+	
 
 };
 

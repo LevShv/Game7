@@ -6,10 +6,23 @@
 Level::Level(my_boy& boy, int map_type)
 : boy(boy), map(width, length, map_type) 
 {
+    Background = new track();
+    Background->play("Background.mp3");
+    River = new track();
+    River->play("River.wav");
+    River->loaded_track->setVolume(30);
+    sounds.step->setVolume(30);
+    
+}
 
+Level::~Level()
+{
+    delete Background;
+    delete River;
 }
 
 int Level::make_move(char** map) {
+
     static char last_input = 0;
     static auto last_time = std::chrono::steady_clock::now();
 

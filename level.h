@@ -28,6 +28,9 @@ protected:
     iface intface; 
     std::vector<monster_type*>* monsters;
 
+    track* Background;
+    track* River;
+
     virtual void score_set() = 0; // 
     virtual void draw() = 0;
     virtual void moving() = 0;
@@ -40,7 +43,7 @@ protected:
 public:
 
     Level(my_boy& boy, int map_type);
-    virtual ~Level() = default;
+    virtual ~Level();
 
     virtual void start() = 0; // Чисто виртуальная функция для запуска уровня
     virtual void update() = 0; // Чисто виртуальная функция для обновления уровня
