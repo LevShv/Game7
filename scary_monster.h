@@ -22,6 +22,7 @@ public:
     
 private:
 
+    int delay_observer = 0;
     bool started = false;
     bool alive = true;
 
@@ -50,7 +51,7 @@ private:
     const std::vector<Point>& directions;
     int delay;
 
-    int radius ;
+    int radius;
     int hp;
         
 

@@ -88,7 +88,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
     int scary_monster::move_monster(bool stop)
     {
         
-        if (way.size() != 0 && iterofwaypoint < way.size() - 1 && alive && iseeya  &&  stop == false) {
+        if (way.size() != 0 && iterofwaypoint < way.size() - 1 && alive && iseeya && (delay_observer % delay == 0) &&  stop == false) {
             
             x = way[iterofwaypoint].x;
             y = way[iterofwaypoint].y;
@@ -99,13 +99,13 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
             print_me();
 
             iterofwaypoint++;
-        /*    delay = 1;*/
+            delay_observer = 1;
             return 0;
         }
         else {
             print_me();
 
-          /*  delay++;*/
+            delay_observer++;
         }
 
         if (iterofwaypoint == way.size() - 1 && alive/*&& check_boy()*/)
