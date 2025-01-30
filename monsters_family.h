@@ -30,7 +30,7 @@ private:
     char** map;
     
 
-    std::vector<scary_monster>* Monsters = new std::vector<scary_monster>();
+    std::vector<scary_monster> Monsters;
     std::vector<monster_type*> variations;
 
     void create_two_boys(int type);

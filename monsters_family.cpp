@@ -24,7 +24,7 @@ monsters_family::~monsters_family() {
     for (monster_type* type : variations) {
         delete type;
 }
-    delete Monsters;
+   /* delete Monsters;*/
 }
 
 void monsters_family::give_some_boys_rand(int type) {
@@ -39,7 +39,7 @@ void monsters_family::give_some_boys_rand(int type) {
 
     scary_monster W(ry, rx, map, variations[type]);
 
-    Monsters->push_back(W);
+    Monsters.push_back(W);
 }
 
 
@@ -58,13 +58,13 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
 
     scary_monster W(ry, rx, map, variations[type]);
 
-    Monsters->push_back(W);
+    Monsters.push_back(W);
 }
 
 
 
     void monsters_family::find(int x, int y) {
-        for (scary_monster& M : *Monsters)
+        for (scary_monster& M : Monsters)
         {
             M.give_waythim(x, y);
         }
@@ -85,20 +85,20 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
         if (elapsed < 300 && stop == false) makemove == true;
         else makemove = false;
 
-            if (Monsters->size() > 2) {
-                for (int i = 0; i < Monsters->size() - 1; i++)
+            if (Monsters.size() > 2) {
+                for (int i = 0; i < Monsters.size() - 1; i++)
                 {
-                    for (int j = i + 1; j < Monsters->size(); j++)
+                    for (int j = i + 1; j < Monsters.size(); j++)
                     {
-                        if ((*Monsters)[i].x == (*Monsters)[j].x && (*Monsters)[i].y == (*Monsters)[j].y) {
-                            (*Monsters)[i].x++;
+                        if ((Monsters)[i].x == (Monsters)[j].x && (Monsters)[i].y == (Monsters)[j].y) {
+                            (Monsters)[i].x++;
                         }
                     }
                 }
             }
 
 
-            for (scary_monster& M : *Monsters)
+            for (scary_monster& M : Monsters)
             {
                 if (M.move_monster(makemove) == 1)
                     hp += M.power;
@@ -113,8 +113,8 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
         scary_monster W(7, 67, map, variations[type]);
         scary_monster I(18, 51, map, variations[type]);
 
-        Monsters->push_back(W);
-        Monsters->push_back(I);
+        Monsters.push_back(W);
+        Monsters.push_back(I);
     }
 
     void monsters_family::monsters_data()
