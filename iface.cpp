@@ -10,12 +10,48 @@ void iface::draw(int boy_hp, int count_ofm, std::vector<invent_thing> &invent)
     draw_slots(invent);
 }
 
-void iface::game_over() {
+int iface::game_over() {
         
-    Bckg(10,15,40,80,COLOR_PAIR(21));
+    timeout(-1);
+    
+    bool selection = false;
+    int num = 0;
 
-    mvprintw(13, 55, "СмЭрть");
+    Bckg(8, 18, 38, 82, COLOR_PAIR(30));
+    Bckg(9, 11, 40, 80, COLOR_PAIR(35));
+    cmvprintw(10, 57, "СМЕРТЬ", COLOR_PAIR(39));
+  
 
+    button yes_but(0, "Возродиться", 14, 16, 42, 57, COLOR_PAIR(33), COLOR_PAIR(31));
+    button no_but(1, "Выйти", 14, 16, 63, 78, COLOR_PAIR(33), COLOR_PAIR(31));
+
+    while (!selection) {
+
+        yes_but.draw(num);
+        no_but.draw(num);
+
+        switch (getch()) {
+
+        case 'a':
+            num = (num + 1) % 2;
+            break;
+
+        case 'd':
+            num = (num + 1) % 2;
+            break;
+
+        case 10:
+            if (num == 0) return 0;
+            if (num == 1) return 1;
+            break;
+
+        case 27:
+            return 1;
+        }
+
+    }
+
+    getch();
 }
 
 void iface::game_win() {
