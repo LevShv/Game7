@@ -74,9 +74,9 @@ void level_way_to_village::draw()
     boy.move_boy(map.forest);
     
     if (move)
-        boy.hp -= badboys->monsters_move(0);
+        boy.hp -= badboys->monsters_move(false);
     else
-        badboys->monsters_move(1);
+        badboys->monsters_move(true);
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
     game_iter++;
@@ -85,7 +85,7 @@ void level_way_to_village::draw()
 
 void level_way_to_village::moving()
 {
-    bool move = make_move(map.forest);
+    move = make_move(map.forest);
 
     if (move) { ////////.............
         game_iter++;

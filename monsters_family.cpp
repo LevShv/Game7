@@ -3,6 +3,7 @@
 #include "monster_type.h"
 #include <curses.h>
 #include <chrono>
+#include <iostream>
 
 
 
@@ -72,9 +73,8 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
 
     int monsters_family::monsters_move(bool stop) {
 
-        bool makemove = false;
+        bool wait = false;
 
-        static char last_input = 0;
         static auto last_time = std::chrono::steady_clock::now();
 
         auto now = std::chrono::steady_clock::now();
@@ -82,30 +82,34 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
 
         int hp = 0;
 
-        if (elapsed < 300 && stop == false) makemove == true;
-        else makemove = false;
-
-            if (Monsters.size() > 2) {
-                for (int i = 0; i < Monsters.size() - 1; i++)
-                {
-                    for (int j = i + 1; j < Monsters.size(); j++)
-                    {
-                        if ((Monsters)[i].x == (Monsters)[j].x && (Monsters)[i].y == (Monsters)[j].y) {
-                            (Monsters)[i].x++;
-                        }
+        if (elapsed > 200 && stop == false) {
+            std::cout << "иду" << std::endl;
+            wait = false;
+            last_time = now;
+        }
+            
+        else {
+            wait = true;
+            std::cout << "стою" << std::endl;
+        }
+        // Проверяем дубликаты только если монстры двигаются
+        if (!wait && Monsters.size() > 1) {
+            for (int i = 0; i < Monsters.size() - 1; i++) {
+                for (int j = i + 1; j < Monsters.size(); j++) {
+                    if (Monsters[i].x == Monsters[j].x && Monsters[i].y == Monsters[j].y) {
+                        Monsters[i].x++; // Сдвигаем монстра вправо
                     }
                 }
             }
+        }
 
+        // Движение монстров
+        for (scary_monster& M : Monsters) {
+            if (M.move_monster(wait) == 1)
+                hp += M.power;
+        }
 
-            for (scary_monster& M : Monsters)
-            {
-                if (M.move_monster(makemove) == 1)
-                    hp += M.power;
-
-            }
-            return hp;
-        
+        return hp;
     }
   
     void monsters_family::create_two_boys(int type) {

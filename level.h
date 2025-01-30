@@ -22,6 +22,8 @@ protected:
     int nscore = 0; 
     int sci = 0; // счетчик итераций 
 
+    bool move;
+
     sound sounds/* = new sound()*/;
     my_boy& boy;
     my_map map; 
@@ -38,6 +40,7 @@ protected:
     int make_move(char** map);
     void pause();
     void save_check();
+
 
 
 public:
