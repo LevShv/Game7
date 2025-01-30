@@ -82,7 +82,7 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
 
         int hp = 0;
 
-        if (elapsed > 200 && stop == false) {
+        if (elapsed > 100 && stop == false) {
             std::cout << "иду" << std::endl;
             wait = false;
             last_time = now;
@@ -144,7 +144,7 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
               {-1,-1}, {-1,1}, {1, -1}, {1, 1}, },
               1,
               3,
-              30,
+              15,
               5);
 
         variations.push_back(W);
