@@ -36,7 +36,9 @@ public:
     void move_boy(char** map);
     void boy_reset(int start_pos_x, int start_boy_y);
     void add_to_invent(std::string name, char icon, int count, int color, bool usage);
-    void remove_thing(std::string name);
+    void add_to_invent(invent_thing thing);
+    bool set_thing_count(std::string name, int count);
+    int get_thing_count(std::string name);
     void do_something(int num, char** map);
 
     void save();

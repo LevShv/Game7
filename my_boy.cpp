@@ -58,7 +58,7 @@ void my_boy::move_boy(char** map) {
         if((map[y][x] == (char)133))
         {
             count_of_rm++;
-            add_to_invent("Краснолгазик", 133 , 1, COLOR_PAIR(22), 0);
+            add_to_invent("Красноглазик", 133 , 1, COLOR_PAIR(22), 0);
         }
 
         PRINT_BOY(COLOR_PAIR(7));
@@ -117,18 +117,51 @@ void my_boy::add_to_invent(std::string name, char icon, int count, int color, bo
     }
 }
 
-void my_boy::remove_thing(std::string name) {
-
+void my_boy::add_to_invent(invent_thing thing)
+{
+    bool founded = false;
     for (int i = 0; i < invent.size(); i++)
     {
-        if (invent[i].name == name) {
-            std::swap(invent[i], invent[invent.size() - 1]);
-            invent.pop_back();
+        if (invent[i].name == thing.name) {
+            invent[i].count += thing.count;
+            founded = true;
             break;
-
         }
 
     }
+
+    if (founded == false) {
+        invent.push_back(thing);
+    }
+}
+
+
+bool my_boy::set_thing_count(std::string name, int count)
+{
+    for (int i = 0; i < invent.size(); i++)
+    {
+        if (invent[i].name == name) {
+            invent[i].count = count;
+            if (invent[i].count == 0) {
+                std::swap(invent[i], invent[invent.size() - 1]);
+                invent.pop_back();
+               
+            }
+            return true;
+        }
+    }
+    return false;
+}
+
+int my_boy::get_thing_count(std::string name)
+{
+    for (int i = 0; i < invent.size(); i++)
+    {
+        if (invent[i].name == name) {
+            return invent[i].count;
+        }
+    }
+    return 0;
 }
 
 void my_boy::do_something(int num, char** map)
