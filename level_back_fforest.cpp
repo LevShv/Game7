@@ -58,14 +58,10 @@ void level_back_fforest::update()
             getch();
 
             invent_thing catcher({ "Ловушка", 'o', 1, COLOR_PAIR(10), 1 });
+            invent_thing healer({ "Исцеление",'&', 1, COLOR_PAIR(47), 1 });
 
             buy("Красноглазик", catcher, 5);
-
-           /* int count_of_catcher = boy.get_thing_count("Красноглазик") / 5;
-            int count_of_redeye = boy.get_thing_count("Красноглазик") % 5;
-
-            boy.set_thing_count("Красноглазик", count_of_redeye);
-            boy.add_to_invent("Ловушка", 'o', count_of_catcher, COLOR_PAIR(10), 1);*/
+            buy("Желтогрив", healer, 10);
 
             iwasoldman1 = false;
             gotooldman = false;
