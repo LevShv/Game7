@@ -53,6 +53,7 @@ private:
 
     int radius;
     int hp;
+    bool can_go_throw;
         
 
 };

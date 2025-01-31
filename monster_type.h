@@ -28,7 +28,8 @@ public:
         int delay, 
         int power, 
         int radius, 
-        int hp)
+        int hp,
+        bool can_go_throw)
         : 
         name(name), 
         icon(icon), 
@@ -38,7 +39,8 @@ public:
         delay(delay), 
         power(power), 
         radius(radius), 
-        hp(hp) 
+        hp(hp), 
+        can_go_throw(can_go_throw)
     {}
 
     std::string name;
@@ -50,6 +52,7 @@ public:
     int power;
     int radius;
     int hp;
+    bool can_go_throw;
 
     
 
