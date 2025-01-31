@@ -171,6 +171,9 @@ void my_boy::do_something(int num, char** map)
     case 'o':
         map[y][x] = 'o';
         invent[num].count--;
+
+    case '&':
+        hp = 10;
     default:
         break;
     }

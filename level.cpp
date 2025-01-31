@@ -94,9 +94,16 @@ int Level::make_move(char** map) {
                 return 1;
             }
             break;
+
         case '1':
             if (boy.invent.size() > 0 && boy.invent[0].usage)
                 boy.do_something(0, map);
+            return 0;
+            break;
+
+        case '2':
+            if (boy.invent.size() > 0 && boy.invent[1].usage)
+                boy.do_something(1, map);
             return 0;
             break;
         case 'e':
@@ -181,22 +188,6 @@ bool Level::notification(bool& flag, const char* row1, const char* row2, int sco
     }
 }
 
-void Level::buy(std::string for_sale, invent_thing need, int price)
-{
-    if (boy.get_thing_count(for_sale) >= price) {
-
-        int count_of_for_sale = boy.get_thing_count(for_sale) % price;
-        int count_of_need = boy.get_thing_count(for_sale) / price;
-
-        boy.set_thing_count(for_sale, count_of_for_sale);
-        boy.add_to_invent(need);
-        boy.set_thing_count(need.name, count_of_need);
-
-    }
-    else return;
-  
-}
-
 bool Level::notification(bool &flag, const char* row1, const char* row2, int score, bool &nextbool)
 {
     if (flag == true) {
@@ -212,6 +203,21 @@ bool Level::notification(bool &flag, const char* row1, const char* row2, int sco
     }
 }
 
+void Level::buy(std::string for_sale, invent_thing need, int price)
+{
+    if (boy.get_thing_count(for_sale) >= price) {
+
+        int count_of_for_sale = boy.get_thing_count(for_sale) % price;
+        int count_of_need = boy.get_thing_count(for_sale) / price;
+
+        boy.set_thing_count(for_sale, count_of_for_sale);
+        boy.add_to_invent(need);
+        boy.set_thing_count(need.name, count_of_need);
+
+    }
+    else return;
+
+}
 
 
 
