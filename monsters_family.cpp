@@ -43,26 +43,29 @@ void monsters_family::give_some_boys_rand(int type) {
     Monsters.push_back(W);
 }
 
-
 void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, int start_col, int end_col) {
-
-
     int rx, ry;
-    random_point(&rx, &ry);
+    int attempts = 0;
+    const int maxAttempts = 1000; // Максимальное количество попыток
 
-    while (map[ry][rx] != ' ' &&
-        rx >= start_col && rx <= end_col &&
-        ry >= start_row && ry <= end_row) {
+    while (attempts < maxAttempts) {
 
         random_point(&rx, &ry);
+
+
+        if (!(rx >= start_col && rx <= end_col && ry >= start_row && ry <= end_row)) {
+
+            if (map[ry][rx] == ' ') {
+
+                scary_monster W(ry, rx, map, variations[type]);
+                Monsters.push_back(W);
+
+                return; 
+            }
+        }
+        attempts++;
     }
-
-    scary_monster W(ry, rx, map, variations[type]);
-
-    Monsters.push_back(W);
 }
-
-
 
     void monsters_family::find(int x, int y) {
         for (scary_monster& M : Monsters)
@@ -133,7 +136,8 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
             2,
             1,
             10,
-            5);
+            5,
+            0);
 
         monster_type* Y = new monster_type(
             "Y",
@@ -145,10 +149,37 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
               1,
               3,
               15,
-              5);
+              5,
+              0);
+        monster_type* I = new monster_type(
+            "I",
+            'I',
+            COLOR_PAIR(40),
+            COLOR_PAIR(41),
+            { {-1, 0}, {1, 0}, {0, -1}, {0, 1} },
+            //{-1,-1}, {-1,1}, {1, -1}, {1, 1}, },
+            1,
+            3,
+            15,
+            5,
+            0);
+        monster_type *o = new monster_type(
+            "o",
+            'o',
+            COLOR_PAIR(42),
+            COLOR_PAIR(43),
+            { {-1, 0}, {1, 0}, {0, -1}, {0, 1},
+            {-1,-1}, {-1,1}, {1, -1}, {1, 1} },
+            1,
+            2,
+            12,
+            5,
+            1);
 
         variations.push_back(W);
         variations.push_back(Y);
+        variations.push_back(I);
+        variations.push_back(o);
     }
 
     void monsters_family::random_point(int* rx, int* ry) {
