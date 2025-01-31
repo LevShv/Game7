@@ -15,6 +15,7 @@ void level_village::start()
 {
     Level::start();
 
+    clear();
     boy.y = 27;
 
     map.show_map();
@@ -22,16 +23,15 @@ void level_village::start()
     intface.draw(boy.hp, 0, boy.invent);
 
     badboys = new monsters_family(map.forest, 0);
-  /*  badboys->give_some_boys_rand(1);
+    badboys->give_some_boys_rand(1);
 
     for (int i = 0; i < count_of_three_monsters; i++) {
 
-        badboys->give_some_boys_rand(0, 20, 29, 0, 100);
-        badboys->give_some_boys_rand(0, 20, 29, 0, 100);
-        badboys->give_some_boys_rand(1, 20, 29, 0, 100);
+        badboys->give_some_boys_rand(3, 20, 29, 0, 100);
+        badboys->give_some_boys_rand(3, 20, 29, 0, 100);
     }
 
-    badboys->monsters_move(1);*/
+    badboys->monsters_move(1);
 }
 
 void level_village::update()
@@ -84,10 +84,10 @@ void level_village::draw()
     map.show_map();
     boy.move_boy(map.forest);
 
-    //if (move)
-    //    boy.hp -= badboys->monsters_move(false);
-    //else
-    //    badboys->monsters_move(true);
+    if (move)
+        boy.hp -= badboys->monsters_move(false);
+    else
+        badboys->monsters_move(true);
 
     intface.draw(boy.hp, boy.count_of_m, boy.invent);
     game_iter++;
@@ -100,7 +100,7 @@ void level_village::moving()
 
     if (move) { ////////.............
         game_iter++;
-        /*badboys->find(boy.x, boy.y);*/
+        badboys->find(boy.x, boy.y);
     }
     else {
         sci--;
