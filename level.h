@@ -46,6 +46,7 @@ protected:
     bool notification(bool &flag, const char* row1, const char* row2, int score, bool &nextbool);
     bool notification(bool& flag, const char* row1, const char* row2, int score);
 
+    void buy(std::string for_sale, invent_thing need, int price);
 
 
 public:
