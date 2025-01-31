@@ -30,15 +30,10 @@ void level_forest::update()
 {
     while (!exit_) {
 
-        if (boy.count_of_m == 20 && igotall == true) {
-            intface.subs("Все грибы собраны, возращаемся к старцу",
-                "");
-            nscore = 2;
-            sci++;
-            gotoborder = true;
-            if (sci >= subtimming * nscore)
-                igotall = false;
-
+        if (boy.count_of_m == 20 && notification(igotall,
+            "Все грибы собраны, возращаемся к старцу",
+            "",
+            2, gotoborder)) {
         }
 
         if (game_iter % 100 == 0) {
