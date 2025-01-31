@@ -34,6 +34,7 @@ void level_back_fforest::update()
 
             intface.subs(" <—тарец> - “ы молодец ученик мой, тв преодолел т€желое испытание ",
                 "но нас ждет многое впереди...");
+            timeout(-1);
             getch();
 
             intface.subs(" <—тарец> - я приготовлю зелье c помощью которого ты сможешь атаковать ",
@@ -59,15 +60,10 @@ void level_back_fforest::update()
 
         }
 
-        if (iwasoldman1 == false && ireadom1 == true) {
-            intface.subs("—тупай по дороге вверх по реке, собирай грибы по дороге",
-                "Ќа пути будут встречатьс€ различные монстры примен€й зель€ чтобы атаковать");
-            nscore = 2;
-            sci++;
-            gotoborder = true;
-            if (sci >= subtimming * nscore)
-                ireadom1 = false;
-
+        if (iwasoldman1 == false && notification(ireadom1,
+            "—тупай по дороге вверх по реке, собирай грибы по дороге",
+            "Ќа пути будут встречатьс€ различные монстры примен€й зель€ чтобы атаковать",
+            2, gotoborder)) {
         }
 
         if (boy.hp <= 0) {
@@ -81,8 +77,6 @@ void level_back_fforest::update()
             break;
         }
 
-       
-       
         moving();
         draw();
     }
