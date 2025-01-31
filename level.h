@@ -16,7 +16,7 @@ protected:
     int length = 28;
     int start_pos_x = 59; 
     int start_pos_y = 21; 
-    int subtimming = 10; // задержка вывода sub
+    int subtimming = 30; // задержка вывода sub
     int game_iter; //  передать
 
     int nscore = 0; 
@@ -43,6 +43,8 @@ protected:
     void pause();
     void save_check();
     void dead();
+    bool notification(bool &flag, const char* row1, const char* row2, int score, bool &nextbool);
+    bool notification(bool& flag, const char* row1, const char* row2, int score);
 
 
 

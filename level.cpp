@@ -167,6 +167,35 @@ void Level::dead()
    
 }
 
+bool Level::notification(bool& flag, const char* row1, const char* row2, int score)
+{
+    if (flag == true) {
+        intface.subs(row1, row2);
+        nscore = score;
+        sci++;
+        if (sci >= subtimming * nscore) {
+            flag = false;
+            sci = 0;
+        }
+        return flag;
+    }
+}
+
+bool Level::notification(bool &flag, const char* row1, const char* row2, int score, bool &nextbool)
+{
+    if (flag == true) {
+        intface.subs(row1, row2);
+        nscore = score;
+        sci++;
+        nextbool = true;
+        if (sci >= subtimming * nscore) {
+            flag = false;
+            sci = 0;
+        }
+        return flag;
+    }
+}
+
 
 
 
