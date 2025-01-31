@@ -57,7 +57,7 @@ void level_manager::preset()
 
             boy.hp = 8;
             boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
-            boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+            boy.add_to_invent("Красноглазик", (char)133, 10, COLOR_PAIR(22), 0);
 
         break;
             
@@ -65,14 +65,14 @@ void level_manager::preset()
 
             boy.hp = 8;
             boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
-            boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+            boy.add_to_invent("Красноглазик", (char)133, 10, COLOR_PAIR(22), 0);
             boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
 
         case 4:
 
             boy.hp = 8;
             boy.add_to_invent("Желтогрив", '.', 20, COLOR_PAIR(8), 0);
-            boy.add_to_invent("Краснолгазик", (char)133, 10, COLOR_PAIR(22), 0);
+            boy.add_to_invent("Красноглазик", (char)133, 10, COLOR_PAIR(22), 0);
             boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
         break;
     }
