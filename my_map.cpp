@@ -67,12 +67,14 @@ void my_map::show_map() {
         {'~', COLOR_PAIR(12)},
         {'1', COLOR_PAIR(14)},
         {'.', COLOR_PAIR(8)},
-        {'_', COLOR_PAIR(8)},
+        {'_', COLOR_PAIR(45)},
         {'|', COLOR_PAIR(8)},
         {'g', COLOR_PAIR(17)},
         {'S', COLOR_PAIR(19)},
         {',', COLOR_PAIR(28)},
-        {'o', COLOR_PAIR(28)}
+        {'o', COLOR_PAIR(28)},
+        {'2', COLOR_PAIR(14)},
+        {'=', COLOR_PAIR(46)}
        /* {'T', COLOR_PAIR(44) }*/
     };
 
