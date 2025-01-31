@@ -50,6 +50,10 @@ void my_map::create_map(int level) {
     case 4:
         ft.get_data_ff(base_of_map, "Village.txt");
         add_to_map(base_of_map, 0, 0);
+        add_trees(30);
+        add_mushrooms(',', 5, 120, 29);
+        add_mushrooms(133, 7, 120, 29);
+
         break;
 
     default:
@@ -58,7 +62,7 @@ void my_map::create_map(int level) {
 }
 
 void my_map::show_map() {
-    // Таблица цветов для символов
+
     std::unordered_map<char, int> color_map = {
         {'~', COLOR_PAIR(12)},
         {'1', COLOR_PAIR(14)},
@@ -69,6 +73,7 @@ void my_map::show_map() {
         {'S', COLOR_PAIR(19)},
         {',', COLOR_PAIR(28)},
         {'o', COLOR_PAIR(28)}
+       /* {'T', COLOR_PAIR(44) }*/
     };
 
     int default_color = COLOR_PAIR(4);
