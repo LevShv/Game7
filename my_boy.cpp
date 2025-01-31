@@ -5,6 +5,13 @@
 #include "file_tools.h"
 #include <iface.h>
 
+#define PRINT_BOY(color) \
+    do { \
+        attron(color); \
+        move(y, x); \
+        printw("0"); \
+        attroff(color); \
+    } while (0)
 
 my_boy::my_boy(int spx, int spy) : x(spx), y(spy) 
 {
@@ -20,18 +27,18 @@ my_boy::my_boy() {
 
 void my_boy::move_boy(char** map) {
 
-    if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == 'я') {
+    if (map[y][x] == ' ' || map[y][x] == '1' || map[y][x] == '2' || map[y][x] == 'я') {
         if (map[y][x] == ' ') {
 
-            print_me(COLOR_PAIR(7));
+            PRINT_BOY(COLOR_PAIR(7));
         }
-        else if (map[y][x] == '1'){
+        else if (map[y][x] == '1' || map[y][x] == '2'){
 
-            print_me(COLOR_PAIR(16));
+            PRINT_BOY(COLOR_PAIR(16));
         }
         else {
 
-            print_me(COLOR_PAIR(18));
+            PRINT_BOY(COLOR_PAIR(18));
         }
     }
 
@@ -54,7 +61,7 @@ void my_boy::move_boy(char** map) {
             add_to_invent("Краснолгазик", 133 , 1, COLOR_PAIR(22), 0);
         }
 
-        print_me(COLOR_PAIR(7));
+        PRINT_BOY(COLOR_PAIR(7));
         map[y][x] = ' ';
     }
     /*else if (map[y][x] == 'g') {
@@ -69,10 +76,10 @@ void my_boy::move_boy(char** map) {
         
         if (map[y][x] == ' ') {
 
-            print_me(COLOR_PAIR(7));
+            PRINT_BOY(COLOR_PAIR(7));
         }
         else {
-            print_me(COLOR_PAIR(16));
+            PRINT_BOY(COLOR_PAIR(16));
         }
 
     }

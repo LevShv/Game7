@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <curses.h>
 
 struct invent_thing
 {
