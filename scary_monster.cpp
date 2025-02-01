@@ -112,7 +112,8 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
 
             iterofwaypoint++;
             delay_observer = 1;
-            return 0;
+
+            return 2;
         }
         else {
             print_me();

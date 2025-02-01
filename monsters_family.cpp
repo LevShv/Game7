@@ -102,6 +102,7 @@ void monsters_family::find(int x, int y) {
 int monsters_family::monsters_move(bool stop) {
 
     bool wait = false;
+    int count_of_dead = 0;
 
     static auto last_time = std::chrono::steady_clock::now();
 
@@ -133,9 +134,24 @@ int monsters_family::monsters_move(bool stop) {
 
     // Движение монстров
     for (scary_monster& M : Monsters) {
-        if (M.move_monster(wait) == 1)
+
+        
+
+        int rez = M.move_monster(wait);
+            
+         if (rez == 1)
             hp += M.power;
+
+       /*  if (rez == 2)
+             count_of_dead++;*/
+         if(M.alive == false)
+             count_of_dead++; 
     }
+
+    if (count_of_dead == Monsters.size())
+        all_dead = true;
+    else
+        count_of_dead = 0;
 
     return hp;
 }

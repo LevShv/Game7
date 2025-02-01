@@ -73,7 +73,7 @@ void level_village::update()
             }
         }
 
-        if(notification(ifound, "Лук Найден!", "Возращайтесь на базу",2, gotoborder))
+        if(notification(ifound, "Лук Найден!", "Возращайтесь на базу",2, gotoborder)) {}
 
         if (boy.hp <= 0) {
             dead();

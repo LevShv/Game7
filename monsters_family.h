@@ -9,6 +9,7 @@ public:
     //std::vector<monster_type*> monsters;
     //monsters_family(char** give_me_map);
    /* monsters_family(char** give_me_map);*/
+    bool all_dead = false;
 
     monsters_family(char** give_me_map, int mType);
     monsters_family();
@@ -20,13 +21,15 @@ public:
     void find(int x, int y);
 
     int monsters_move(bool stop);
+    int monsters_move(bool stop, bool& check);
     void make_map_with_monsters(char** map_with_monsters);
 
     void kill_monster(int y, int x);
 
 
 private:
-    
+
+    int count_of_dead = 0;
    /* std::vector<>*/
     char monster;
     char** map;
