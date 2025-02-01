@@ -49,7 +49,7 @@ void level_back_ffvillage::update()
             continue;
         }
 
-        if (boy.x > 65 && boy.x < 80 && boy.y == 0) {
+        if (boy.x > 35 && boy.x < 45 && boy.y == 27) {
             break;
         }
         moving();
