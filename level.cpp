@@ -25,6 +25,16 @@ Level::~Level()
 {
     delete Background;
     delete River; 
+
+    if (map_with_monsters) {
+        int size = sizeof(map.forest) / sizeof(map.forest[0]);
+
+        for (int i = 0; i < size; ++i) {
+            delete[] map_with_monsters[i];
+        }
+
+        delete[] map_with_monsters;
+    }
 }
 
 void Level::start()
