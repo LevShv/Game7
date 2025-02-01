@@ -15,12 +15,15 @@ public:
 private:
 
     bool gotooldman = true;
-    bool saveS = false;
+    bool gotoborder = false;
+    bool talkwithS = false;
+    bool ikillall = false;
+    bool iwasoldman= false;
+    bool ireadom1 = false;
 
     int count_of_monsters = 5;
-    bool iwasoldman1 = true;
-    bool ireadom1 = true;
-    bool gotoborder = false;
+  
+
 
     void score_set() override;
     void draw() override;

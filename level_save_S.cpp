@@ -36,56 +36,60 @@ void level_save_S::update()
 {
     while (!exit_) {
 
-        if(notification(gotooldman, "О НЕТ монстры пришли на базу! Надо спасти Старца!",
-            "Зачистите базу от монстров", 1, saveS))
+        if (notification(gotooldman, "О НЕТ монстры пришли на базу! Надо спасти Старца!",
+            "Зачистите базу от монстров", 1)) {}
 
-        if (boy.x == 8 && boy.y == 19 && iwasoldman1 == true) {
+        if (badboys->all_dead && !ikillall) {
+            talkwithS = true;
+            ikillall = true;
+        }
+        
+        if (ikillall)
+            save_check();
 
-            intface.subs(" <Старец> - Ты молодец ученик мой, ты преодолел тяжелое испытание",
-                "Из желтогривиков я приготовлю тебе целебное зелье ");
+        if (notification(talkwithS, "Вы спасли базу!",
+            "Поговорите со старцем", 2)) {
+        }
+
+        if (boy.x == 8 && boy.y == 19 && ikillall == true && !iwasoldman) {
+
+            intface.subs(" <Старец> - Ты молодец ученик мой, ты спас базу и принес лук",
+                "Из грибов что ты принес я приготовлю зелий ");
             timeout(-1);
             getch();
 
-            intface.subs(" <Старец> - на одно целебное зелье нужно 10 желтогривиков ",
-                " Старайся собирать все возможные грибы, нам они понадобятся ");
-            getch();
-
-            intface.subs("<Старец> - Если у тебя еще есть красоглазики я сделаю еще ловушек",
+            intface.subs(" <Старец> - ..готовит.. ",
                 "");
             getch();
 
-            intface.subs(" <Старец> - ..готовит.. ",
-                "..Отдает целебное зелье.. ");
+            intface.subs("<Старец> - Выдает зелья",
+                "");
+            getch();
+
+            intface.subs(" <Старец> - Отправляйся за реку, вниз по реке",
+                "Тебе предстоит встретиться с древним магом в его замке");
+            getch();
+
+            intface.subs(" <Старец> - Удачи",
+                "");
             getch();
 
             invent_thing catcher({ "Ловушка", 'o', 1, COLOR_PAIR(10), 1 });
             invent_thing healer({ "Исцеление",'&', 1, COLOR_PAIR(47), 1 });
+            invent_thing power({ "Зелье силы",'&', 1, COLOR_PAIR(50), 1 });
 
             buy("Красноглазик", catcher, 5);
             buy("Желтогрив", healer, 10);
+            buy("Голубозубки",power, 3);
 
-            intface.subs("Теперь тебе нужно отправиться в заброшенную деревню, ",
-                "которая находится на окраине леса.");
-            getch();
-
-            intface.subs("Там, в одном из домов, который находится в самой глубине деревни.",
-                " лежит лук, который когда-то принадлежал великому охотнику.");
-            getch();
-
-            intface.subs("Ступай по дороге вверх по реке, собирай грибы по дороге",
-                "");
-            getch();
-
-            iwasoldman1 = false;
-            gotooldman = false;
+            iwasoldman = true;
+            ireadom1 = true;
 
         }
 
-        /*if (iwasoldman1 == false && notification(ireadom1,
-            "Ступай по дороге вверх по реке, собирай грибы по дороге",
-            "На пути будут встречаться различные монстры применяй зелья чтобы атаковать",
-            2, gotoborder)) {
-        }*/
+        if (notification(ireadom1, " <Старец> - Удачи",
+            "", 3, gotoborder)) {
+        }
 
         if (boy.hp <= 0) {
             dead();
@@ -93,7 +97,7 @@ void level_save_S::update()
             continue;
         }
 
-        if (boy.x > 30 && boy.x < 38 && boy.y == 0 && gotoborder == true) {
+        if (boy.x > 80 && boy.x < 100 && boy.y == 27 && gotoborder == true) {
             boy.loaded_boy = false;
             break;
         }
@@ -112,7 +116,11 @@ void level_save_S::score_set()
         break;
 
     case 2:
-        intface.score("Отправляйтесь в деревню");
+        intface.score("Поговорите со старцем");
+        break;
+
+    case 3:
+        intface.score("Отапрвляйтесь в замок мага");
         break;
 
     default:
@@ -151,6 +159,5 @@ void level_save_S::moving()
         sci--;
 
     }
-    save_check();
 
 }

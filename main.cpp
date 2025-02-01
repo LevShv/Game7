@@ -86,10 +86,12 @@
     init_pair(45, COLOR_YELLOW, 259); // "_"
     init_pair(46, COLOR_WHITE, 259); // =
 
-    init_pair(47, COLOR_YELLOW, COLOR_BLACK); // &
+    init_pair(47, COLOR_YELLOW, COLOR_BLACK); // & healer
 
     init_pair(48, COLOR_WHITE, 257); // след от стрелы на траве
     init_pair(49, COLOR_WHITE, 259); // след от стрелы на дороге
+
+    init_pair(50, COLOR_BLUE, COLOR_BLACK); // & power
 
 }
 
