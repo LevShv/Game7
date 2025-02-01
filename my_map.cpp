@@ -91,6 +91,9 @@ void my_map::show_map() {
                 addch(133); 
                 attroff(COLOR_PAIR(22));
             }
+            else if (c == '1') {
+                PRINT_CHAR(' ', COLOR_PAIR(14));
+            }
             else {
 
                 int color = default_color;
