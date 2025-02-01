@@ -5,15 +5,14 @@
 std::shared_ptr<my_boy> Level::auto_saved = nullptr;
 
 Level::Level(my_boy& boy, int map_type)
-: boy(boy), map(width, length, map_type) 
-{
+: boy(boy), map(width, length, map_type){
     Background = new track();
     Background->play("Background.mp3");
     River = new track();
     River->play("River.wav");
     River->loaded_track->setVolume(30);
     sounds.step->setVolume(30);
-    
+  
 }
 
 void Level::Level_setup()
@@ -97,13 +96,13 @@ int Level::make_move(char** map) {
 
         case '1':
             if (boy.invent.size() > 0 && boy.invent[0].usage)
-                boy.do_something(0, map);
+                do_something(0);
             return 0;
             break;
 
         case '2':
             if (boy.invent.size() > 0 && boy.invent[1].usage)
-                boy.do_something(1, map);
+                do_something(1);
             return 0;
             break;
         case 'e':
@@ -219,6 +218,121 @@ void Level::buy(std::string for_sale, invent_thing need, int price)
 
 }
 
+void Level::do_something(int num)
+{
+    switch (boy.invent[num].icon)
+    {
+    case 'o':
+        map.forest[boy.y][boy.x] = 'o';
+        boy.invent[num].count--;
+        break;
+
+    case '&':
+        boy.hp = 10;
+        break;
+
+    case '}':
+        fire();
+        break;
+
+    default:
+        break;
+    }
+}
+void Level::fire()
+{
+    timeout(-1);
+    int first_key = 0;
+    bool waiting_for_second = false;
+
+    //while (true) {
+    timeout(-1);
+
+    int ch = getch(); // Получаем ввод
+
+    if (ch != ERR) {  // Если клавиша нажата
+
+        if (ch == 'w') {
+            shoot_arrow(-1, 0);
+        }
+        else if (ch == 's') {
+            shoot_arrow(1, 0);
+        }
+        else if (ch == 'a') {
+                shoot_arrow(0, -1);
+        }
+        else if (ch == 'd') {
+                shoot_arrow(0, 1);
+        }
+    }
+}
+void Level::shoot_arrow(int y, int x) 
+{
+    int radius = 30;
+    int count = 0;
+    copy_maps();
+    badboys->make_map_with_monsters(map_with_monsters);
+
+    int i = boy.y;
+    int j = boy.x;
+
+    while (true) {
+        i += y;
+        j += x;
+        count++;
+        if (i >= 0 && i < length && j >= 0 && j < width && (map_with_monsters[i][j] == ' ' || map_with_monsters[i][j] == '1') && count <= radius) {
+            ::move(i, j);
+            if (map_with_monsters[i][j] == ' ') {
+                attron(COLOR_PAIR(48));
+                addch('-');
+                attroff(COLOR_PAIR(48));
+            }
+            else {
+                attron(COLOR_PAIR(49));
+                addch('-');
+                attroff(COLOR_PAIR(49));
+            }
+            refresh();
+            continue;
+        }
+        if (i < 0 || i >= length || j < 0 || j >= width) {
+            break;
+        }
+        else {
+            if (map_with_monsters[i][j] == 'W' || map_with_monsters[i][j] == 'I'
+                || map_with_monsters[i][j] == 'o' || map_with_monsters[i][j] == 'Y') {
+                 badboys->kill_monster(i,j);
+                 break;
+            }
+            else {
+                break;
+            }
+                   
+        }
+    }
+    
+
+
+    //for (int i = 0; j < badboys.; j++) {
+    //    //if (Monsters[i].x == Monsters[j].x && Monsters[i].y == Monsters[j].y) {
+    //    //    Monsters[i].x++; // Сдвигаем монстра вправо
+    //    //}
+    //}
+}
+void Level::copy_maps() {
+
+    map_with_monsters = new char* [length];
+
+    for (int i = 0; i < length; ++i) {
+        // Выделяем память для каждой строки
+        map_with_monsters[i] = new char[width];
+
+        // Копируем каждый символ
+        for (int j = 0; j < width; ++j) {
+            map_with_monsters[i][j] = map.forest[i][j];
+        }
+    }
+}
 
 
 

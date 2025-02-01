@@ -135,7 +135,6 @@ void my_boy::add_to_invent(invent_thing thing)
     }
 }
 
-
 bool my_boy::set_thing_count(std::string name, int count)
 {
     for (int i = 0; i < invent.size(); i++)
@@ -162,21 +161,6 @@ int my_boy::get_thing_count(std::string name)
         }
     }
     return 0;
-}
-
-void my_boy::do_something(int num, char** map)
-{
-    switch (invent[num].icon)
-    {
-    case 'o':
-        map[y][x] = 'o';
-        invent[num].count--;
-
-    case '&':
-        hp = 10;
-    default:
-        break;
-    }
 }
 
 void my_boy::save()

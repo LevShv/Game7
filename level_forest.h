@@ -14,8 +14,6 @@ private:
     void draw() override;
     void moving() override;
 
-    monsters_family* badboys = nullptr;
-
 public:
 
     void start() override;

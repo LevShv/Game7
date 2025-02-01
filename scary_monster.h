@@ -10,8 +10,10 @@ public:
 
     int x;
     int y;
-
+    char icon;
     int power;
+    int hp;
+    bool alive = true;
 
     scary_monster(int spx, int spy, char** give_me_map, monster_type* mon);
 
@@ -24,7 +26,7 @@ private:
 
     int delay_observer = 0;
     bool started = false;
-    bool alive = true;
+
 
     int iterofwaypoint = 0;
     char** map;
@@ -45,14 +47,14 @@ private:
 
     void print_me();
   
-    char icon;
+
     int color;
     int color_in_1;
     const std::vector<Point>& directions;
     int delay;
 
     int radius;
-    int hp;
+    
     bool can_go_throw;
         
 

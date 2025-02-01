@@ -28,9 +28,12 @@ protected:
     sound sounds/* = new sound()*/;
     my_boy& boy;
     static std::shared_ptr<my_boy> auto_saved;
+
     my_map map; 
+    char** map_with_monsters;
+
+    monsters_family* badboys = nullptr;
     iface intface; 
-    std::vector<monster_type*>* monsters;
 
     track* Background;
     track* River;
@@ -47,6 +50,15 @@ protected:
     bool notification(bool& flag, const char* row1, const char* row2, int score);
 
     void buy(std::string for_sale, invent_thing need, int price);
+
+    void do_something(int num);
+
+    void fire();
+
+    void shoot_arrow(int x, int y);
+
+
+    void copy_maps();
 
 
 public:

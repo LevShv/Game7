@@ -1,6 +1,8 @@
 #pragma once
 
 #include <level.h>
+#include <vector>
+#include <set>
 
 class level_village : public Level
 {
@@ -14,11 +16,14 @@ public:
 
 private:
 
-	monsters_family* badboys = nullptr;
 
-	int count_of_three_monsters = 4;
-	bool gotovil = true;
-	bool iwasoldman1 = true;
+	std::vector<std::pair<int, int>> visited;
+	int count_of_monsters = 4;
+	int house_number = 5;
+	int house_counter = 0;
+
+	bool gotofind = true;
+	bool ifound = true;
 	bool ireadom1 = true;
 
 	void score_set() override;

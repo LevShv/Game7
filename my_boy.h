@@ -39,10 +39,9 @@ public:
     void add_to_invent(invent_thing thing);
     bool set_thing_count(std::string name, int count);
     int get_thing_count(std::string name);
-    void do_something(int num, char** map);
 
     void save();
-  
+ 
    
 private:
 
@@ -50,5 +49,6 @@ private:
     int yl = 0;
 
     void print_me(int color);
+    void shoot_arrow();
 };
 

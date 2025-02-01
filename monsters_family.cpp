@@ -114,6 +114,26 @@ void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, 
 
         return hp;
     }
+
+
+    void monsters_family::make_map_with_monsters(char** map_with_monsters)
+    {
+        for (auto& M : Monsters) {
+            map_with_monsters[M.x][M.y] = M.icon;
+        }
+    }
+
+    void monsters_family::kill_monster(int x, int y)
+    {
+        for (auto& M : Monsters) {
+            if (M.x == x && M.y == y) {
+                M.hp = 0;
+                M.alive = false;
+                break;
+            }
+                
+        }
+    }
   
     void monsters_family::create_two_boys(int type) {
 

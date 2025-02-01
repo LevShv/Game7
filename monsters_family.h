@@ -21,6 +21,9 @@ public:
     void find(int x, int y);
 
     int monsters_move(bool stop);
+    void make_map_with_monsters(char** map_with_monsters);
+
+    void kill_monster(int y, int x);
 
 
 private:
