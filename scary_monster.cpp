@@ -97,7 +97,9 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
     }
     int scary_monster::move_monster(bool stop)
     {
-        
+        if (x > 27 || y > 119)
+            return 0;
+
         if (way.size() != 0 && iterofwaypoint < way.size() - 1 && alive && iseeya && (delay_observer % delay == 0) &&  stop == false) {
             
             x = way[iterofwaypoint].x;

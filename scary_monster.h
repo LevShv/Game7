@@ -18,6 +18,7 @@ public:
     scary_monster(int spx, int spy, char** give_me_map, monster_type* mon);
 
     void give_waythim(int bx, int by);
+    void moveTowards(int target_x, int target_y);
     int move_monster(bool stop);
 
     
