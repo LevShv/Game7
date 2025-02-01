@@ -35,7 +35,7 @@ void level_village::start()
     std::random_device rd;  // Используется для получения начального значения (seed)
     std::mt19937 gen(rd()); // Генератор случайных чисел (Mersenne Twister)
 
-    std::uniform_int_distribution<> disx(0, 7); // Равномерное распределение от 0 до 
+    std::uniform_int_distribution<> disx(0, 6); // Равномерное распределение от 0 до 
 
     house_number = disx(gen);
    /* house_number = 0;*/
@@ -49,29 +49,31 @@ void level_village::update()
         if (gotofind)
             nscore = 1;
 
-        if (map.forest[boy.y][boy.x] == '2') {
-            if (house_counter == house_number) {
-                ifound = true;
+        if (map.forest[boy.y][boy.x] == '2' && !ifound && !gotoborder) {
+            
+            if (house_counter == house_number && last_place()) {
 
+                ifound = true;
+                gotofind = false;
+                intface.subs("Лук Найден!","Возращайтесь на базу");
+
+                boy.add_to_invent("Лук", '}', 1, COLOR_PAIR(47), 1);
+                
             }
             else {
 
-                bool check = true;
-                std::pair<int, int> boy_c{ boy.x, boy.y };
+                bool check = check_box();
 
-                for (int i = 0; i < visited.size(); i++) {
-                    if (visited[i] == boy_c)
-                        check = false;
-                }
                 if (check) {
                     visited.push_back({ boy.x, boy.y });
                     house_counter++;
+                                  
                 }
-                intface.subs(" Пусто ", "");
+                if(!ifound) intface.subs(" Пусто ", "");
             }
         }
 
-        if(ifound)
+        if(notification(ifound, "Лук Найден!", "Возращайтесь на базу",2, gotoborder))
 
         if (boy.hp <= 0) {
             dead();
@@ -79,9 +81,10 @@ void level_village::update()
             continue;
         }
 
-        if (boy.x > 65 && boy.x < 80 && boy.y == 0) {
+        if (boy.x > 65 && boy.x < 80 && boy.y == 27 && gotoborder) {
             break;
         }
+
         moving();
 
         draw();
@@ -138,3 +141,27 @@ void level_village::moving()
 
     }
 }
+
+bool level_village::check_box() {
+
+    std::pair<int, int> boy_c{ boy.x, boy.y };
+
+    for (int i = 0; i < visited.size(); i++) {
+        if (visited[i] == boy_c) 
+            return false;
+    }
+    return true;
+}
+bool level_village::last_place() {
+
+    std::pair<int, int> boy_c{ boy.x, boy.y };
+
+    if (visited.size() == 0)
+        return true;
+
+    if(visited.back() == boy_c)
+        return false;
+
+    return true;
+}
+

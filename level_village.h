@@ -22,12 +22,16 @@ private:
 	int house_number = 5;
 	int house_counter = 0;
 
+	bool gotoborder = false;
 	bool gotofind = true;
-	bool ifound = true;
+	bool ifound = false;
 	bool ireadom1 = true;
+	bool fornext = false;
 
 	void score_set() override;
 	void draw() override;
 	void moving() override;
+	bool check_box();
+	bool last_place();
 };
 

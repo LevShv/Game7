@@ -239,6 +239,7 @@ void Level::do_something(int num)
         break;
     }
 }
+
 void Level::fire()
 {
     timeout(-1);
@@ -266,6 +267,7 @@ void Level::fire()
         }
     }
 }
+
 void Level::shoot_arrow(int y, int x) 
 {
     int radius = 30;
@@ -319,6 +321,7 @@ void Level::shoot_arrow(int y, int x)
     //    //}
     //}
 }
+
 void Level::copy_maps() {
 
     map_with_monsters = new char* [length];
