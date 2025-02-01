@@ -68,6 +68,9 @@
     <Filter Include="Исходные файлы\engine\Audio">
       <UniqueIdentifier>{2143c325-fc23-43ea-881a-605ea692e125}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\levels\6%29 level_back_ffvillage">
+      <UniqueIdentifier>{7ccdcc25-1030-4b43-aac7-54c2021f66a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -127,6 +130,9 @@
     <ClCompile Include="Audio.cpp">
       <Filter>Исходные файлы\engine\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="level_back_ffvillage.cpp">
+      <Filter>Исходные файлы\levels\6%29 level_back_ffvillage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -179,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Audio.h">
       <Filter>Исходные файлы\engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="level_back_ffvillage.h">
+      <Filter>Исходные файлы\levels\6%29 level_back_ffvillage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

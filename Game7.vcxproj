@@ -137,6 +137,7 @@
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="level_back_fforest.cpp" />
+    <ClCompile Include="level_back_ffvillage.cpp" />
     <ClCompile Include="level_forest.cpp" />
     <ClCompile Include="level_manager.cpp" />
     <ClCompile Include="level_start.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="iface.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="level_back_fforest.h" />
+    <ClInclude Include="level_back_ffvillage.h" />
     <ClInclude Include="level_forest.h" />
     <ClInclude Include="level_manager.h" />
     <ClInclude Include="level_start.h" />
