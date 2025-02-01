@@ -15,9 +15,8 @@ public:
     ~monsters_family();
 
     void give_some_boys_rand(int type);
-
     void give_some_boys_rand(int type, int start_row, int end_row, int start_col, int end_col);
-    
+    void give_some_boys_rand(bool reverse, int type, int start_row, int end_row, int start_col, int end_col);
     void find(int x, int y);
 
     int monsters_move(bool stop);
