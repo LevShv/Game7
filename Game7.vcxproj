@@ -140,6 +140,7 @@
     <ClCompile Include="level_back_ffvillage.cpp" />
     <ClCompile Include="level_forest.cpp" />
     <ClCompile Include="level_manager.cpp" />
+    <ClCompile Include="level_save_S.cpp" />
     <ClCompile Include="level_start.cpp" />
     <ClCompile Include="level_village.cpp" />
     <ClCompile Include="level_way_to_village.cpp" />
@@ -162,6 +163,7 @@
     <ClInclude Include="level_back_ffvillage.h" />
     <ClInclude Include="level_forest.h" />
     <ClInclude Include="level_manager.h" />
+    <ClInclude Include="level_save_S.h" />
     <ClInclude Include="level_start.h" />
     <ClInclude Include="level_village.h" />
     <ClInclude Include="level_way_to_village.h" />

@@ -71,6 +71,9 @@
     <Filter Include="Исходные файлы\levels\6%29 level_back_ffvillage">
       <UniqueIdentifier>{7ccdcc25-1030-4b43-aac7-54c2021f66a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\levels\7%29 level_save_S">
+      <UniqueIdentifier>{49077ad6-b917-4e72-b04d-157ce1a3981e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -133,6 +136,9 @@
     <ClCompile Include="level_back_ffvillage.cpp">
       <Filter>Исходные файлы\levels\6%29 level_back_ffvillage</Filter>
     </ClCompile>
+    <ClCompile Include="level_save_S.cpp">
+      <Filter>Исходные файлы\levels\7%29 level_save_S</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -188,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="level_back_ffvillage.h">
       <Filter>Исходные файлы\levels\6%29 level_back_ffvillage</Filter>
+    </ClInclude>
+    <ClInclude Include="level_save_S.h">
+      <Filter>Исходные файлы\levels\7%29 level_save_S</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

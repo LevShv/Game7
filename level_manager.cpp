@@ -7,6 +7,7 @@
 #include "level_way_to_village.h"
 #include "level_village.h"
 #include "level_back_ffvillage.h"
+#include "level_save_S.h"
 
 level_manager::level_manager() {
 
@@ -16,6 +17,7 @@ level_manager::level_manager() {
     level_factories.push_back([this]() { return std::make_unique<level_way_to_village>(boy); });
     level_factories.push_back([this]() { return std::make_unique<level_village>(boy); });
     level_factories.push_back([this]() { return std::make_unique<level_back_ffvillage>(boy); });
+    level_factories.push_back([this]() { return std::make_unique<level_save_S>(boy); });
 }
 
 void level_manager::start_next_level() {
@@ -79,6 +81,14 @@ void level_manager::preset()
             boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
         break;
         case 5:
+
+            boy.hp = 8;
+            boy.add_to_invent("Исцеление", '&', 2, COLOR_PAIR(47), 1);
+            boy.add_to_invent("Красноглазик", (char)133, 3, COLOR_PAIR(22), 0);
+            boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
+            boy.add_to_invent("Лук", '}', 1, COLOR_PAIR(47), 1);
+
+        case 6:
 
             boy.hp = 8;
             boy.add_to_invent("Исцеление", '&', 2, COLOR_PAIR(47), 1);
