@@ -226,9 +226,17 @@ int iface::level_selection()
    
     while (chose) {
     
-        switch (getch())
-        {
-        case 48:
+        timeout(-1);
+        char input = getch();
+
+        if (input == 27)
+            return 27;
+        else if (input < 60 && input >= 48){
+            return input - 48;
+        }
+        /*switch (getch())
+        {*/
+        /*case 48:
             return 0;
 
         case 49:
@@ -241,11 +249,11 @@ int iface::level_selection()
             return 3;
 
         case 52:
-            return 4;
-
+            return 4;*/
+        /*if()
         case 27:
             return 27;
-        }
+        }*/
     }
 }
 
