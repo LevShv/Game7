@@ -52,10 +52,57 @@ int iface::game_over() {
 
 void iface::game_win() {
 
-    Bckg(10,15,40,80,COLOR_PAIR(21));
-       
-    mvprintw(13, 55, "Win");
+    timeout(1000);
 
+    const char* credits[] = {
+        "Поздравляем!",
+        "Вы победили!",
+        "",
+        "Разработчик:",
+        "Швецов Лев",
+        "",
+        "Дизайнеры карт:",
+        "Швецов Лев",
+        "Елена Якимова",
+        "",
+        "Музыка: ",
+        "Павел Чуйкин",
+        "Григорий Дорошенко",
+        "",
+        "Руководитель проекта:",
+        "Никита Гоголев",
+        "",
+        "Тула 2024",
+        "",
+        "",
+        "Спасибо за игру!",
+        nullptr 
+    };
+
+    int y = LINES; 
+    int x = COLS / 2 - 10;
+
+    while (true) {
+        clear();
+
+        for (int i = 0; credits[i] != nullptr; ++i) {
+            mvprintw(y + i, x, "%s", credits[i]);
+        }
+
+        refresh();
+
+        y--;
+
+        if (y + static_cast<int>(sizeof(credits) / sizeof(credits[0])) < 0) {
+            break; 
+        }
+
+     
+        int ch = getch();
+        if (ch != ERR) { 
+            break; 
+        }
+    }
 }
 
 void iface::subs(const char* a, const char* b)
@@ -231,29 +278,11 @@ int iface::level_selection()
 
         if (input == 27)
             return 27;
+
         else if (input < 60 && input >= 48){
             return input - 48;
         }
-        /*switch (getch())
-        {*/
-        /*case 48:
-            return 0;
-
-        case 49:
-            return 1;
-
-        case 50:
-            return 2;
-
-        case 51:
-            return 3;
-
-        case 52:
-            return 4;*/
-        /*if()
-        case 27:
-            return 27;
-        }*/
+    
     }
 }
 
