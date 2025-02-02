@@ -20,7 +20,7 @@ void final_boss::give_waythim(int bx, int by, int& hp) {
 
     if (pow(by - x, 2) + pow(bx - y, 2) < pow(radius, 2) && alive) {
 
-        if (wait(last_time_shoot, 700))
+        if (wait(last_time_shoot, 1000))
             shoot_arrow(by, bx, hp);
 
         iseeya = true;
