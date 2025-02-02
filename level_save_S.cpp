@@ -76,7 +76,7 @@ void level_save_S::update()
 
             invent_thing catcher({ "Ловушка", 'o', 1, COLOR_PAIR(10), 1 });
             invent_thing healer({ "Исцеление",'&', 1, COLOR_PAIR(47), 1 });
-            invent_thing power({ "Зелье силы",'&', 1, COLOR_PAIR(50), 1 });
+            invent_thing power({ "Зелье силы",'@', 1, COLOR_PAIR(50), 1 });
 
             buy("Красноглазик", catcher, 5);
             buy("Желтогрив", healer, 10);

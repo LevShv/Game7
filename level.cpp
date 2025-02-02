@@ -314,10 +314,17 @@ void Level::do_something(int num)
     case 'o':
         map.forest[boy.y][boy.x] = 'o';
         boy.invent[num].count--;
+        boy.check_invent_for_null(num);
         break;
 
     case '&':
         boy.hp = 10;
+        boy.invent[num].count--;
+        boy.check_invent_for_null(num);
+        break;
+
+    case '@':
+        boy.invent[num].count--;
         break;
 
     case '}':

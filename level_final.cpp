@@ -22,7 +22,7 @@ void level_final::start()
 
     clear();
     boy.y = 0;
-    boy.hp = 10000;
+    boy.hp = 10;
     map.show_map();
     boy.move_boy(map.forest);
     intface.draw(boy.hp, 0, boy.invent);
@@ -80,7 +80,7 @@ void level_final::update()
         }
 
         if (boy.x > 12 && boy.x < 35 && boy.y == 0 && gotoborder) {
-            // iface
+            intface.game_win();
             break;
              
         }

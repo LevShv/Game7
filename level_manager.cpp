@@ -106,6 +106,7 @@ void level_manager::preset()
             boy.add_to_invent("Красноглазик", (char)133, 3, COLOR_PAIR(22), 0);
             boy.add_to_invent("Ловушка", 'o', 5, COLOR_PAIR(10), 1);
             boy.add_to_invent("Лук", '}', 1, COLOR_PAIR(47), 1);
+            boy.add_to_invent("Зелье силы", '@', 1, COLOR_PAIR(50), 1);
             boy.x = 27;
         break;
     }

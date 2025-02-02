@@ -163,6 +163,14 @@ int my_boy::get_thing_count(std::string name)
     return 0;
 }
 
+void my_boy::check_invent_for_null(int num)
+{
+    if (invent[num].count == 0) {
+        std::swap(invent[num], invent[invent.size() - 1]);
+        invent.pop_back();
+    }
+}
+
 void my_boy::save()
 {
     std::string path;

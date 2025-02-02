@@ -53,6 +53,7 @@ void my_map::create_map(int level) {
         add_trees(30);
         add_mushrooms(',', 5, 120, 29);
         add_mushrooms(133, 7, 120, 29);
+        break;
 
     case 5:
         ft.get_data_ff(base_of_map, "Castle.txt");

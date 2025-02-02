@@ -39,7 +39,7 @@ public:
     void add_to_invent(invent_thing thing);
     bool set_thing_count(std::string name, int count);
     int get_thing_count(std::string name);
-
+    void check_invent_for_null(int num);
     void save();
  
    
