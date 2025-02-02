@@ -3,6 +3,7 @@
 #include <vector>
 #include <set>
 #include "final_boss.h"
+#include <chrono>
 
 class level_final : public Level
 {
@@ -18,6 +19,8 @@ public:
 
 private:
 
+         
+	std::chrono::steady_clock::time_point start_time;
 
 	std::vector<std::pair<int, int>> visited;
 
@@ -27,10 +30,15 @@ private:
 	int house_number = 5;
 	int house_counter = 0;
 
+	bool killhim = true;
+	bool win = false;
 	bool gotoborder = false;
-	bool gotofind = true;
+	bool killall = false;
+	bool condition_met = false;
+	bool ireadom1 = false;
+
 	bool ifound = false;
-	bool ireadom1 = true;
+	
 	bool fornext = false;
 
 	void score_set() override;

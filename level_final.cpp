@@ -6,8 +6,8 @@
 
 level_final::level_final(my_boy& boy) : Level(boy, 5)
 {
-    start_pos_x = 65;
-    start_pos_y = 27;
+    start_pos_x = 27;
+    start_pos_y = 0;
 
 }
 
@@ -21,7 +21,7 @@ void level_final::start()
     Level::start();
 
     clear();
-    boy.y = 27;
+    boy.y = 0;
     boy.hp = 10000;
     map.show_map();
     boy.move_boy(map.forest);
@@ -32,11 +32,11 @@ void level_final::start()
     badboys->give_some_boys_rand(1);
 
 
-    /*for (int i = 0; i < count_of_monsters; i++) {
+    for (int i = 0; i < count_of_monsters; i++) {
 
-        badboys->give_some_boys_rand(3, 20, 29, 0, 100);
-        badboys->give_some_boys_rand(3, 20, 29, 0, 100);
-    }*/
+        badboys->give_some_boys_rand(1,2, 10, 20, 10, 100);
+        badboys->give_some_boys_rand(1,2, 10, 20, 10, 100);
+    }
     boss.move_monster(false, boy.x, boy.y);
     boss_enabled = true;
     badboys->monsters_move(1);
@@ -46,10 +46,32 @@ void level_final::update()
 {
     while (!exit_) {
 
-        if (gotofind)
+        if (killhim)
             nscore = 1;
 
-        if (notification(ifound, "Лук Найден!", "Возращайтесь на базу", 2, gotoborder)) {}
+        if (!boss.alive && killhim) {
+            killhim = false;
+            win = true;
+            ireadom1 = true;
+        }
+            
+        if (notification(win, "Маг повержен!", "Уходите из замка!", 2, gotoborder) && !condition_met && ireadom1) {
+         
+            condition_met = true; 
+            start_time = std::chrono::steady_clock::now(); 
+        }
+
+
+        if (condition_met) {
+            auto current_time = std::chrono::steady_clock::now();
+            auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
+
+            if (elapsed_time >= 10) {
+                killall = true; 
+               
+            }
+        }
+    
 
         if (boy.hp <= 0) {
             dead();
@@ -57,8 +79,10 @@ void level_final::update()
             continue;
         }
 
-        if (boy.x > 65 && boy.x < 80 && boy.y == 27 && gotoborder) {
+        if (boy.x > 12 && boy.x < 35 && boy.y == 0 && gotoborder) {
+            // iface
             break;
+             
         }
 
         moving();
@@ -74,11 +98,11 @@ void level_final::score_set()
 
 
     case 1:
-        intface.score("Обыщите дома");
+        intface.score("Прикончите мага");
         break;
 
     case 2:
-        intface.score("Отправляйтесь на базу");
+        intface.score("Победа!");
         break;
 
     default:
@@ -94,12 +118,12 @@ void level_final::draw()
     map.show_map();
     boy.move_boy(map.forest);
 
-    if (move) {
+    if (move && !killall) {
         boy.hp -= badboys->monsters_move(false);
         boss.move_monster(false, boy.x, boy.y);
     }
        
-    else {
+    else if (!killall){
         badboys->monsters_move(true);
         boss.move_monster(true, boy.x, boy.y);
     }

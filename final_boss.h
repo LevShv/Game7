@@ -14,7 +14,7 @@ public:
     int x = 15;
     char icon = 'M';
     int power = 2;
-    int hp = 30;
+    int hp = 50;
     bool alive = true;
 
     void give_map(char** Map);

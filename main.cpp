@@ -12,8 +12,8 @@
     init_color(259, 189, 183, 107); // бежевый
     init_color(260, 240, 230, 140); // светло-бежевый
     init_color(301, 213, 213, 213); // темно-серый для меню
-    init_color(302, 0, 255, 255); // Цвет I
-    init_color(303, 0, 255, 255); // T
+    init_color(302, 0, 0, 0); // Цвет I
+
 
     init_pair(0, COLOR_WHITE, COLOR_BLACK); // default
     init_pair(1, COLOR_RED, COLOR_RED); // полоска здоровья
@@ -75,8 +75,8 @@
 
     init_pair(39, COLOR_RED, 301); // текст смерть
 
-    init_pair(40, 302, 257); // I
-    init_pair(41, 302, 259); // I на дороге
+    init_pair(40, 302, COLOR_MAGENTA); // I
+    init_pair(41, 302, COLOR_MAGENTA); // I на дороге
 
     init_pair(42, COLOR_YELLOW, 257); // o
     init_pair(43, COLOR_YELLOW, 259); // o на дороге

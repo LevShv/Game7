@@ -20,7 +20,7 @@ void final_boss::give_waythim(int bx, int by, int& hp) {
 
     if (pow(by - x, 2) + pow(bx - y, 2) < pow(radius, 2) && alive) {
 
-        if (wait(last_time_shoot, 2000))
+        if (wait(last_time_shoot, 700))
             shoot_arrow(by, bx, hp);
 
         iseeya = true;
@@ -234,6 +234,8 @@ void final_boss::shoot_arrow(int by, int bx, int&hp)
             return;
     }
     
+    if(bx == mx && by == my)
+        return;
 
    /* else return;*/
 
@@ -256,14 +258,14 @@ void final_boss::shoot_arrow(int by, int bx, int&hp)
         if (i >= 0 && i < length && j >= 0 && !(by == i && bx == j) && j < width && (map[i][j] == ' ' || map[i][j] == '1') && count <= radius) {
             ::move(i, j);
             if (map[i][j] == ' ') {
-                attron(COLOR_PAIR(48));
-                addch('-');
-                attroff(COLOR_PAIR(48));
+                attron(COLOR_PAIR(51));
+                addch('*');
+                attroff(COLOR_PAIR(52));
             }
             else {
-                attron(COLOR_PAIR(49));
-                addch('-');
-                attroff(COLOR_PAIR(49));
+                attron(COLOR_PAIR(51));
+                addch('*');
+                attroff(COLOR_PAIR(52));
             }
             refresh();
             continue;
