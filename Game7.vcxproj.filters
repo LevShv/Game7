@@ -74,6 +74,12 @@
     <Filter Include="Исходные файлы\levels\7%29 level_save_S">
       <UniqueIdentifier>{49077ad6-b917-4e72-b04d-157ce1a3981e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\levels\8%29 level_final">
+      <UniqueIdentifier>{bf7f4939-2e64-474c-9927-5f6127056606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\entities\Boss">
+      <UniqueIdentifier>{94699bd8-7a41-4996-807a-7ffe6ce38c24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_boy.cpp">
@@ -139,6 +145,12 @@
     <ClCompile Include="level_save_S.cpp">
       <Filter>Исходные файлы\levels\7%29 level_save_S</Filter>
     </ClCompile>
+    <ClCompile Include="level_final.cpp">
+      <Filter>Исходные файлы\levels\8%29 level_final</Filter>
+    </ClCompile>
+    <ClCompile Include="final_boss.cpp">
+      <Filter>Исходные файлы\entities\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_boy.h">
@@ -197,6 +209,12 @@
     </ClInclude>
     <ClInclude Include="level_save_S.h">
       <Filter>Исходные файлы\levels\7%29 level_save_S</Filter>
+    </ClInclude>
+    <ClInclude Include="level_final.h">
+      <Filter>Исходные файлы\levels\8%29 level_final</Filter>
+    </ClInclude>
+    <ClInclude Include="final_boss.h">
+      <Filter>Исходные файлы\entities\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

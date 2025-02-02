@@ -134,10 +134,12 @@
     <ClCompile Include="button_table.cpp" />
     <ClCompile Include="draw.cpp" />
     <ClCompile Include="file_tools.cpp" />
+    <ClCompile Include="final_boss.cpp" />
     <ClCompile Include="iface.cpp" />
     <ClCompile Include="level.cpp" />
     <ClCompile Include="level_back_fforest.cpp" />
     <ClCompile Include="level_back_ffvillage.cpp" />
+    <ClCompile Include="level_final.cpp" />
     <ClCompile Include="level_forest.cpp" />
     <ClCompile Include="level_manager.cpp" />
     <ClCompile Include="level_save_S.cpp" />
@@ -157,10 +159,12 @@
     <ClInclude Include="button_table.h" />
     <ClInclude Include="draw.h" />
     <ClInclude Include="file_tools.h" />
+    <ClInclude Include="final_boss.h" />
     <ClInclude Include="iface.h" />
     <ClInclude Include="level.h" />
     <ClInclude Include="level_back_fforest.h" />
     <ClInclude Include="level_back_ffvillage.h" />
+    <ClInclude Include="level_final.h" />
     <ClInclude Include="level_forest.h" />
     <ClInclude Include="level_manager.h" />
     <ClInclude Include="level_save_S.h" />
