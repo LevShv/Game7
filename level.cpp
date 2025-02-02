@@ -131,6 +131,85 @@ int Level::make_move(char** map) {
     return 1;
 }
 
+int Level::make_move(char** map, int mx, int my) {
+
+    bossx = mx;
+    bossy = my;
+
+    static char last_input = 0;
+    static auto last_time = std::chrono::steady_clock::now();
+
+    timeout(300);
+    char input = getch();
+
+    auto now = std::chrono::steady_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count();
+
+    if (input != ERR) {
+        if (input == last_input && elapsed < 50) { // 200 ms задержка между повторными нажатиями
+            return 1; // Игнорируем быстрое повторное нажатие
+        }
+
+        last_input = input;
+        last_time = now;
+
+        switch (input) {
+        case 'w':
+            if (0 < boy.y) {
+                boy.y--;
+                sounds.play(sounds.step);
+                return 1;
+            }
+            break;
+        case 's':
+            if (boy.y < length - 1) {
+                boy.y++;
+                sounds.play(sounds.step);
+                return 1;
+            }
+            break;
+        case 'a':
+            if (boy.x > 0) {
+                boy.x--;
+                sounds.play(sounds.step);
+                return 1;
+            }
+            break;
+        case 'd':
+            if (boy.x < width - 1) {
+                boy.x++;
+                sounds.play(sounds.step);
+                return 1;
+            }
+            break;
+
+        case '1':
+            if (boy.invent.size() > 0 && boy.invent[0].usage)
+                do_something(0);
+            return 0;
+            break;
+
+        case '2':
+            if (boy.invent.size() > 0 && boy.invent[1].usage)
+                do_something(1);
+            return 0;
+            break;
+        case 'e':
+            intface.show_invent(boy.invent);
+            return 0;
+            break;
+        case 27:
+            pause();
+            return 0;
+        }
+    }
+    else {
+        last_input = 0; // Сбрасываем последнюю нажатую клавишу, если ничего не нажато
+    }
+
+    return 1;
+}
+
 void Level::pause()
 {
     int choice = intface.pause_menu();
@@ -270,18 +349,20 @@ void Level::fire()
             shoot_arrow(1, 0);
         }
         else if (ch == 'a') {
-                shoot_arrow(0, -1);
+            shoot_arrow(0, -1);
         }
         else if (ch == 'd') {
-                shoot_arrow(0, 1);
+            shoot_arrow(0, 1);
         }
     }
 }
 
-void Level::shoot_arrow(int y, int x) 
+void Level::shoot_arrow(int y, int x)
 {
     int radius = 30;
     int count = 0;
+    if (boss_enabled)
+        copy_maps(1);
     copy_maps();
     badboys->make_map_with_monsters(map_with_monsters);
 
@@ -289,11 +370,17 @@ void Level::shoot_arrow(int y, int x)
     int j = boy.x;
 
     while (true) {
+
         i += y;
         j += x;
-        count++;
-        if (i >= 0 && i < length && j >= 0 && j < width && (map_with_monsters[i][j] == ' ' || map_with_monsters[i][j] == '1') && count <= radius) {
+        count++
+            ;
+        if (i >= 0 && i < length && j >= 0 && j < width
+            && (map_with_monsters[i][j] == ' ' || map_with_monsters[i][j] == '1')
+            && count <= radius) {
+
             ::move(i, j);
+
             if (map_with_monsters[i][j] == ' ') {
                 attron(COLOR_PAIR(48));
                 addch('-');
@@ -311,28 +398,38 @@ void Level::shoot_arrow(int y, int x)
             break;
         }
         else {
+            if (map_with_monsters[i][j] == 'M')
+                boss_beat = true;
             if (map_with_monsters[i][j] == 'W' || map_with_monsters[i][j] == 'I'
                 || map_with_monsters[i][j] == 'o' || map_with_monsters[i][j] == 'Y') {
-                 badboys->kill_monster(i,j);
-                 break;
+                badboys->kill_monster(i, j);
+                break;
             }
             else {
                 break;
             }
-                   
         }
     }
-    
-
-
-    //for (int i = 0; j < badboys.; j++) {
-    //    //if (Monsters[i].x == Monsters[j].x && Monsters[i].y == Monsters[j].y) {
-    //    //    Monsters[i].x++; // Сдвигаем монстра вправо
-    //    //}
-    //}
 }
 
 void Level::copy_maps() {
+
+    map_with_monsters = new char* [length];
+
+    for (int i = 0; i < length; ++i) {
+        // Выделяем память для каждой строки
+        map_with_monsters[i] = new char[width];
+
+        // Копируем каждый символ
+        for (int j = 0; j < width; ++j) {
+            map_with_monsters[i][j] = map.forest[i][j];
+        }
+    }
+
+    map_with_monsters[bossy][bossx] = 'M';
+}
+
+void Level::copy_maps(bool a) {
 
     map_with_monsters = new char* [length];
 

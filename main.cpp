@@ -93,6 +93,8 @@
 
     init_pair(50, COLOR_BLUE, COLOR_BLACK); // & power
 
+    init_pair(51, COLOR_MAGENTA, 257); // Маг
+    init_pair(52, COLOR_MAGENTA, 259); // Маг на дорге
 }
 
  void call_manager(level_manager& Manager) {

@@ -93,6 +93,7 @@ void monsters_family::give_some_boys_rand(bool reverse, int type, int start_row,
 }
 
 void monsters_family::find(int x, int y) {
+
     for (scary_monster& M : Monsters)
     {
         M.give_waythim(x, y);

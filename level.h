@@ -24,6 +24,11 @@ protected:
 
     bool move;
   
+    bool boss_enabled = false;
+
+    int bossx;
+    int bossy;
+    bool boss_beat = false;
 
     sound sounds/* = new sound()*/;
     my_boy& boy;
@@ -43,9 +48,12 @@ protected:
     virtual void moving() = 0;
     //virtual void 
     int make_move(char** map);
+    int make_move(char** map, int mx, int my);
+
     void pause();
     void save_check();
     void dead();
+
     bool notification(bool &flag, const char* row1, const char* row2, int score, bool &nextbool);
     bool notification(bool& flag, const char* row1, const char* row2, int score);
 
@@ -59,6 +67,7 @@ protected:
 
 
     void copy_maps();
+    void copy_maps(bool a);
 
 
 public:

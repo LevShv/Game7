@@ -54,6 +54,9 @@ void my_map::create_map(int level) {
         add_mushrooms(',', 5, 120, 29);
         add_mushrooms(133, 7, 120, 29);
 
+    case 5:
+        ft.get_data_ff(base_of_map, "Castle.txt");
+        add_to_map(base_of_map, 0, 0);
         break;
 
     default:
@@ -74,7 +77,11 @@ void my_map::show_map() {
         {',', COLOR_PAIR(28)},
         {'o', COLOR_PAIR(28)},
         {'2', COLOR_PAIR(14)},
-        {'=', COLOR_PAIR(46)}
+        {'=', COLOR_PAIR(46)},
+        {'\\', COLOR_PAIR(8)},
+        {'/', COLOR_PAIR(8)},
+        {')', COLOR_PAIR(8)}
+
        /* {'T', COLOR_PAIR(44) }*/
     };
 

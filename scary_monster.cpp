@@ -6,6 +6,7 @@
 #include <unordered_set>
 
 
+
 scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type* mon)
     : x(spx),
     y(spy),
@@ -21,14 +22,12 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
     radius(mon->radius),
     hp(mon->hp),
     can_go_throw(mon->can_go_throw)
-{
-   
-}
+{}
 
     void scary_monster::give_waythim(int bx, int by) {
 
         iterofwaypoint = 1;
-        if (pow(by - x, 2) + pow(bx - y, 2) < pow(radius,2)) {
+        if (pow(by - x, 2) + pow(bx - y, 2) < pow(radius,2) && alive) {
             iseeya = true;
             way = shortestPath(bx, by);
         }      
@@ -133,26 +132,26 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
         move(x, y);
         if (alive) {
             if (map[x][y] == '1') {
-                attron(monster->color_in_1);
-                addch(monster->icon);
-                attroff(monster->color_in_1);
+                attron(color_in_1);
+                addch(icon);
+                attroff(color_in_1);
             }
             else {
-                attron(monster->color);
-                addch(monster->icon);
-                attroff(monster->color);
+                attron(color);
+                addch(icon);
+                attroff(color);
             }
         }
         else
             if (map[x][y] == '1') {
-                attron(monster->color_in_1);
+                attron(color_in_1);
                 addch('x');
-                attroff(monster->color_in_1);
+                attroff(color_in_1);
             }
             else {
-                attron(monster->color);
+                attron(color);
                 addch('x');
-                attroff(monster->color);
+                attroff(color);
             }
         
     }
