@@ -111,22 +111,20 @@ void file_tools::save_boy(my_boy &boy, std::string path) {
 
 int file_tools::load_boy(my_boy& boy, std::string path)
 {
-    // Устанавливаем локаль для поддержки русского языка
-    //std::locale::global(std::locale("")); // Локаль по умолчанию системы
-    //std::wcout.imbue(std::locale()); // Для вывода широких символов (если нужно)
+
     std::locale::global(std::locale("Russian_Russia.1251"));
     if (path == "0") {
-        return -1; // Неверный путь
+        return -1; 
     }
 
     fs::path dir = save_directory();
     std::ifstream file(dir / path);
 
     if (!file.is_open()) {
-        return -2; // Файл не удалось открыть
+        return -2; 
     }
 
-    boy.invent.clear(); // Очищаем инвентарь перед загрузкой
+    boy.invent.clear(); 
     std::string line;
 
     while (std::getline(file, line)) {

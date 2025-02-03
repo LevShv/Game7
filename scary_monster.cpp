@@ -94,6 +94,7 @@ scary_monster::scary_monster(int spx, int spy, char** give_me_map, monster_type*
         // ≈сли путь не найден, возвращаем пустой вектор
         return {};
     }
+
     int scary_monster::move_monster(bool stop)
     {
         if (x > 27 || y > 119)

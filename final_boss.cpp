@@ -32,7 +32,7 @@ void final_boss::give_waythim(int bx, int by, int& hp) {
 std::vector<Point> final_boss::shortestPath(int bx, int by) {
 
     Point start = { x, y };
-    Point end = { by, bx }; // Исправлено: bx и by поменяны местами
+    Point end = { by, bx }; 
 
     int rows = 28;
     int cols = 120;

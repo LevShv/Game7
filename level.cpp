@@ -49,10 +49,10 @@ void Level::start()
     }
 
     if (!auto_saved) {
-        auto_saved = std::make_shared<my_boy>(boy); // Создаём новый shared_ptr, копируя boy
+        auto_saved = std::make_shared<my_boy>(boy); 
     }
     else {
-        *auto_saved = boy; // Копируем данные из boy в auto_saved
+        *auto_saved = boy; 
     }
 }
 
@@ -147,8 +147,8 @@ int Level::make_move(char** map, int mx, int my) {
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count();
 
     if (input != ERR) {
-        if (input == last_input && elapsed < 50) { // 200 ms задержка между повторными нажатиями
-            return 1; // Игнорируем быстрое повторное нажатие
+        if (input == last_input && elapsed < 50) { 
+            return 1; 
         }
 
         last_input = input;
@@ -346,9 +346,9 @@ void Level::fire()
     //while (true) {
     timeout(-1);
 
-    int ch = getch(); // Получаем ввод
+    int ch = getch(); 
 
-    if (ch != ERR) {  // Если клавиша нажата
+    if (ch != ERR) {  
 
         if (ch == 'w') {
             shoot_arrow(-1, 0);
@@ -424,11 +424,9 @@ void Level::copy_maps() {
 
     map_with_monsters = new char* [length];
 
-    for (int i = 0; i < length; ++i) {
-        // Выделяем память для каждой строки
-        map_with_monsters[i] = new char[width];
+    for (int i = 0; i < length; ++i) {        map_with_monsters[i] = new char[width];
 
-        // Копируем каждый символ
+
         for (int j = 0; j < width; ++j) {
             map_with_monsters[i][j] = map.forest[i][j];
         }
