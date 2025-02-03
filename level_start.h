@@ -20,7 +20,7 @@ class level_start : public Level {
         void moving() override;
 
     public:
-
+        ~level_start();
         level_start(my_boy& boy); // Конструктор принимает игрока
         void start() override;
         void update() override;

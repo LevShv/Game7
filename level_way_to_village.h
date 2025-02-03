@@ -6,14 +6,12 @@ class level_way_to_village : public Level
 public:
     
 	level_way_to_village(my_boy& boy);
-	~level_way_to_village() override;
+	~level_way_to_village();
 	void start() override;
 	void update() override;
 
 
 private:
-
-	monsters_family* badboys = nullptr;
 
 	int count_of_three_monsters = 4;
 	bool gotovil = true;

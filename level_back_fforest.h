@@ -9,7 +9,7 @@ public:
     void update() override;
 
     level_back_fforest(my_boy& boy);
-    ~level_back_fforest() override = default; 
+    ~level_back_fforest(); 
 
 private:
 

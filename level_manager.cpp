@@ -47,11 +47,17 @@ void level_manager::start_next_level() {
                 //levels.back()->Level_setup();
             }
             stop_level = true;
+            levels.clear();
         }
         else {
+
             currentLevelIndex++;
+
+            if (currentLevelIndex >= level_factories.size()) {
+                levels.clear();
+            }
+           
         }
-        
     }
 }
 
@@ -118,12 +124,14 @@ bool level_manager::all_levels_done() {
     if (stop_level) {
         stop_level = false;
         return true;
+        
     }
     return currentLevelIndex >= level_factories.size();
 }
 
 void level_manager::reset()
 {
+
     boy = my_boy();
     currentLevelIndex = 0;
 
@@ -144,4 +152,9 @@ bool level_manager::load_game()
         return 0;
     }
     return 1;
+}
+
+void level_manager::restart()
+{
+    level_factories.clear();
 }

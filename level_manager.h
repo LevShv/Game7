@@ -18,6 +18,7 @@ class level_manager
     bool all_levels_done();
     void reset();
     bool load_game();
+    void restart();
 
     int currentLevelIndex = 0;
 

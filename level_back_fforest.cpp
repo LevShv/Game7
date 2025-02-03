@@ -5,7 +5,16 @@ level_back_fforest::level_back_fforest(my_boy& boy) : Level(boy, 1)
 
     start_pos_x = 119;
     start_pos_y = 10;
+
+    River = new track();
+    River->play("River.wav");
+    River->loaded_track->setVolume(30);
     
+}
+
+level_back_fforest::~level_back_fforest()
+{
+    River->stop();
 }
 
 void level_back_fforest::start()

@@ -1,7 +1,20 @@
 #include "level_start.h"
 //#include"level.h"
 
-level_start::level_start(my_boy& boy) : Level(boy, 1) {}
+
+
+level_start::level_start(my_boy& boy) : Level(boy, 1)
+{
+    River = new track();
+    River->play("River.wav");
+    River->loaded_track->setVolume(30);
+    
+    
+}
+level_start::~level_start()
+{
+    River->stop();
+}
 
 void level_start::start() {
 

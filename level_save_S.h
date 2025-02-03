@@ -10,9 +10,11 @@ public:
     void update() override;
 
     level_save_S(my_boy& boy);
-    ~level_save_S() override = default;
+    ~level_save_S();
 
 private:
+
+    track* Save_me;
 
     bool gotooldman = true;
     bool gotoborder = false;
@@ -20,6 +22,7 @@ private:
     bool ikillall = false;
     bool iwasoldman= false;
     bool ireadom1 = false;
+    bool misc = false;
 
     int count_of_monsters = 5;
   

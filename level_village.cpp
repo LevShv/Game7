@@ -5,10 +5,16 @@ level_village::level_village(my_boy& boy) : Level(boy, 4)
 {
 	start_pos_x = 65;
 	start_pos_y = 27;
+
+    Party = new track();
+    Party->play("Village_party.wav");
+    Party->loaded_track->setVolume(40);
+   
 }
 
 level_village::~level_village()
 {
+    Party->stop();
 	delete badboys;
 }
 
@@ -18,7 +24,7 @@ void level_village::start()
 
     clear();
     boy.y = 27;
-    boy.hp  = 10000;
+
     map.show_map();
     boy.move_boy(map.forest);
     intface.draw(boy.hp, 0, boy.invent);
@@ -43,6 +49,7 @@ void level_village::start()
 }
 
 void level_village::update()
+
 {
     while (!exit_) {
 

@@ -16,7 +16,7 @@ public:
 
 private:
 
-
+	track* Party;
 	std::vector<std::pair<int, int>> visited;
 	int count_of_monsters = 4;
 	int house_number = 5;

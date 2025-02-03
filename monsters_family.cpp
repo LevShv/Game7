@@ -160,7 +160,8 @@ int monsters_family::monsters_move(bool stop) {
 void monsters_family::make_map_with_monsters(char** map_with_monsters)
 {
     for (auto& M : Monsters) {
-        map_with_monsters[M.x][M.y] = M.icon;
+        map_with_monsters
+            [M.x][M.y] = M.icon;
     }
 }
 

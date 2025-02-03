@@ -6,11 +6,9 @@ std::shared_ptr<my_boy> Level::auto_saved = nullptr;
 
 Level::Level(my_boy& boy, int map_type)
 : boy(boy), map(width, length, map_type){
+
     Background = new track();
     Background->play("Background.mp3");
-    River = new track();
-    River->play("River.wav");
-    River->loaded_track->setVolume(30);
     sounds.step->setVolume(30);
   
 }
@@ -23,8 +21,11 @@ void Level::Level_setup()
 
 Level::~Level()
 {
+    Background->stop();
+
     delete Background;
     delete River; 
+
 
     if (map_with_monsters) {
         int size = sizeof(map.forest) / sizeof(map.forest[0]);

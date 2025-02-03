@@ -4,17 +4,22 @@ level_way_to_village::level_way_to_village(my_boy& boy) : Level(boy,3)
 {
     start_pos_x = 65;
     start_pos_y = 27;
+
+    River = new track();
+    River->play("River.wav");
+    River->loaded_track->setVolume(30);
 }
 
 level_way_to_village::~level_way_to_village()
 {
+    River->stop();
     delete badboys;
 }
 
 void level_way_to_village::start()
 {
     Level::start();
-
+    clear;
     boy.y = 27;
 
     map.show_map();

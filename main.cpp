@@ -75,8 +75,8 @@
 
     init_pair(39, COLOR_RED, 301); // текст смерть
 
-    init_pair(40, 302, COLOR_MAGENTA); // I
-    init_pair(41, 302, COLOR_MAGENTA); // I на дороге
+    init_pair(40, COLOR_MAGENTA, 257); // I
+    init_pair(41, COLOR_MAGENTA,259); // I на дороге
 
     init_pair(42, COLOR_YELLOW, 257); // o
     init_pair(43, COLOR_YELLOW, 259); // o на дороге
@@ -93,8 +93,8 @@
 
     init_pair(50, COLOR_BLUE, COLOR_BLACK); // & power
 
-    init_pair(51, COLOR_MAGENTA, 257); // Маг
-    init_pair(52, COLOR_MAGENTA, 259); // Маг на дорге
+    init_pair(51, 302, COLOR_MAGENTA); // Маг
+    init_pair(52, 302, COLOR_MAGENTA); // Маг на дорге
 }
 
  void call_manager(level_manager& Manager) {
@@ -118,7 +118,7 @@
     nodelay(stdscr, TRUE);
 
     track *my_track = new track();
-    my_track->play(my_track->Main);
+ 
 
     iface init;
     
@@ -138,9 +138,12 @@
 
     while (true) {
 
+        my_track->play(my_track->Main);
+
         if (Manager.download) {
 
             Manager.download = false;
+            my_track->stop();
             call_manager(Manager);
         }
         else {

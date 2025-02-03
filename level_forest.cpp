@@ -5,10 +5,13 @@ level_forest::level_forest(my_boy& boy) : Level(boy, 2) {
     start_pos_x = 0;
     start_pos_y = 10;
 
+
 }
 
 level_forest::~level_forest()
 {
+
+
     delete badboys;
 }
 

@@ -7,14 +7,13 @@ class level_back_ffvillage : public Level
 public:
 
 	level_back_ffvillage(my_boy& boy);
-	~level_back_ffvillage() override;
+	~level_back_ffvillage();
 	void start() override;
 	void update() override;
 
 
 private:
 
-	monsters_family* badboys = nullptr;
 
 	int count_of_three_monsters = 4;
 	bool gotovil = true;

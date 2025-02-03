@@ -6,13 +6,28 @@ level_save_S::level_save_S(my_boy& boy) : Level(boy, 1)
     start_pos_x = 50;
     start_pos_y = 0;
 
+    //River = new track();
+    //River->play("River.wav");
+    //River->loaded_track->setVolume(30);
+
+    Save_me = new track();
+    Save_me->play("Save_me.wav");
+    Save_me->loaded_track->setVolume(30);
+    misc = true;
+
+}
+
+level_save_S::~level_save_S()
+{
+    if (misc)
+        Save_me->stop();
+    Save_me->stop();
 }
 
 void level_save_S::start()
 {
     Level::start();
 
-    boy.hp = 1000;
     if (!boy.loaded_boy)
         boy.y = 0;
     
@@ -47,8 +62,10 @@ void level_save_S::update()
         if (ikillall)
             save_check();
 
-        if (notification(talkwithS, "Вы спасли базу!",
+        if (ikillall && notification(talkwithS, "Вы спасли базу!",
             "Поговорите со старцем", 2)) {
+            Save_me->stop();
+            misc = false;
         }
 
         if (boy.x == 8 && boy.y == 19 && ikillall == true && !iwasoldman) {

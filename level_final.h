@@ -5,6 +5,7 @@
 #include "final_boss.h"
 #include <chrono>
 
+
 class level_final : public Level
 {
 public:
@@ -19,6 +20,8 @@ public:
 
 private:
 
+	track* Aimbie;
+	track* Happy;
          
 	std::chrono::steady_clock::time_point start_time;
 
@@ -35,11 +38,10 @@ private:
 	bool gotoborder = false;
 	bool killall = false;
 	bool condition_met = false;
-	bool ireadom1 = false;
-
-	bool ifound = false;
-	
+	bool ireadom1 = false;	
 	bool fornext = false;
+	bool happyplay = false;
+	bool sadplay = false;
 
 	void score_set() override;
 	void draw() override;

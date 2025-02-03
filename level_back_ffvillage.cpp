@@ -5,10 +5,15 @@ level_back_ffvillage::level_back_ffvillage(my_boy& boy) : Level(boy, 3)
 {
     start_pos_x = 65;
     start_pos_y = 27;
+
+    River = new track();
+    River->play("River.wav");
+    River->loaded_track->setVolume(30);
 }
 
 level_back_ffvillage::~level_back_ffvillage()
 {
+    River->stop(); 
     delete badboys;
 }
 

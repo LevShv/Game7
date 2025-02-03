@@ -42,8 +42,8 @@ void my_map::create_map(int level) {
         ft.get_data_ff(base_of_map, "way_to_village.txt");
         add_to_map(base_of_map, 0, 0);
         add_trees(100);
-        add_mushrooms(133, 20, 120, 29);
-        add_mushrooms('.', 5, 120, 29);
+        add_mushrooms(133, 10, 120, 29);
+        add_mushrooms('.', 10, 120, 29);
         add_mushrooms(',', 3, 120, 29);
         break;
 

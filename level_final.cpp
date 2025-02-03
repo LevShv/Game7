@@ -9,10 +9,25 @@ level_final::level_final(my_boy& boy) : Level(boy, 5)
     start_pos_x = 27;
     start_pos_y = 0;
 
+    Aimbie = new track();
+    Aimbie->play("Ambie.wav");
+    Aimbie->loaded_track->setVolume(50);
+    sadplay = true;
+    Happy = new track();
+ 
+    
+
+
 }
 
 level_final::~level_final()
 {
+    if(happyplay)
+        Happy->stop();
+
+    if (sadplay)
+        Aimbie->stop();
+
     delete badboys;
 }
 
@@ -59,15 +74,23 @@ void level_final::update()
          
             condition_met = true; 
             start_time = std::chrono::steady_clock::now(); 
+            Aimbie->stop();
+
+            Happy->play("Happy.wav");
+            Happy->loaded_track->setVolume(30);
+            happyplay = true;
+            sadplay = false;
         }
 
 
-        if (condition_met) {
+        if (condition_met && !fornext) {
             auto current_time = std::chrono::steady_clock::now();
             auto elapsed_time = std::chrono::duration_cast<std::chrono::seconds>(current_time - start_time).count();
 
             if (elapsed_time >= 10) {
                 killall = true; 
+                fornext = true;
+              
                
             }
         }
