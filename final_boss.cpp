@@ -113,9 +113,6 @@ int final_boss::move_monster(bool stop, int bx, int by)
         x = way[iterofwaypoint].x;
         y = way[iterofwaypoint].y;
 
-        if (map[x][y] == 'o')
-            alive = false;
-
         print_me();
 
         iterofwaypoint++;
