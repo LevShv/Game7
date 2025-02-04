@@ -518,12 +518,17 @@ bool iface::are_you_sure_screen()
         yes_but.draw(num);
         no_but.draw(num);
 
+        char ch = tolower(getch());
+
         switch (getch()) {
 
+        case 'ô':
         case 'a':
+
             num = (num + 1) % 2;
             break;
 
+        case 'â':
         case 'd':
             num = (num + 1) % 2;
             break;

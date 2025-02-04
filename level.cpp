@@ -221,7 +221,8 @@ void Level::pause()
         std::string path = intface.load_screen();
 
         if (path == "0")
-            intface.pause_menu();
+            /*intface.pause_menu();*/
+            return;
         try {
             number_of_loading = ft.load_boy(boy, path);
             download = true;
