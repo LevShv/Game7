@@ -63,8 +63,10 @@ void level_manager::start_next_level() {
             if (currentLevelIndex >= level_factories.size()) {
                 levels.clear();
             }
-
-            levels.back().reset();
+            else {
+                levels.back().reset();
+            }
+               
            
         }
     }
