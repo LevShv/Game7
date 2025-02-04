@@ -42,20 +42,29 @@ void level_manager::start_next_level() {
                 download = true;
             }
             if (levels.back()->alived == true) {
-                start_next_level();
-                
-                //levels.back()->Level_setup();
+
+                /*levels.back()->alived = false;*/
+                /*start_next_level();*/
+
+                levels.back().reset();
+                return;
+
+
             }
+
             stop_level = true;
             levels.clear();
         }
         else {
+          
 
             currentLevelIndex++;
 
             if (currentLevelIndex >= level_factories.size()) {
                 levels.clear();
             }
+
+            levels.back().reset();
            
         }
     }

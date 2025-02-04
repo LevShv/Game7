@@ -8,7 +8,7 @@ level_village::level_village(my_boy& boy) : Level(boy, 4)
 
     Party = new track();
     Party->play("Village_party.wav");
-    Party->loaded_track->setVolume(40);
+    Party->loaded_track->setVolume(60);
    
 }
 

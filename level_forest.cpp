@@ -33,6 +33,8 @@ void level_forest::update()
 {
     while (!exit_) {
 
+       /* boy.count_of_m = 20;*/
+
         if (boy.count_of_m == 20 && notification(igotall,
             "Все грибы собраны, возращаемся к старцу",
             "",
