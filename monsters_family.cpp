@@ -46,7 +46,7 @@ void monsters_family::give_some_boys_rand(int type) {
 void monsters_family::give_some_boys_rand(int type, int start_row, int end_row, int start_col, int end_col) {
     int rx, ry;
     int attempts = 0;
-    const int maxAttempts = 1000; // Максимальное количество попыток
+    const int maxAttempts = 1000; 
 
     while (attempts < maxAttempts) {
 
@@ -71,7 +71,7 @@ void monsters_family::give_some_boys_rand(bool reverse, int type, int start_row,
 {
     int rx, ry;
     int attempts = 0;
-    const int maxAttempts = 1000; // Максимальное количество попыток
+    const int maxAttempts = 1000; 
 
     while (attempts < maxAttempts) {
 
@@ -122,18 +122,17 @@ int monsters_family::monsters_move(bool stop) {
         wait = true;
           
     }
-    // Проверяем дубликаты только если монстры двигаются
+   
     if (!wait && Monsters.size() > 1) {
         for (int i = 0; i < Monsters.size() - 1; i++) {
             for (int j = i + 1; j < Monsters.size(); j++) {
                 if (Monsters[i].x == Monsters[j].x && Monsters[i].y == Monsters[j].y) {
-                    Monsters[i].x++; // Сдвигаем монстра вправо
+                    Monsters[i].x++; 
                 }
             }
         }
     }
 
-    // Движение монстров
     for (scary_monster& M : Monsters) {
 
         

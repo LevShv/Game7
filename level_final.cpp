@@ -34,7 +34,7 @@ level_final::~level_final()
 void level_final::start()
 {
     Level::start();
-    boss.hp = 0;
+   // boss.hp = 0;
     clear();
     boy.y = 0;
     boy.hp = 10;

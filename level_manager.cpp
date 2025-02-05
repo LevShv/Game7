@@ -56,7 +56,6 @@ void level_manager::start_next_level() {
             levels.clear();
         }
         else {
-          
 
             currentLevelIndex++;
 
@@ -64,6 +63,7 @@ void level_manager::start_next_level() {
                 levels.clear();
             }
             else {
+
                 levels.back().reset();
             }
                

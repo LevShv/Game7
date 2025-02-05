@@ -68,8 +68,8 @@ int Level::make_move(char** map) {
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count();
 
     if (input != ERR) {
-        if (input == last_input && elapsed < 50) { // 200 ms задержка между повторными нажатиями
-            return 1; // Игнорируем быстрое повторное нажатие
+        if (input == last_input && elapsed < 50) { 
+            return 1; 
         }
 
         last_input = input;
@@ -126,7 +126,7 @@ int Level::make_move(char** map) {
         }
     }
     else {
-        last_input = 0; // Сбрасываем последнюю нажатую клавишу, если ничего не нажато
+        last_input = 0; 
     }
 
     return 1;
@@ -205,7 +205,7 @@ int Level::make_move(char** map, int mx, int my) {
         }
     }
     else {
-        last_input = 0; // Сбрасываем последнюю нажатую клавишу, если ничего не нажато
+        last_input = 0; 
     }
 
     return 1;
@@ -441,10 +441,9 @@ void Level::copy_maps(bool a) {
     map_with_monsters = new char* [length];
 
     for (int i = 0; i < length; ++i) {
-        // Выделяем память для каждой строки
+     
         map_with_monsters[i] = new char[width];
 
-        // Копируем каждый символ
         for (int j = 0; j < width; ++j) {
             map_with_monsters[i][j] = map.forest[i][j];
         }

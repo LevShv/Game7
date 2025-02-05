@@ -43,13 +43,12 @@ std::vector<Point> final_boss::shortestPath(int bx, int by) {
 
     q.push(start);
     visited.insert(start);
-    path[start] = { -1, -1 }; // Инициализация начальной точки
+    path[start] = { -1, -1 }; 
 
     while (!q.empty()) {
         Point current = q.front();
         q.pop();
 
-        // Если достигли конечной точки, восстанавливаем путь
         if (current.x == end.x && current.y == end.y) {
             std::vector<Point> resultPath;
             while (current.x != -1 && current.y != -1) {
@@ -60,25 +59,25 @@ std::vector<Point> final_boss::shortestPath(int bx, int by) {
             return resultPath;
         }
 
-        // Проверяем все возможные направления
+        
         for (const auto& dir : directions) {
             Point next = { current.x + dir.x, current.y + dir.y };
 
-            // Проверяем, находится ли следующая точка в пределах карты
+           
             if (next.x >= 0 && next.x < rows && next.y >= 0 && next.y < cols) {
-                // Проверяем, может ли монстр пройти через стену
+               
                 bool can_go = false;
 
                 if (can_go_throw) {
-                    // Монстр может ходить сквозь стены
+                   
                     can_go = true;
                 }
                 else {
-                    // Монстр не может ходить сквозь стены
+                   
                     can_go = (map[next.x][next.y] == ' ' || map[next.x][next.y] == '1' || map[next.x][next.y] == 'o');
                 }
 
-                // Если можно пройти и точка не посещена, добавляем её в очередь
+              
                 if (can_go && visited.find(next) == visited.end()) {
                     q.push(next);
                     visited.insert(next);
@@ -88,7 +87,6 @@ std::vector<Point> final_boss::shortestPath(int bx, int by) {
         }
     }
 
-    // Если путь не найден, возвращаем пустой вектор
     return {};
 }
 
@@ -188,7 +186,7 @@ void final_boss::shoot_arrow(int by, int bx, int&hp)
     
 
     if (bx == mx) {
-        // Вертикальная стрельба (вверх или вниз)
+        
         if (by - my > 0) {
             diry = 1;  // стреляем вверх
             dirx = 0;
@@ -199,7 +197,7 @@ void final_boss::shoot_arrow(int by, int bx, int&hp)
         }
     }
     else if (by == my) {
-        // Горизонтальная стрельба (влево или вправо)
+       
         if (bx - mx > 0) {
             dirx = 1;  // стреляем вправо
             diry = 0;
@@ -210,7 +208,7 @@ void final_boss::shoot_arrow(int by, int bx, int&hp)
         }
     }
     else {
-        // Диагональная стрельба
+      
         if (bx - mx > 0 && by - my > 0) {
             dirx = 1;  // стреляем вправо-вверх
             diry = 1;
