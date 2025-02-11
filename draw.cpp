@@ -24,7 +24,7 @@ void draw::Bckg(int start_row, int end_row, int start_col, int end_col, int colo
 void draw::randomi(int& x, int& y)
 {
 
-    std::random_device rd;  // Используется для получения начального значения (seed)
+    std::random_device rd;  
     std::mt19937 gen(rd()); // Генератор случайных чисел (Mersenne Twister)
 
     std::uniform_int_distribution<> disx(1, 29 - 1); // Равномерное распределение от 0 до 
