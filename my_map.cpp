@@ -1,16 +1,16 @@
 #include <my_map.h>
 #include <random>
 #include <file_tools.h>
-#include <curses.h>
-#include <iostream>
-#include <unordered_map>
+
+
+
 
 #define PRINT_CHAR(obj, color) \
     do { \
         attron(color); \
         addch(obj); \
-        attroff(color); \
     } while (0)
+
 
 my_map::my_map(int width_of_map, int length_of_map, int lv) : width(width_of_map), length(length_of_map), level(lv) {
     forest = new char* [length];
@@ -44,7 +44,7 @@ void my_map::create_map(int level) {
         add_trees(100);
         add_mushrooms(133, 10, 120, 29);
         add_mushrooms('.', 10, 120, 29);
-        add_mushrooms(',', 3, 120, 29);
+        add_mushrooms(',',  3, 120, 29);
         break;
 
     case 4:
@@ -65,57 +65,44 @@ void my_map::create_map(int level) {
     }
 }
 
+
 void my_map::show_map() {
 
-    std::unordered_map<char, int> color_map = {
-        {'~', COLOR_PAIR(12)},
-        {'1', COLOR_PAIR(14)},
-        {'.', COLOR_PAIR(8)},
-        {'_', COLOR_PAIR(45)},
-        {'|', COLOR_PAIR(8)},
-        {'g', COLOR_PAIR(17)},
-        {'S', COLOR_PAIR(19)},
-        {',', COLOR_PAIR(28)},
-        {'o', COLOR_PAIR(28)},
-        {'2', COLOR_PAIR(14)},
-        {'=', COLOR_PAIR(46)},
-        {'\\', COLOR_PAIR(8)},
-        {'/', COLOR_PAIR(8)},
-        {')', COLOR_PAIR(8)}
-
-       /* {'T', COLOR_PAIR(44) }*/
-    };
-
-    int default_color = COLOR_PAIR(4);
+    char last_char = forest[0][0];
+    attron(color_map[last_char]);
 
     for (int i = 0; i < length; i++) {
-        char* str = forest[i];
         for (int j = 0; j < width; j++) {
-            char c = *str;
+            char c = forest[i][j];
 
+            if (last_char == c && c != '1') {
+                addch(c);
+                continue;
+            }
+
+            if (last_char == 1) {
+                addch(' ');
+                continue;
+            }
+
+            attroff(color_map[last_char]);
 
             if (c == (char)133) {
-                attron(COLOR_PAIR(22));
-                addch(133); 
-                attroff(COLOR_PAIR(22));
+                PRINT_CHAR(133, COLOR_PAIR(22));
+              
             }
             else if (c == '1') {
                 PRINT_CHAR(' ', COLOR_PAIR(14));
+            
             }
             else {
-
-                int color = default_color;
-
-                if (color_map.count(c)) {
-                    color = color_map[c];
-                }
-
-                PRINT_CHAR(c, color);
+                PRINT_CHAR(c, color_map[c]);
             }
 
-            str++;
+            last_char = c;
         }
     }
+    attroff(color_map[last_char]);
 }
 
 my_map::~my_map() {
