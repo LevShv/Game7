@@ -188,41 +188,41 @@ void final_boss::shoot_arrow(int by, int bx, int&hp)
     if (bx == mx) {
         
         if (by - my > 0) {
-            diry = 1;  // стреляем вверх
+            diry = 1;  // вверх
             dirx = 0;
         }
         else if (by - my < 0) {
-            diry = -1; // стреляем вниз
+            diry = -1; //  вниз
             dirx = 0;
         }
     }
     else if (by == my) {
        
         if (bx - mx > 0) {
-            dirx = 1;  // стреляем вправо
+            dirx = 1;  // вправо
             diry = 0;
         }
         else if (bx - mx < 0) {
-            dirx = -1; // стреляем влево
+            dirx = -1; // влево
             diry = 0;
         }
     }
     else {
       
         if (bx - mx > 0 && by - my > 0) {
-            dirx = 1;  // стреляем вправо-вверх
+            dirx = 1;  //вправо-верх
             diry = 1;
         }
         else if (bx - mx > 0 && by - my < 0) {
-            dirx = 1;  // стреляем вправо-вниз
+            dirx = 1;  // вправо-вниз
             diry = -1;
         }
         else if (bx - mx < 0 && by - my > 0) {
-            dirx = -1; // стреляем влево-вверх
+            dirx = -1; //влево-вверх
             diry = 1;
         }
         else if (bx - mx < 0 && by - my < 0) {
-            dirx = -1; // стреляем влево-вниз
+            dirx = -1; //  влево-вниз
             diry = -1;
         }
         else
