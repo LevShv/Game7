@@ -77,6 +77,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\llvvv\source\repos\Game7;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -93,12 +94,16 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\llvvv\source\repos\Game7;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Users\llvvv\source\repos\Game7;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>pdcurses.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -130,9 +135,70 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="button_table.cpp" />
+    <ClCompile Include="draw.cpp" />
+    <ClCompile Include="file_tools.cpp" />
+    <ClCompile Include="final_boss.cpp" />
+    <ClCompile Include="iface.cpp" />
+    <ClCompile Include="level.cpp" />
+    <ClCompile Include="level_back_fforest.cpp" />
+    <ClCompile Include="level_back_ffvillage.cpp" />
+    <ClCompile Include="level_final.cpp" />
+    <ClCompile Include="level_forest.cpp" />
+    <ClCompile Include="level_manager.cpp" />
+    <ClCompile Include="level_save_S.cpp" />
+    <ClCompile Include="level_start.cpp" />
+    <ClCompile Include="level_village.cpp" />
+    <ClCompile Include="level_way_to_village.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="monsters_family.cpp" />
+    <ClCompile Include="monster_type.cpp" />
+    <ClCompile Include="my_boy.cpp" />
+    <ClCompile Include="my_map.cpp" />
+    <ClCompile Include="old_main.cpp" />
+    <ClCompile Include="scary_monster.cpp" />
+    <ClCompile Include="Audio.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="button_table.h" />
+    <ClInclude Include="draw.h" />
+    <ClInclude Include="file_tools.h" />
+    <ClInclude Include="final_boss.h" />
+    <ClInclude Include="iface.h" />
+    <ClInclude Include="level.h" />
+    <ClInclude Include="level_back_fforest.h" />
+    <ClInclude Include="level_back_ffvillage.h" />
+    <ClInclude Include="level_final.h" />
+    <ClInclude Include="level_forest.h" />
+    <ClInclude Include="level_manager.h" />
+    <ClInclude Include="level_save_S.h" />
+    <ClInclude Include="level_start.h" />
+    <ClInclude Include="level_village.h" />
+    <ClInclude Include="level_way_to_village.h" />
+    <ClInclude Include="monsters_family.h" />
+    <ClInclude Include="monster_type.h" />
+    <ClInclude Include="my_boy.h" />
+    <ClInclude Include="my_map.h" />
+    <ClInclude Include="scary_monster.h" />
+    <ClInclude Include="Audio.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets" Condition="Exists('packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets')" />
+    <Import Project="packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets" Condition="Exists('packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets')" />
+    <Import Project="packages\sfml_system.2.6.0\build\native\sfml_system.targets" Condition="Exists('packages\sfml_system.2.6.0\build\native\sfml_system.targets')" />
+    <Import Project="packages\sfml_audio.2.6.0\build\native\sfml_audio.targets" Condition="Exists('packages\sfml_audio.2.6.0\build\native\sfml_audio.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_audio.redist.2.6.0\build\native\sfml_audio.redist.targets'))" />
+    <Error Condition="!Exists('packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_system.redist.2.6.0\build\native\sfml_system.redist.targets'))" />
+    <Error Condition="!Exists('packages\sfml_system.2.6.0\build\native\sfml_system.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_system.2.6.0\build\native\sfml_system.targets'))" />
+    <Error Condition="!Exists('packages\sfml_audio.2.6.0\build\native\sfml_audio.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\sfml_audio.2.6.0\build\native\sfml_audio.targets'))" />
+  </Target>
 </Project>

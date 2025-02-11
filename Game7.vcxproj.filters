@@ -5,18 +5,221 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Файлы заголовков">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="Исходные файлы\entities">
+      <UniqueIdentifier>{15873db1-9c1d-4386-8045-22c1c41709f6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы ресурсов">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Исходные файлы\entities\Boy">
+      <UniqueIdentifier>{11e610d7-49b7-49f3-aa1e-b5b5b909185f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\entities\Monsters">
+      <UniqueIdentifier>{fb5ecd5b-a039-4128-927c-f70e5489f8c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels">
+      <UniqueIdentifier>{dea22ec2-47de-4d97-af12-09ce39df9202}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\Base">
+      <UniqueIdentifier>{a065ba22-e73e-4d6b-870e-844acdde503d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\UI">
+      <UniqueIdentifier>{d06154c5-47ba-4328-a5cb-fbbe227a4b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine">
+      <UniqueIdentifier>{8d6a11bb-362c-4c52-9891-a579ad7c4b12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\Map">
+      <UniqueIdentifier>{11fa6751-5d3e-406d-baaf-1a1a60dbbddc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\Level_manager">
+      <UniqueIdentifier>{244c4032-470b-47b2-8fc4-95610bf50558}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\1%29 level_start">
+      <UniqueIdentifier>{d0fcdc4c-01d7-4d46-bfa9-d545ad70cd96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\2%29 level_forest">
+      <UniqueIdentifier>{3100ff1e-7f97-43a9-a851-ef38524d1e07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\3%29 level_back_fforest">
+      <UniqueIdentifier>{793508bb-18a4-4a54-b5aa-8323bc4cedaa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="archive">
+      <UniqueIdentifier>{5c60ad81-55f9-4ed7-b921-ac3290d68d01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="archive\old main">
+      <UniqueIdentifier>{59294081-9f7b-44e1-a42c-86f37442782d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\5%29 level_village">
+      <UniqueIdentifier>{e23c9573-91b2-434a-a596-9275eb6c5a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\file_tools">
+      <UniqueIdentifier>{ea38d2f3-043b-42ad-a134-c6ad0bb82d2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\UI\button">
+      <UniqueIdentifier>{33c70d49-b533-4e41-b645-c146df9bfc13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\UI\Base">
+      <UniqueIdentifier>{3ec0e9b4-4201-4b04-a469-236ae6e9014e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\Audio">
+      <UniqueIdentifier>{2143c325-fc23-43ea-881a-605ea692e125}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\6%29 level_back_ffvillage">
+      <UniqueIdentifier>{7ccdcc25-1030-4b43-aac7-54c2021f66a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\7%29 level_save_S">
+      <UniqueIdentifier>{49077ad6-b917-4e72-b04d-157ce1a3981e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\8%29 level_final">
+      <UniqueIdentifier>{bf7f4939-2e64-474c-9927-5f6127056606}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\entities\Boss">
+      <UniqueIdentifier>{94699bd8-7a41-4996-807a-7ffe6ce38c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\5%29 level_village\4%29 level_way_to_village">
+      <UniqueIdentifier>{f0ccd3a0-4781-45c2-8e42-cd313e8eb765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\Config">
+      <UniqueIdentifier>{93271c30-db85-42fe-a39f-1d27bb6f7996}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="my_boy.cpp">
+      <Filter>Исходные файлы\entities\Boy</Filter>
+    </ClCompile>
+    <ClCompile Include="monster_type.cpp">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="monsters_family.cpp">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="scary_monster.cpp">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="iface.cpp">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="my_map.cpp">
+      <Filter>Исходные файлы\engine\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="level.cpp">
+      <Filter>Исходные файлы\levels\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="level_start.cpp">
+      <Filter>Исходные файлы\levels\1%29 level_start</Filter>
+    </ClCompile>
+    <ClCompile Include="level_manager.cpp">
+      <Filter>Исходные файлы\levels\Level_manager</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="level_forest.cpp">
+      <Filter>Исходные файлы\levels\2%29 level_forest</Filter>
+    </ClCompile>
+    <ClCompile Include="level_back_fforest.cpp">
+      <Filter>Исходные файлы\levels\3%29 level_back_fforest</Filter>
+    </ClCompile>
+    <ClCompile Include="level_way_to_village.cpp">
+      <Filter>Исходные файлы\levels\5%29 level_village\4%29 level_way_to_village</Filter>
+    </ClCompile>
+    <ClCompile Include="old_main.cpp">
+      <Filter>archive\old main</Filter>
+    </ClCompile>
+    <ClCompile Include="level_village.cpp">
+      <Filter>Исходные файлы\levels\5%29 level_village</Filter>
+    </ClCompile>
+    <ClCompile Include="file_tools.cpp">
+      <Filter>Исходные файлы\engine\file_tools</Filter>
+    </ClCompile>
+    <ClCompile Include="button_table.cpp">
+      <Filter>Исходные файлы\UI\button</Filter>
+    </ClCompile>
+    <ClCompile Include="draw.cpp">
+      <Filter>Исходные файлы\UI\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Исходные файлы\engine\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="level_back_ffvillage.cpp">
+      <Filter>Исходные файлы\levels\6%29 level_back_ffvillage</Filter>
+    </ClCompile>
+    <ClCompile Include="level_save_S.cpp">
+      <Filter>Исходные файлы\levels\7%29 level_save_S</Filter>
+    </ClCompile>
+    <ClCompile Include="level_final.cpp">
+      <Filter>Исходные файлы\levels\8%29 level_final</Filter>
+    </ClCompile>
+    <ClCompile Include="final_boss.cpp">
+      <Filter>Исходные файлы\entities\Boss</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="my_boy.h">
+      <Filter>Исходные файлы\entities\Boy</Filter>
+    </ClInclude>
+    <ClInclude Include="monster_type.h">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="monsters_family.h">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="scary_monster.h">
+      <Filter>Исходные файлы\entities\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="my_map.h">
+      <Filter>Исходные файлы\engine\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="iface.h">
+      <Filter>Исходные файлы\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="level.h">
+      <Filter>Исходные файлы\levels\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="level_start.h">
+      <Filter>Исходные файлы\levels\1%29 level_start</Filter>
+    </ClInclude>
+    <ClInclude Include="level_manager.h">
+      <Filter>Исходные файлы\levels\Level_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="level_forest.h">
+      <Filter>Исходные файлы\levels\2%29 level_forest</Filter>
+    </ClInclude>
+    <ClInclude Include="level_back_fforest.h">
+      <Filter>Исходные файлы\levels\3%29 level_back_fforest</Filter>
+    </ClInclude>
+    <ClInclude Include="level_way_to_village.h">
+      <Filter>Исходные файлы\levels\5%29 level_village\4%29 level_way_to_village</Filter>
+    </ClInclude>
+    <ClInclude Include="level_village.h">
+      <Filter>Исходные файлы\levels\5%29 level_village</Filter>
+    </ClInclude>
+    <ClInclude Include="file_tools.h">
+      <Filter>Исходные файлы\engine\file_tools</Filter>
+    </ClInclude>
+    <ClInclude Include="button_table.h">
+      <Filter>Исходные файлы\UI\button</Filter>
+    </ClInclude>
+    <ClInclude Include="draw.h">
+      <Filter>Исходные файлы\UI\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Исходные файлы\engine\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="level_back_ffvillage.h">
+      <Filter>Исходные файлы\levels\6%29 level_back_ffvillage</Filter>
+    </ClInclude>
+    <ClInclude Include="level_save_S.h">
+      <Filter>Исходные файлы\levels\7%29 level_save_S</Filter>
+    </ClInclude>
+    <ClInclude Include="level_final.h">
+      <Filter>Исходные файлы\levels\8%29 level_final</Filter>
+    </ClInclude>
+    <ClInclude Include="final_boss.h">
+      <Filter>Исходные файлы\entities\Boss</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <Filter>Исходные файлы\engine\Config</Filter>
+    </None>
   </ItemGroup>
 </Project>
