@@ -96,7 +96,7 @@ void level_forest::draw()
 
 void level_forest::moving()
 {
-    move = make_move(map.forest);
+    move = make_move();
     if (move) { ////////.............
         game_iter++;
         badboys->find(boy.x, boy.y);

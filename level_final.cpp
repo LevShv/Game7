@@ -160,7 +160,7 @@ void level_final::draw()
 
 void level_final::moving()
 {
-    move = make_move(map.forest, boss.y, boss.x);
+    move = make_move(boss.y, boss.x);
 
     if (move) { ////////.............
         game_iter++;

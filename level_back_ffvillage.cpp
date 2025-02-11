@@ -102,7 +102,7 @@ void level_back_ffvillage::draw()
 
 void level_back_ffvillage::moving()
 {
-    move = make_move(map.forest);
+    move = make_move();
 
     if (move) { ////////.............
         game_iter++;

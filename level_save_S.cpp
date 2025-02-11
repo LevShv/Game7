@@ -166,7 +166,7 @@ void level_save_S::draw()
 
 void level_save_S::moving()
 {
-    move = make_move(map.forest);
+    move = make_move();
 
     if (move) { ////////.............
         game_iter++;

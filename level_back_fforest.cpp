@@ -137,7 +137,7 @@ void level_back_fforest::draw()
 
 void level_back_fforest::moving()
 {
-    if (make_move(map.forest) == 1) { ////////.............
+    if (make_move() == 1) { ////////.............
         game_iter++;
     }
     else {

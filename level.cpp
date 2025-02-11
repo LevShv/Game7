@@ -2,6 +2,7 @@
 #include <file_tools.h>
 #include <chrono>
 
+
 std::shared_ptr<my_boy> Level::auto_saved = nullptr;
 
 Level::Level(my_boy& boy, int map_type)
@@ -56,87 +57,24 @@ void Level::start()
     }
 }
 
-int Level::make_move(char** map) {
+int Level::make_move() {
 
-    static char last_input = 0;
-    static auto last_time = std::chrono::steady_clock::now();
+    return move_base();
 
-    timeout(300);
-    char input = getch();
-
-    auto now = std::chrono::steady_clock::now();
-    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count();
-
-    if (input != ERR) {
-        if (input == last_input && elapsed < 50) { 
-            return 1; 
-        }
-
-        last_input = input;
-        last_time = now;
-
-        switch (input) {
-        case 'w':
-            if (0 < boy.y) {
-                boy.y--;
-                sounds.play(sounds.step);
-                return 1;
-            }
-            break;
-        case 's':
-            if (boy.y < length - 1) {
-                boy.y++;
-                sounds.play(sounds.step);
-                return 1;
-            }
-            break;
-        case 'a':
-            if (boy.x > 0) {
-                boy.x--;
-                sounds.play(sounds.step);
-                return 1;
-            }
-            break;
-        case 'd':
-            if (boy.x < width - 1) {
-                boy.x++;
-                sounds.play(sounds.step);
-                return 1;
-            }
-            break;
-
-        case '1':
-            if (boy.invent.size() > 0 && boy.invent[0].usage)
-                do_something(0);
-            return 0;
-            break;
-
-        case '2':
-            if (boy.invent.size() > 0 && boy.invent[1].usage)
-                do_something(1);
-            return 0;
-            break;
-        case 'e':
-            intface.show_invent(boy.invent);
-            return 0;
-            break;
-        case 27:
-            pause();
-            return 0;
-        }
-    }
-    else {
-        last_input = 0; 
-    }
-
-    return 1;
 }
 
-int Level::make_move(char** map, int mx, int my) {
+
+int Level::make_move(int mx, int my) {
 
     bossx = mx;
     bossy = my;
 
+    return move_base();
+
+}
+
+int Level::move_base()
+{
     static char last_input = 0;
     static auto last_time = std::chrono::steady_clock::now();
 
@@ -147,8 +85,8 @@ int Level::make_move(char** map, int mx, int my) {
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - last_time).count();
 
     if (input != ERR) {
-        if (input == last_input && elapsed < 50) { 
-            return 1; 
+        if (input == last_input && elapsed < 50) {
+            return 1;
         }
 
         last_input = input;
@@ -205,7 +143,7 @@ int Level::make_move(char** map, int mx, int my) {
         }
     }
     else {
-        last_input = 0; 
+        last_input = 0;
     }
 
     return 1;
@@ -449,6 +387,7 @@ void Level::copy_maps(bool a) {
         }
     }
 }
+
 
 
 

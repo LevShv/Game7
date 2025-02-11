@@ -101,7 +101,7 @@ void level_way_to_village::draw()
 
 void level_way_to_village::moving()
 {
-    move = make_move(map.forest);
+    move = make_move();
 
     if (move) { ////////.............
         game_iter++;

@@ -47,8 +47,10 @@ protected:
     virtual void draw() = 0;
     virtual void moving() = 0;
     //virtual void 
-    int make_move(char** map);
-    int make_move(char** map, int mx, int my);
+
+    int make_move();
+    int make_move(int mx, int my);
+    int move_base();
 
     void pause();
     void save_check();
@@ -65,10 +67,9 @@ protected:
 
     void shoot_arrow(int x, int y);
 
-
     void copy_maps();
     void copy_maps(bool a);
-
+    
 
 public:
 
@@ -84,5 +85,6 @@ public:
     bool download = false;
     bool alived = false;
     int number_of_loading;
+
 
 };

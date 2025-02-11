@@ -160,7 +160,7 @@ void level_start::draw()
 
 void level_start::moving()
 {
-    if (make_move(map.forest) == 1) { ////////.............
+    if (make_move() == 1) { ////////.............
         game_iter++;
     }
 
