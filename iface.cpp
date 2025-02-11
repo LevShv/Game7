@@ -50,60 +50,7 @@ int iface::game_over() {
     getch();
 }
 
-void iface::game_win() {
 
-    timeout(1000);
-
-    const char* credits[] = {
-        "Поздравляем!",
-        "Вы победили!",
-        "",
-        "Разработчик:",
-        "Швецов Лев",
-        "",
-        "Дизайнеры карт:",
-        "Швецов Лев",
-        "Елена Якимова",
-        "",
-        "Музыка: ",
-        "Павел Чуйкин",
-        "Григорий Дорошенко",
-        "",
-        "Руководитель проекта:",
-        "Никита Гоголев",
-        "",
-        "Тула 2024",
-        "",
-        "",
-        "Спасибо за игру!",
-        nullptr 
-    };
-
-    int y = LINES; 
-    int x = COLS / 2 - 10;
-
-    while (true) {
-        clear();
-
-        for (int i = 0; credits[i] != nullptr; ++i) {
-            mvprintw(y + i, x, "%s", credits[i]);
-        }
-
-        refresh();
-
-        y--;
-
-        if (y + static_cast<int>(sizeof(credits) / sizeof(credits[0])) < 0) {
-            break; 
-        }
-
-     
-        int ch = getch();
-        if (ch != ERR) { 
-            break; 
-        }
-    }
-}
 
 void iface::subs(const char* a, const char* b)
 {
@@ -362,11 +309,11 @@ std::string iface::save_screen()
    
     while (!selected) {
 
-        int bsx = 44; // Начальная координата X
-        int bex = 75; // Конечная координата X
+        int bsx = 44; 
+        int bex = 75; 
         int bsy = 7;
 
-        int height = 2; // Высота кнопки
+        int height = 2; 
         int between = 3;
 
         Bckg(0, 29, 0, 120, COLOR_PAIR(29));
@@ -446,8 +393,8 @@ std::string iface::load_screen()
 
     while (!selected) {
 
-        int bsx = 44; // Начальная координата X
-        int bex = 75; // Конечная координата X
+        int bsx = 44; 
+        int bex = 75; 
         int bsy = 7;
 
         int height = 2; // Высота кнопки
@@ -518,17 +465,14 @@ bool iface::are_you_sure_screen()
         yes_but.draw(num);
         no_but.draw(num);
 
-        char ch = tolower(getch());
 
         switch (getch()) {
 
-        case 'ф':
         case 'a':
 
             num = (num + 1) % 2;
             break;
 
-        case 'в':
         case 'd':
             num = (num + 1) % 2;
             break;
@@ -598,6 +542,59 @@ void iface::Bckg_effect()
     }
     attroff(COLOR_PAIR(32));
 
+}
+
+void iface::game_win() {
+
+    timeout(1000);
+
+    const char* credits[] = {
+        "Поздравляем!",
+        "Вы победили!",
+        "",
+        "Разработчик:",
+        "Швецов Лев",
+        "",
+        "Дизайнеры карт:",
+        "Швецов Лев",
+        "Елена Якимова",
+        "",
+        "Музыка: ",
+        "Павел Чуйкин",
+        "Григорий Дорошенко",
+        "",
+        "Руководитель проекта:",
+        "Никита Гоголев",
+        "",
+        "Тула 2024",
+        "",
+        "",
+        "Спасибо за игру!",
+        nullptr
+    };
+
+    int y = 30;
+    int x = 52;
+
+    while (true) {
+        clear();
+
+        for (int i = 0; credits[i] != nullptr; ++i) {
+            mvprintw(y + i, x, "%s", credits[i]);
+        }
+
+        refresh();
+        y--;
+
+        if (y + static_cast<int>(sizeof(credits) / sizeof(credits[0])) < 0) {
+            break;
+        }
+
+        int ch = getch();
+        if (ch != ERR) {
+            break;
+        }
+    }
 }
 
 
