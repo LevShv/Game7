@@ -1,8 +1,6 @@
 #include "Audio.h"
 #include "file_tools.h"
 
-
-//std::unique_ptr<sf::Music> music = std::make_unique<sf::Music>();
 void track::play(std::string song)
 {
     loaded_track = new sf::Music();
