@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include <vector>
 #include <string>
+#include <unordered_map>
+#include <curses.h>
 
 class my_map
 {
@@ -25,9 +27,6 @@ private:
     int random_x();
     int random_y();
 
-    void print_char(char obj, int color);
-    /*void print_str(int color)*/
-
     void make_claen_map();
     void add_to_map(std::vector<std::vector<char>> addon, int posx, int posy);
 
@@ -42,10 +41,36 @@ private:
     {'|', '1', '1', '|', '1', '1', '1', '1', '1', '1', '1', '|'},
     {'|', '_', '_', '|', '1', '_', '_', '_', '_', '_', '1', '|'},
     {'|', '1', '1', '1', '1', '1', '1', '1', '|'},
-    {'|', '1', '1', '1', '1', 'I', 'I', 'I', '|'},
+    {'|', '1', '1', '1', '1', '1', '1', '1', '|'},
     {'|', '_', '_', '_', '_', '_', '_', '_', '|'}
     };
 
     std::vector<std::vector<char>> base_of_map; 
+
+    std::unordered_map<char, int> color_map = {
+
+        {'~', COLOR_PAIR(12)},
+        {'.', COLOR_PAIR(8)},
+        {'_', COLOR_PAIR(45)},
+        {'|', COLOR_PAIR(8)},
+        {'g', COLOR_PAIR(17)},
+        {'S', COLOR_PAIR(19)},
+        {',', COLOR_PAIR(28)},
+        {'o', COLOR_PAIR(28)},
+        {'2', COLOR_PAIR(14)},
+        {'=', COLOR_PAIR(46)},
+        {'\\', COLOR_PAIR(8)},
+        {'/', COLOR_PAIR(8)},
+        {133, COLOR_PAIR(22)},
+
+        // default
+
+        {'T', COLOR_PAIR(4)},
+        {' ', COLOR_PAIR(4)}
+        /*{')', COLOR_PAIR(8)}*/
+
+       /* {'T', COLOR_PAIR(44) }*/
+    };
+
 };
 

@@ -9,7 +9,7 @@
     do { \
         attron(color); \
         move(y, x); \
-        printw("0"); \
+        addch('0'); \
         attroff(color); \
     } while (0)
 
@@ -171,48 +171,14 @@ void my_boy::check_invent_for_null(int num)
     }
 }
 
-void my_boy::save()
-{
-    std::string path;
-    iface init;
-    path = init.save_screen();
-
-    std::ofstream file(path);
-    if (!file.is_open()) {
-
-        printw("Ошибка: не удалось сохранить игру!\n");
-        refresh();
-        return;
-    }
-
-    file << "level: " << where << "\n";
-
-    file << "hp: " << hp << "\n";
-
-    file << "x: " << x << "\n";
-    file << "y: " << y << "\n";
-
-    file << "invent_size: " << invent.size() << "\n"; 
-
-    for (const auto& item : invent) {
-        file << item.name << " " << item.icon << " " << item.count << " " << item.color << " " << item.usage << "\n";
-    }
-
-    file.close();
-
-    printw("Игра успешно сохранена в файл: %s\n", path.c_str());
-    refresh();
-
-    
-}
-
-void my_boy::print_me(int color) {
-
-    attron(color);
-    move(y, x);
-    printw("0");
-    attroff(color);
-}
+//
+//void my_boy::print_me(int color) {
+//
+//    attron(color);
+//    move(y, x);
+//    printw("0");
+//    attroff(color);
+//}
 
 
 

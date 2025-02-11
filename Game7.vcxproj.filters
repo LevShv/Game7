@@ -41,9 +41,6 @@
     <Filter Include="Исходные файлы\levels\3%29 level_back_fforest">
       <UniqueIdentifier>{793508bb-18a4-4a54-b5aa-8323bc4cedaa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\levels\4%29 level_way_to_village">
-      <UniqueIdentifier>{f0ccd3a0-4781-45c2-8e42-cd313e8eb765}</UniqueIdentifier>
-    </Filter>
     <Filter Include="archive">
       <UniqueIdentifier>{5c60ad81-55f9-4ed7-b921-ac3290d68d01}</UniqueIdentifier>
     </Filter>
@@ -62,9 +59,6 @@
     <Filter Include="Исходные файлы\UI\Base">
       <UniqueIdentifier>{3ec0e9b4-4201-4b04-a469-236ae6e9014e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\Config">
-      <UniqueIdentifier>{93271c30-db85-42fe-a39f-1d27bb6f7996}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\engine\Audio">
       <UniqueIdentifier>{2143c325-fc23-43ea-881a-605ea692e125}</UniqueIdentifier>
     </Filter>
@@ -79,6 +73,12 @@
     </Filter>
     <Filter Include="Исходные файлы\entities\Boss">
       <UniqueIdentifier>{94699bd8-7a41-4996-807a-7ffe6ce38c24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\levels\5%29 level_village\4%29 level_way_to_village">
+      <UniqueIdentifier>{f0ccd3a0-4781-45c2-8e42-cd313e8eb765}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\engine\Config">
+      <UniqueIdentifier>{93271c30-db85-42fe-a39f-1d27bb6f7996}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +119,7 @@
       <Filter>Исходные файлы\levels\3%29 level_back_fforest</Filter>
     </ClCompile>
     <ClCompile Include="level_way_to_village.cpp">
-      <Filter>Исходные файлы\levels\4%29 level_way_to_village</Filter>
+      <Filter>Исходные файлы\levels\5%29 level_village\4%29 level_way_to_village</Filter>
     </ClCompile>
     <ClCompile Include="old_main.cpp">
       <Filter>archive\old main</Filter>
@@ -187,7 +187,7 @@
       <Filter>Исходные файлы\levels\3%29 level_back_fforest</Filter>
     </ClInclude>
     <ClInclude Include="level_way_to_village.h">
-      <Filter>Исходные файлы\levels\4%29 level_way_to_village</Filter>
+      <Filter>Исходные файлы\levels\5%29 level_village\4%29 level_way_to_village</Filter>
     </ClInclude>
     <ClInclude Include="level_village.h">
       <Filter>Исходные файлы\levels\5%29 level_village</Filter>
@@ -219,7 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
-      <Filter>Исходные файлы\Config</Filter>
+      <Filter>Исходные файлы\engine\Config</Filter>
     </None>
   </ItemGroup>
 </Project>
